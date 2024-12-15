@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Monster : MonoBehaviour
+public class Mosquito : MonoBehaviour
 {
     public float speed; // 이동 속도
     public float chargeDelay = 2.0f; // 주인공에게 다가가기 전 대기 시간
@@ -8,6 +8,8 @@ public class Monster : MonoBehaviour
 
     private Rigidbody2D rigid;
     private SpriteRenderer spriteRenderer;
+
+    private LineRenderer lineRenderer; //line renderer추가
 
     private float oscillationFrequency = 10.0f; // 진동 주파수
     private float oscillationAmplitude = 0.3f; // 진동 폭
@@ -19,6 +21,17 @@ public class Monster : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        lineRenderer = GetComponent<LineRenderer>(); // Line Renderer 가져오기
+
+        // Line Renderer 초기화
+        if (lineRenderer != null)
+        {
+            lineRenderer.positionCount = 2; // 두 점(시작점, 끝점)으로 구성된 선
+            lineRenderer.startWidth = 0.1f; // 선의 시작 부분 두께
+            lineRenderer.endWidth = 0.1f; // 선의 끝 부분 두께
+            lineRenderer.startColor = Color.red; // 선의 시작 색
+            lineRenderer.endColor = Color.red; // 선의 끝 색
+        }
     }
 
     void FixedUpdate()
@@ -36,6 +49,7 @@ public class Monster : MonoBehaviour
             {
                 isMovingToTarget = true;
                 timeSinceLastAction = 0f; // 타이머 초기화
+                UpdateLineRenderer(false); // 이동 시작 시 점선 비활성화
             }
         }
         else
@@ -69,5 +83,20 @@ public class Monster : MonoBehaviour
 
         // 방향에 따라 스프라이트 좌우 반전
         spriteRenderer.flipX = dirVec.x < 0;
+    }
+    private void UpdateLineRenderer(bool isActive)
+    {
+        if (lineRenderer != null && target != null)
+        {
+            lineRenderer.enabled = isActive; // Line Renderer 활성화/비활성화
+            if (isActive)
+            {
+                // 시작점: 모기의 현재 위치
+                lineRenderer.SetPosition(0, transform.position);
+
+                // 끝점: 주인공의 위치
+                lineRenderer.SetPosition(1, target.position);
+            }
+        }
     }
 }
