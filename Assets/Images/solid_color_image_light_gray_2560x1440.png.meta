@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      solid_color_image_light_gray_2560x1440_0: -8558121054795007469
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
