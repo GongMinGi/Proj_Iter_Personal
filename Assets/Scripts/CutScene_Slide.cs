@@ -1,7 +1,8 @@
-using System.Collections;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Made by KMS
 [System.Serializable]
 public class SlideData
 {
@@ -59,7 +60,7 @@ public class CutScene_Slide : MonoBehaviour
 
         // 컷신 종료
         Debug.Log("Cutscene Finished");
-        // SceneManager.LoadScene("NextScene"); // 필요 시 추가
+        SceneManager.LoadScene("LabABasementScene"); 
     }
 
     private IEnumerator FadeTransition()

@@ -606,21 +606,21 @@ MonoBehaviour:
   nextImage: {fileID: 887426124}
   slides:
   - image: {fileID: -5119281401947016335, guid: a5a176bfd46052c45aae147d1d7c1d65, type: 3}
-    displayTime: 5
+    displayTime: 1
   - image: {fileID: 6018852421200275908, guid: 1fc93ed6dced4e64f89fd318902c1bd5, type: 3}
-    displayTime: 5
+    displayTime: 1
   - image: {fileID: -5119281401947016335, guid: a5a176bfd46052c45aae147d1d7c1d65, type: 3}
     displayTime: 1
   - image: {fileID: 1566206617522148062, guid: 30b32b324dffa674382fe9a1a812ae7d, type: 3}
-    displayTime: 5
+    displayTime: 1
   - image: {fileID: -5119281401947016335, guid: a5a176bfd46052c45aae147d1d7c1d65, type: 3}
     displayTime: 1
   - image: {fileID: 7385367911712492187, guid: 5dc6ffb3051c72f4795a80f542903df7, type: 3}
-    displayTime: 5
+    displayTime: 1
   - image: {fileID: -8558121054795007469, guid: 120b3b3ab90e1b845a15e9904a9675cf, type: 3}
-    displayTime: 5
+    displayTime: 1
   - image: {fileID: -5119281401947016335, guid: a5a176bfd46052c45aae147d1d7c1d65, type: 3}
-    displayTime: 5
+    displayTime: 1
   fadeDuration: 0.5
 --- !u!225 &2087964307
 CanvasGroup:
