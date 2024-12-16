@@ -8,8 +8,7 @@ public class Mosquito : MonoBehaviour
 
     private Rigidbody2D rigid;
     private SpriteRenderer spriteRenderer;
-
-    private LineRenderer lineRenderer; //line renderer추가
+    private LineRenderer lineRenderr; // LineRenderr 스크립트 참조
 
     private float oscillationFrequency = 10.0f; // 진동 주파수
     private float oscillationAmplitude = 0.3f; // 진동 폭
@@ -21,17 +20,7 @@ public class Mosquito : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        lineRenderer = GetComponent<LineRenderer>(); // Line Renderer 가져오기
-
-        // Line Renderer 초기화
-        if (lineRenderer != null)
-        {
-            lineRenderer.positionCount = 2; // 두 점(시작점, 끝점)으로 구성된 선
-            lineRenderer.startWidth = 0.1f; // 선의 시작 부분 두께
-            lineRenderer.endWidth = 0.1f; // 선의 끝 부분 두께
-            lineRenderer.startColor = Color.red; // 선의 시작 색
-            lineRenderer.endColor = Color.red; // 선의 끝 색
-        }
+        lineRenderr = GetComponent<LineRenderer>(); // LineRenderr 컴포넌트 가져오기
     }
 
     void FixedUpdate()
@@ -44,20 +33,19 @@ public class Mosquito : MonoBehaviour
             // 진동 모드
             OscillateInPlace();
 
+            
             // 일정 시간 경과 후 이동 상태로 전환
             if (timeSinceLastAction >= chargeDelay)
             {
                 isMovingToTarget = true;
                 timeSinceLastAction = 0f; // 타이머 초기화
-                UpdateLineRenderer(false); // 이동 시작 시 점선 비활성화
+
             }
         }
         else
         {
             // 주인공에게 이동
             MoveToTarget();
-
-            // 주인공에게 다가가는 동안 동작이 멈추지 않음
         }
     }
 
@@ -83,20 +71,5 @@ public class Mosquito : MonoBehaviour
 
         // 방향에 따라 스프라이트 좌우 반전
         spriteRenderer.flipX = dirVec.x < 0;
-    }
-    private void UpdateLineRenderer(bool isActive)
-    {
-        if (lineRenderer != null && target != null)
-        {
-            lineRenderer.enabled = isActive; // Line Renderer 활성화/비활성화
-            if (isActive)
-            {
-                // 시작점: 모기의 현재 위치
-                lineRenderer.SetPosition(0, transform.position);
-
-                // 끝점: 주인공의 위치
-                lineRenderer.SetPosition(1, target.position);
-            }
-        }
     }
 }
