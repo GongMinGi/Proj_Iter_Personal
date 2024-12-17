@@ -10,6 +10,7 @@ public class Cat : MonoBehaviour
 
     private Rigidbody2D rigid;
     private SpriteRenderer spriteRenderer;
+    Animator animator;
 
     private float lastAttackTime = 0f; // 마지막 공격 시간
     private bool isGrounded = true; // 고양이가 바닥에 닿아있는지 확인
@@ -21,6 +22,7 @@ public class Cat : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     void FixedUpdate()
