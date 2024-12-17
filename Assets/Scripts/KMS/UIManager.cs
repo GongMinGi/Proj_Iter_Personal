@@ -2,11 +2,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-// Made by KMS
 public class UIManager : MonoBehaviour
 {
 
     public GameObject heart;
+
     public List<Image> hearts;
 
     PlayerHealth playerHealth;

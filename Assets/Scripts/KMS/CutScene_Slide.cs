@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-// Made by KMS
 [System.Serializable]       // 인스펙터 창에서 입력받을 구조체
 public class SlideData
 {
@@ -19,6 +18,7 @@ public class CutScene_Slide : MonoBehaviour
     public Image currentImage;       // 현재 이미지를 표시할 Image
     public Image nextImage;          // 다음 이미지를 표시할 Image
     public SlideData[] slides;       // 슬라이드 데이터 배열
+
     public float fadeDuration = 1f; // 페이드 인/아웃 시간
 
     private int currentSlideIndex = 0;

@@ -1,7 +1,6 @@
 using UnityEngine;
 using System;
 
-// Made by KMS
 public class PlayerHealth : MonoBehaviour
 {
 

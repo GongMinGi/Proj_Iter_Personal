@@ -2,16 +2,19 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
-// Made by KMS
 public class Tuto_BlinkUI : MonoBehaviour
 {
 
     public Image tutorialImage;     // 반짝이기 효과를 적용할 튜토리얼 이미지
+    
     public float fadeSpeed = 2f;    // 페이드 효과 속도
+
     public KeyCode toggleKey = KeyCode.E; // 특정 키 (Inspector에서 변경 가능)
+
     public bool useAnyKey = false;  // 모든 키 입력을 감지할지 여부 설정
 
     private bool isFadingOut = false; // 페이드아웃 중인지 확인하는 변수
+
     private Coroutine blinkCoroutine; // 반짝이기 효과 코루틴의 참조
 
     void Start()
@@ -76,8 +79,8 @@ public class Tuto_BlinkUI : MonoBehaviour
     {
 
         isFadingOut = true; // 페이드아웃 상태 설정
-        Color color = tutorialImage.color; // 현재 색상 가져오기
 
+        Color color = tutorialImage.color; // 현재 색상 가져오기
         
         while (color.a > 0f)        // 페이드아웃: 알파 값을 점차 감소시켜 완전 투명(0)으로 만듦
         {

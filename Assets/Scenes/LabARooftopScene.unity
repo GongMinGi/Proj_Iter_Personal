@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 307971387}
   - component: {fileID: 307971386}
   - component: {fileID: 307971385}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1753,7 +1753,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blackoutImage: {fileID: 1520915363}
-  fadeSpeed: 2
+  fadeSpeed: 1.5
 --- !u!1 &1904562572
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,15 +1,16 @@
 using UnityEngine;
 using System.Collections;
 
-// Made by KMS
 public class Tuto_BeginZoomOut : MonoBehaviour
 {
 
     public Camera mainCamera;      // 메인 카메라
+
     public Transform target;       // 캐릭터 위치
-    public float zoomInSize = 2f;  // 줌 인 시 카메라 크기
-    public float normalSize = 5f;  // 원래 상태의 카메라 크기
-    public float zoomDuration = 2f; // 줌 인 줌 아웃 시간
+
+    public float zoomInSize = 2f;    // 줌 인 시 카메라 크기
+    public float normalSize = 5f;     // 원래 상태의 카메라 크기
+    public float zoomDuration = 2f;     // 줌 인 줌 아웃 시간
 
     private float elapsedTime = 0f;
 
@@ -29,7 +30,6 @@ public class Tuto_BeginZoomOut : MonoBehaviour
         mainCamera.transform.position = new Vector3(target.position.x, target.position.y, mainCamera.transform.position.z);
 
     }
-
 
     IEnumerator ZoomOutEffect()
     {
