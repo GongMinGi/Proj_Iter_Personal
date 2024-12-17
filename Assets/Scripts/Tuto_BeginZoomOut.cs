@@ -23,6 +23,14 @@ public class Tuto_BeginZoomOut : MonoBehaviour
 
     }
 
+    void Update()
+    {
+
+        mainCamera.transform.position = new Vector3(target.position.x, target.position.y, mainCamera.transform.position.z);
+
+    }
+
+
     IEnumerator ZoomOutEffect()
     {
 
