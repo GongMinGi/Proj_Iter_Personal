@@ -13,6 +13,7 @@ public class EnemyMove : MonoBehaviour
 
     private float lastAttackTime = 0f;
     private bool isGrounded = true;
+    private bool isWaiting = false;
 
     void Awake()
     {
@@ -25,20 +26,27 @@ public class EnemyMove : MonoBehaviour
     {
         float distanceToTarget = Vector2.Distance(transform.position, target.position);
 
+        if (isWaiting)
+        {
+            // Wait 상태 중에는 아무것도 하지 않음
+            SetAnimatorState(2); // Wait
+            return;
+        }
+
         if (distanceToTarget > detectionRange)
         {
             SetAnimatorState(0); // Idle
             rigid.linearVelocity = Vector2.zero; // 속도 초기화
         }
-        else if (distanceToTarget > 3.0f)
+        else if (distanceToTarget > 4.0f)
         {
             SetAnimatorState(1); // Walk
             ChaseTarget();
-        }
+                    }
         else
         {
-            SetAnimatorState(2); // Attack
-            AttackTarget(distanceToTarget);
+            // 공격 로직으로 이동
+            TriggerWaitAndAttack(distanceToTarget);
         }
     }
 
@@ -57,13 +65,27 @@ public class EnemyMove : MonoBehaviour
         }
     }
 
-    private void AttackTarget(float distanceToTarget)
+    private void TriggerWaitAndAttack(float distanceToTarget)
     {
         if (isGrounded && Time.time - lastAttackTime >= attackCooldown)
         {
-            JumpToTarget(target.position);
-            lastAttackTime = Time.time;
+            // Wait 상태로 전환
+            isWaiting = true;
+            SetAnimatorState(2); // Wait
+            rigid.linearVelocity = Vector2.zero; // 이동 정지
+            //Invoke(nameof(PerformAttack), 2.0f); // 2초 후 공격 실행
+            PerformAttack();
         }
+    }
+
+    private void PerformAttack()
+    {
+        isWaiting = false;
+        lastAttackTime = Time.time;
+
+        // Jump 공격 실행
+        SetAnimatorState(3); // Attack
+        JumpToTarget(target.position);
     }
 
     private void JumpToTarget(Vector3 targetPosition)
@@ -92,28 +114,33 @@ public class EnemyMove : MonoBehaviour
             isGrounded = true;
         }
 
-        // Player와 충돌 시 고양이가 튕겨나감
         if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("Player와 충돌: 고양이가 튕겨 나갑니다.");
             BounceBackFromPlayer(collision);
 
-            // Idle 상태로 전환 후 다시 Walk로 복귀
+            // Walk -> Wait -> Attack 반복
             SetAnimatorState(0); // Idle
             rigid.linearVelocity = Vector2.zero; // 속도 초기화
-            Invoke(nameof(ReturnToChase), 1.0f); // 1초 후 Walk 상태로 복귀
+            Invoke(nameof(StartWaitState), 1.0f); // 1초 후 Wait 상태로 전환
         }
     }
 
     private void BounceBackFromPlayer(Collision2D collision)
     {
         Vector2 bounceDirection = (transform.position - collision.transform.position).normalized;
-        rigid.AddForce(bounceDirection * 300f); // 튕겨 나가는 힘 (300f는 임의의 값으로 조절 가능)
+
+        float bounceForceX = 700f;
+        float bounceForceY = 200f;
+
+        rigid.AddForce(new Vector2(bounceDirection.x * bounceForceX, Mathf.Clamp(bounceDirection.y, 0.1f, 1f) * bounceForceY));
     }
 
-    private void ReturnToChase()
+    private void StartWaitState()
     {
-        SetAnimatorState(1); // Walk
-        ChaseTarget(); // Player 추적 재개
+        isWaiting = true;
+        SetAnimatorState(2); // Wait
+        rigid.linearVelocity = Vector2.zero;
+        Invoke(nameof(PerformAttack), 2.0f); // Wait 상태 후 공격 실행
     }
 }

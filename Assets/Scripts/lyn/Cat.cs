@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class Cat : MonoBehaviour
 {
-    public float moveSpeed = 2.0f; // 이동 속도
-    public float jumpForceMultiplier = 1.0f; // 점프 힘 조정
-    public float detectionRange = 5.0f; // 탐지 범위
-    public float attackCooldown = 2.0f; // 공격 대기 시간
+    public float moveSpeed; // 이동 속도
+    public float jumpForceMultiplier; // 점프 힘 조정
+    public float detectionRange; // 탐지 범위
+    public float attackCooldown; // 공격 대기 시간
     public Transform target; // 주인공 타겟
 
     private Rigidbody2D rigid;
