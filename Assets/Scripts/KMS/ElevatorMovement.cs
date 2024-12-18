@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class ElevatorMovement : MonoBehaviour
 {
+
     public Transform player;                // 플레이어 Transform
     public Transform mainCamera;            // 메인 카메라 Transform
 
