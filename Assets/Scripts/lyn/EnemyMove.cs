@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class EnemyMove : MonoBehaviour
 {
-    public float moveSpeed = 2.0f; // 이동 속도
-    public float detectionRange = 5.0f; // 탐지 범위
-    public float attackCooldown = 2.0f; // 공격 대기 시간
+    public float moveSpeed; // 이동 속도
+    public float detectionRange; // 탐지 범위
+    public float attackCooldown; // 공격 대기 시간
     public Transform target; // 타겟(Player)
+    public float bounceForceX;
+    public float bounceForceY;
 
     private Rigidbody2D rigid;
     private SpriteRenderer spriteRenderer;
@@ -42,7 +44,7 @@ public class EnemyMove : MonoBehaviour
         {
             SetAnimatorState(1); // Walk
             ChaseTarget();
-                    }
+        }
         else
         {
             // 공격 로직으로 이동
@@ -72,9 +74,9 @@ public class EnemyMove : MonoBehaviour
             // Wait 상태로 전환
             isWaiting = true;
             SetAnimatorState(2); // Wait
-            rigid.linearVelocity = Vector2.zero; // 이동 정지
-            //Invoke(nameof(PerformAttack), 2.0f); // 2초 후 공격 실행
-            PerformAttack();
+            //rigid.linearVelocity = Vector2.zero; // 이동 정지
+            Invoke(nameof(PerformAttack), 1.5f); // 2초 후 공격 실행
+            //PerformAttack();
         }
     }
 
@@ -112,6 +114,8 @@ public class EnemyMove : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
+            SetAnimatorState(0); // Idle
+            rigid.linearVelocity = Vector2.zero; // 속도 초기화
         }
 
         if (collision.gameObject.CompareTag("Player"))
@@ -122,16 +126,14 @@ public class EnemyMove : MonoBehaviour
             // Walk -> Wait -> Attack 반복
             SetAnimatorState(0); // Idle
             rigid.linearVelocity = Vector2.zero; // 속도 초기화
-            Invoke(nameof(StartWaitState), 1.0f); // 1초 후 Wait 상태로 전환
+            //ChaseTarget();
+            Invoke(nameof(ChaseTarget), 1.0f); // 1초 후 Walk 상태로 전환
         }
     }
 
     private void BounceBackFromPlayer(Collision2D collision)
     {
         Vector2 bounceDirection = (transform.position - collision.transform.position).normalized;
-
-        float bounceForceX = 700f;
-        float bounceForceY = 200f;
 
         rigid.AddForce(new Vector2(bounceDirection.x * bounceForceX, Mathf.Clamp(bounceDirection.y, 0.1f, 1f) * bounceForceY));
     }
@@ -140,7 +142,7 @@ public class EnemyMove : MonoBehaviour
     {
         isWaiting = true;
         SetAnimatorState(2); // Wait
-        rigid.linearVelocity = Vector2.zero;
-        Invoke(nameof(PerformAttack), 2.0f); // Wait 상태 후 공격 실행
+        //rigid.linearVelocity = Vector2.zero;
+        Invoke(nameof(PerformAttack), 1.5f); // Wait 상태 후 공격 실행
     }
 }
