@@ -6,10 +6,9 @@ public class UIManager : MonoBehaviour
 {
 
     public GameObject heart;
-
     public List<Image> hearts;
 
-    PlayerHealth playerHealth;
+    private PlayerHealth playerHealth;
 
     void Start()
     {
@@ -18,13 +17,32 @@ public class UIManager : MonoBehaviour
         playerHealth.DamageTaken += UpdateHearts;
         playerHealth.HealthUpgraded += AddHearts;
 
+        InitializeHearts();     // 초기 하트 생성 및 UI 반영
+
+    }
+
+    void InitializeHearts()
+    {
+
+        foreach (Image i in hearts)
+        {
+
+            Destroy(i.gameObject);
+
+        }
+
+        hearts.Clear();
+
         for (int i = 0; i < playerHealth.maxHealth; i++)
         {
 
             GameObject h = Instantiate(heart, this.transform);
+
             hearts.Add(h.GetComponent<Image>());
 
         }
+
+        UpdateHearts();     // 현재 체력 반영
 
     }
 
@@ -36,7 +54,8 @@ public class UIManager : MonoBehaviour
         foreach (Image i in hearts)
         {
 
-            i.fillAmount = heartFill;
+            i.fillAmount = Mathf.Clamp01((float)heartFill);     // 0과 1 사이로 제한
+
             heartFill -= 1;
 
         }
@@ -46,19 +65,18 @@ public class UIManager : MonoBehaviour
     void AddHearts()
     {
 
-        foreach (Image i in hearts)
+        InitializeHearts(); // 최대 체력 증가 시 하트 갱신
+
+    }
+
+    void OnDestroy()
+    {
+
+        if (playerHealth != null)
         {
 
-            Destroy(i.gameObject);
-        }
-
-        hearts.Clear();
-
-        for (int i = 0; i < playerHealth.maxHealth; i++)
-        {
-
-            GameObject h = Instantiate(heart, this.transform);
-            hearts.Add(h.GetComponent<Image>());
+            playerHealth.DamageTaken -= UpdateHearts;
+            playerHealth.HealthUpgraded -= AddHearts;
 
         }
 

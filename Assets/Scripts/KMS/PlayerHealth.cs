@@ -7,7 +7,7 @@ public class PlayerHealth : MonoBehaviour
     public static PlayerHealth instance;
 
     public int maxHealth;
-    int health;
+    private int health;
 
     public event Action DamageTaken;
     public event Action HealthUpgraded;
@@ -15,10 +15,10 @@ public class PlayerHealth : MonoBehaviour
     public int Health
     {
 
-        get
-        {
+        get 
+        { 
 
-            return health;
+            return health; 
 
         }
 
@@ -32,6 +32,14 @@ public class PlayerHealth : MonoBehaviour
 
             instance = this;
 
+            DontDestroyOnLoad(gameObject);  // 씬 전환 시 객체 유지
+
+        }
+        else
+        {
+
+            Destroy(gameObject);    // 중복 방지
+
         }
 
     }
@@ -39,7 +47,14 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
 
-        health = maxHealth;
+        LoadHealth();   // 저장된 체력 데이터 복원
+
+        if (health == 0)    // 데이터가 없으면 초기화
+        {
+
+            health = maxHealth;
+
+        }
 
     }
 
@@ -47,20 +62,11 @@ public class PlayerHealth : MonoBehaviour
     {
 
         if (health <= 0)
-        {
-
             return;
-
-        }
 
         health -= 1;
 
-        if (DamageTaken != null)
-        {
-
-            DamageTaken();
-
-        }
+        DamageTaken?.Invoke(); // DamageTaken 이벤트 호출
 
     }
 
@@ -68,20 +74,11 @@ public class PlayerHealth : MonoBehaviour
     {
 
         if (health >= maxHealth)
-        {
-
             return;
-
-        }
 
         health += 1;
 
-        if (DamageTaken != null)
-        {
-
-            DamageTaken();
-
-        }
+        DamageTaken?.Invoke(); // DamageTaken 이벤트 호출
 
     }
 
@@ -91,10 +88,27 @@ public class PlayerHealth : MonoBehaviour
         maxHealth++;
         health = maxHealth;
 
-        if (HealthUpgraded != null)
+        HealthUpgraded?.Invoke(); // HealthUpgraded 이벤트 호출
+
+    }
+
+    public void SaveHealth()
+    {
+
+        PlayerPrefs.SetInt("CurrentHealth", health);
+        PlayerPrefs.SetInt("MaxHealth", maxHealth);
+        PlayerPrefs.Save();
+
+    }
+
+    public void LoadHealth()
+    {
+
+        if (PlayerPrefs.HasKey("CurrentHealth"))
         {
 
-            HealthUpgraded();
+            health = PlayerPrefs.GetInt("CurrentHealth");
+            maxHealth = PlayerPrefs.GetInt("MaxHealth");
 
         }
 
