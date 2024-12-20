@@ -1,6 +1,8 @@
+using System.Collections;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem.Composites;
+using UnityEngine.Tilemaps;
 
 // made by mingi
 
@@ -15,27 +17,34 @@ public class PlayerController : MonoBehaviour
     SpriteRenderer spriteRenderer;
 
     //이동 관련 변수들
+    [Header("이동 세팅")]
     [SerializeField]
-    float walkSpeed = 1f;
     float moveSpeed = 1f; // 이동시에 곱해주는 스피드 
     [SerializeField]
     float jumpForce = 3f;
-    [SerializeField]
-    float dashSpeed = 1f;
-    float dashTimeRemain = 0f; // 현재 대쉬 중이면 양수
-    float dashTime = 0.5f; // 해당값으로 초기화
-    float dashCoolRemain = 0f;
-    float dashCool = 1f;
-    float dashDirection = 0f;
-    bool isDashing = false;
+
+
+    //대쉬 관련 변수들
+    [Header("대시 세팅")]
+    [SerializeField] float dashVelocity = 20f;  // 대시 속도
+    [SerializeField] float dashTime = 0.2f;     // 대쉬 지속시간
+    [SerializeField] float dashCoolDown = 1f;   // 대시 쿨타임
+
+    private Vector2 dashDirection;      // 대시 방향
+    private bool isDashing;             // 대시 중인지 여부
+    private bool canDash = true;        // 대시 가능 여부
+
+    private TrailRenderer trailRenderer;
+
 
     // 공격 관련 변수들
-    [SerializeField]
-    float attackCurTime = 0f;
-    [SerializeField]
-    float attackCoolTime = 0.5f;
-    public Transform attackBoxPos;
-    public Vector2 boxSize;
+    //[Header("공격 세팅")]
+    //[SerializeField]
+    //float attackCurTime = 0f;
+    //[SerializeField]
+    //float attackCoolTime = 0.5f;
+    //public Transform attackBoxPos;
+    //public Vector2 boxSize;
 
     void Awake()
     {
@@ -43,24 +52,20 @@ public class PlayerController : MonoBehaviour
         playerAnim = GetComponent<Animator>();
         playerDirection = GetComponent<Transform>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        moveSpeed = walkSpeed;
+        trailRenderer = GetComponent<TrailRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
         Jump();
-        Attack();
+        //Attack();
 
 
-        dashTimeRemain -= Time.deltaTime; // 계속해서 대쉬 지속지간과 쿨타임을 감소시켜준다.
-        dashCoolRemain -= Time.deltaTime;
-
-        //대쉬 중도 아니고 쿨타임도 안남았고 대쉬타임도 아닌 상태에서 쉬프트를 누르면 대쉬 진행
-        if (!isDashing && dashCoolRemain < 0f && dashTimeRemain < 0f && Input.GetKeyDown(KeyCode.LeftShift))
+        if(Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
-            Dash();
-        }
+            StartDash();
+        }    
 
 
         //sprite를 뒤집는 코드. GetAxisRaw(horizontal)은 a를 누를땐 -1, d를 누를 땐 1이므로 
@@ -106,34 +111,34 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    void Attack()
-    {
-        if(attackCurTime <= 0f)
-        {
-            if(Input.GetKeyDown(KeyCode.Mouse0))
-            {
+    //void Attack()
+    //{
+    //    if(attackCurTime <= 0f)
+    //    {
+    //        if(Input.GetKeyDown(KeyCode.Mouse0))
+    //        {
 
-                Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(attackBoxPos.position, boxSize, 0);
-                foreach (Collider2D collider in collider2Ds)
-                {
-                    Debug.Log(collider.tag);
-                }
-                playerAnim.SetTrigger("Attack");
-                attackCurTime = attackCoolTime;
-            }
-        }
-        else
-        {
-            attackCurTime -= Time.deltaTime;
-        }
-    }
+    //            Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(attackBoxPos.position, boxSize, 0);
+    //            foreach (Collider2D collider in collider2Ds)
+    //            {
+    //                Debug.Log(collider.tag);
+    //            }
+    //            playerAnim.SetTrigger("Attack");
+    //            attackCurTime = attackCoolTime;
+    //        }
+    //    }
+    //    else
+    //    {
+    //        attackCurTime -= Time.deltaTime;
+    //    }
+    //}
 
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(attackBoxPos.position, boxSize);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawWireCube(attackBoxPos.position, boxSize);
+    //}
 
 
     void Move()
@@ -148,16 +153,65 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    void Dash()
+    void StartDash()
     {
-        isDashing = true;
-        dashTimeRemain = dashTime;
-        dashCoolRemain = dashCool;
+        isDashing = true;   // 대시 시작 설정
+        canDash = false; // 대시 가능 상태 비활성화
 
-        dashDirection = spriteRenderer.flipX ? 1 : -1;
+        //플레이어 입력에서 대시 방향 가져오기 
 
-        playerRigid.linearVelocity = new Vector2( dashDirection * dashSpeed, playerRigid.linearVelocity.y);
+        //전방향 대시
+        //dashDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+
+        //x축만 대시 가능 
+        dashDirection = new Vector2(Input.GetAxisRaw("Horizontal"), 0).normalized;
+
+
+        //입력이 없을 경우 캐릭터의 현재 방향을 기준으로 설정
+        if ( dashDirection == Vector2.zero)
+        {
+            dashDirection = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
+        }
+
+
+        if( trailRenderer != null)
+        {
+            trailRenderer.emitting = true;
+        }
+
+        // 대시 코루틴 실행
+        StartCoroutine(PerformDash());
+    }
+
+
+    private IEnumerator PerformDash()
+    {
+        float startTime = Time.time; // 대시 시작 시간 저장
+
+
+        //대시 지속 시간 동안 속도 적용
+        while ( Time.time < startTime + dashTime)
+        {
+            playerRigid.linearVelocity = dashDirection * dashVelocity;
+            yield return null; // 다음 프레임까지 대기
+        }
+
+        //대시 중지 설정
+        playerRigid.linearVelocity = Vector2.zero; // 속도 초기화
         isDashing = false;
+
+        //Trail Renderer 비활성화
+        if(trailRenderer != null)
+        {
+            trailRenderer.emitting = false;
+        }
+
+
+        //대시 쿨다운 적용
+        yield return new WaitForSeconds(dashCoolDown); //쿨다운 시간 설정 
+        canDash = true;
+
+
     }
     
 }
