@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 3408118293124130620}
   - component: {fileID: 2154839983840791104}
   - component: {fileID: 832158724967843789}
+  - component: {fileID: 2537283090026326737}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -251,13 +252,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48f2dc02e206c9545838a7fc90d56008, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 5
+  moveSpeed: 5
   jumpForce: 8
-  dashSpeed: 20
-  attackCurTime: 0
-  attackCoolTime: 0.2
-  attackBoxPos: {fileID: 2582729327549269051}
-  boxSize: {x: 1, y: 1.4}
+  dashVelocity: 20
+  dashTime: 0.2
+  dashCoolDown: 1
 --- !u!50 &3408118293124130620
 Rigidbody2D:
   serializedVersion: 5
@@ -436,8 +435,20 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_MaskInteraction: 0
   m_Autodestruct: 0
-  m_Emitting: 1
+  m_Emitting: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &2537283090026326737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679990203324027377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a7947d0e426a1442a06f08e2d330c59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &732716742497490905
 GameObject:
   m_ObjectHideFlags: 0
