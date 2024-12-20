@@ -1,5 +1,7 @@
 using UnityEngine;
 
+using UnityEngine;
+
 public class Slugmove : MonoBehaviour
 {
     public float speed = 2f;  // 이동 속도
@@ -95,7 +97,6 @@ public class Slugmove : MonoBehaviour
                 rb.AddForce(force, ForceMode2D.Impulse);
             }
 
-
             // 발사체가 주인공에게 충돌하면 디버그 메시지 출력
             Projectile projectileScript = projectile.AddComponent<Projectile>();
             projectileScript.Initialize(target);  // 타겟 전달
@@ -103,14 +104,28 @@ public class Slugmove : MonoBehaviour
     }
 }
 
+
 public class Projectile : MonoBehaviour
 {
     private Rigidbody2D target;
+    public float lifetime = 2f;  // 발사체의 생명 주기 (2초 후에 삭제)
+
+    private float creationTime;
 
     // 발사체 초기화 함수
     public void Initialize(Rigidbody2D target)
     {
         this.target = target;
+        creationTime = Time.time;  // 발사체가 생성된 시간 기록
+    }
+
+    // Update는 매 프레임마다 호출되므로, 이곳에서 시간이 경과한 후 발사체를 삭제할 수 있음
+    void Update()
+    {
+        if (Time.time - creationTime >= lifetime)  // lifetime이 지나면 삭제
+        {
+            Destroy(gameObject);
+        }
     }
 
     // 충돌 처리
@@ -126,3 +141,4 @@ public class Projectile : MonoBehaviour
         }
     }
 }
+
