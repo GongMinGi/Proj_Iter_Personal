@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
@@ -17,7 +18,16 @@ public class UIManager : MonoBehaviour
         playerHealth.DamageTaken += UpdateHearts;
         playerHealth.HealthUpgraded += AddHearts;
 
-        InitializeHearts();     // 초기 하트 생성 및 UI 반영
+        StartCoroutine(DelayedInitialize());     // 초기 하트 생성 및 UI 반영
+
+    } 
+
+    IEnumerator DelayedInitialize()
+    {
+
+        yield return null; // 한 프레임 대기하여 PlayerHealth 초기화 보장
+
+        InitializeHearts();
 
     }
 
@@ -36,8 +46,8 @@ public class UIManager : MonoBehaviour
         for (int i = 0; i < playerHealth.maxHealth; i++)
         {
 
-            GameObject h = Instantiate(heart, this.transform);
-
+            GameObject h = Instantiate(heart, transform);
+            Debug.Log("하트가 하나씩 추가됩니다");
             hearts.Add(h.GetComponent<Image>());
 
         }

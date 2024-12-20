@@ -39,7 +39,6 @@ public class StopPlayerOnTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-
         
         if (other.CompareTag(targetTag) && !isTriggered)        // 목표 태그와 충돌했으며, 이미 실행된 적이 없다면
         {

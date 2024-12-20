@@ -86,6 +86,7 @@ public class CutScene_Slide : MonoBehaviour
             nextImage.color = new Color(1, 1, 1, alpha);        // 다음 이미지는 점점 불투명해짐
 
             elapsedTime += Time.deltaTime;
+
             yield return null;
 
         }

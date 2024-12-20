@@ -3,7 +3,12 @@ using UnityEngine;
 public class PopupController : MonoBehaviour
 {
 
+    [SerializeField]
+    private KeyCode closeKey = KeyCode.Q;
+
     private bool isPopupActive = false;
+
+    public bool useAnyKey = false;
 
     void Start()
     {
@@ -15,7 +20,7 @@ public class PopupController : MonoBehaviour
     void Update()
     {
         
-        if (isPopupActive && Input.anyKeyDown)      // 팝업이 활성화된 상태에서 아무 키나 누르면 팝업 비활성화
+        if (isPopupActive && ((useAnyKey && Input.anyKeyDown) || Input.GetKeyDown(closeKey)))  
         {
 
             ClosePopup();

@@ -1,7 +1,9 @@
 using UnityEngine;
 using System.Collections;
+
 public class CameraMover : MonoBehaviour
 {
+
     [Header("Camera Movement")]
     
     [SerializeField] 
@@ -29,10 +31,12 @@ public class CameraMover : MonoBehaviour
 
     private Camera mainCamera;
 
-    private StopPlayerOnTrigger stopPlayerOnTrigger; // StopPlayerOnTrigger 참조
+    private StopPlayerOnTrigger stopPlayerOnTrigger;    // StopPlayerOnTrigger 참조
 
     private void Start()
     {
+
+        Debug.Log("컷신 시작");
 
         mainCamera = Camera.main;
 
@@ -64,7 +68,12 @@ public class CameraMover : MonoBehaviour
     {
 
         if (currentSpotIndex >= cameraSpots.Length || isMoving)
+        {
+
+            Debug.Log("리턴합니다");
             return;
+
+        }
 
         StartCoroutine(MoveCamera(cameraSpots[currentSpotIndex].position, moveSpeeds[currentSpotIndex], zoomLevels[currentSpotIndex]));
 
@@ -74,6 +83,7 @@ public class CameraMover : MonoBehaviour
     {
 
         isMoving = true;
+        Debug.Log("isMoving 트루");
 
         float startZoom = mainCamera.orthographicSize;
 
