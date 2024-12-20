@@ -37,14 +37,15 @@ public class PlayerController : MonoBehaviour
     private TrailRenderer trailRenderer;
 
 
-    // 공격 관련 변수들
-    //[Header("공격 세팅")]
-    //[SerializeField]
-    //float attackCurTime = 0f;
-    //[SerializeField]
-    //float attackCoolTime = 0.5f;
-    //public Transform attackBoxPos;
-    //public Vector2 boxSize;
+    //공격 관련 변수들
+    [Header("공격 세팅")]
+    [SerializeField]
+    float attackCurTime = 0f;
+    [SerializeField]
+    float attackCoolTime = 0.5f;
+    public Transform attackBoxPos;
+    public Vector2 boxSize;
+
 
     void Awake()
     {
@@ -59,7 +60,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Jump();
-        //Attack();
+        Attack();
 
 
         if(Input.GetKeyDown(KeyCode.LeftShift) && canDash)
@@ -73,7 +74,9 @@ public class PlayerController : MonoBehaviour
         // 또한 getbuttondown은 버튼이 처음으로 눌렸을대만 true를 반환한다.
         if (Input.GetButton("Horizontal"))
             spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") == -1;
-        
+
+
+        UpdateAttackBoxPosition();
     }
 
     void FixedUpdate()
@@ -111,34 +114,48 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    //void Attack()
-    //{
-    //    if(attackCurTime <= 0f)
-    //    {
-    //        if(Input.GetKeyDown(KeyCode.Mouse0))
-    //        {
+    void UpdateAttackBoxPosition()
+    {
+        if (spriteRenderer.flipX)
+        {
+            attackBoxPos.localPosition = new Vector2(-Mathf.Abs(attackBoxPos.localPosition.x), attackBoxPos.localPosition.y);
+        }
+        else
+        {
+            attackBoxPos.localPosition = new Vector2(Mathf.Abs(attackBoxPos.localPosition.x), attackBoxPos.localPosition.y);
+        }
 
-    //            Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(attackBoxPos.position, boxSize, 0);
-    //            foreach (Collider2D collider in collider2Ds)
-    //            {
-    //                Debug.Log(collider.tag);
-    //            }
-    //            playerAnim.SetTrigger("Attack");
-    //            attackCurTime = attackCoolTime;
-    //        }
-    //    }
-    //    else
-    //    {
-    //        attackCurTime -= Time.deltaTime;
-    //    }
-    //}
+    }
+
+    void Attack()
+    {
+
+        if (attackCurTime <= 0f)
+        {
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+
+                Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(attackBoxPos.position , boxSize, 0);
+                foreach (Collider2D collider in collider2Ds)
+                {
+                    Debug.Log(collider.tag);
+                }
+                playerAnim.SetTrigger("Attack");
+                attackCurTime = attackCoolTime;
+            }
+        }
+        else
+        {
+            attackCurTime -= Time.deltaTime;
+        }
+    }
 
 
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawWireCube(attackBoxPos.position, boxSize);
-    //}
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(attackBoxPos.position, boxSize);
+    }
 
 
     void Move()
