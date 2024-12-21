@@ -1,7 +1,4 @@
 using UnityEngine;
-
-using UnityEngine;
-
 public class Slugmove : MonoBehaviour
 {
     public float speed = 2f;  // 이동 속도
@@ -102,6 +99,7 @@ public class Slugmove : MonoBehaviour
             projectileScript.Initialize(target);  // 타겟 전달
         }
     }
+    
 }
 
 
