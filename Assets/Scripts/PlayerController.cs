@@ -159,7 +159,8 @@ public class PlayerController : MonoBehaviour
 
                     if(collider.CompareTag("Monster")) //태그가 Monster인 경우
                     {
-                        collider.GetComponent<EnemyHealth>().Damage(atk);
+                        //collider.GetComponent<EnemyHealth>().Damage(atk, collider.transform.position - transform.position);
+                        collider.GetComponent<MosquitoModified>().TakeDamage(attackBoxPos.position);
                     }
                 }
                 playerAnim.SetTrigger("Attack");
@@ -201,8 +202,7 @@ public class PlayerController : MonoBehaviour
 
     void StartDash()
     {
-        isDashing = true;   // 대시 시작 설정
-        canDash = false; // 대시 가능 상태 비활성화
+
 
         //플레이어 입력에서 대시 방향 가져오기 
 
@@ -216,11 +216,14 @@ public class PlayerController : MonoBehaviour
         //입력이 없을 경우 캐릭터의 현재 방향을 기준으로 설정
         if ( dashDirection == Vector2.zero)
         {
-            dashDirection = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
+            return;
+            //dashDirection = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
         }
 
+        isDashing = true;   // 대시 시작 설정
+        canDash = false; // 대시 가능 상태 비활성화
 
-        if( trailRenderer != null)
+        if ( trailRenderer != null)
         {
             trailRenderer.emitting = true;
         }
