@@ -1313,6 +1313,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: mosquito
       objectReference: {fileID: 0}
+    - target: {fileID: 7312412703759852316, guid: 8e0533a5b1adec94abc1ac5f23d9c3bc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8921198180602503853, guid: 8e0533a5b1adec94abc1ac5f23d9c3bc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.61
@@ -1837,7 +1841,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1760733118
 MonoBehaviour:
   m_ObjectHideFlags: 0
