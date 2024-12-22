@@ -47,7 +47,7 @@ public class UIManager : MonoBehaviour
         {
 
             GameObject h = Instantiate(heart, transform);
-            Debug.Log("하트가 하나씩 추가됩니다");
+
             hearts.Add(h.GetComponent<Image>());
 
         }

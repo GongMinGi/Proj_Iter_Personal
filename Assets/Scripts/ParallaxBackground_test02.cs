@@ -7,14 +7,19 @@ public class ParallaxBackground_test02 : MonoBehaviour
     private float moveSpeed = 0.1f;
     private Material material;
 
+
+
     void Awake()
     {
         material = GetComponent<Renderer>().material;
+
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         material.SetTextureOffset("_MainTex", Vector2.right *  moveSpeed *Time.time);
+
     }
 }

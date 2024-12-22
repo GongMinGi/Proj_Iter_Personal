@@ -1,25 +1,25 @@
 fileFormatVersion: 2
-guid: 3e6101f39b137d643ad1e247e62605e6
+guid: 9341b69203dc20d42934b0658e399e7b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3655852476970433151
-    second: Layer5_0
+      213: -1769678971209027455
+    second: Layer_5 1_0
   - first:
-      213: 3764123979585174857
-    second: Layer5_1
+      213: 7764681074821497880
+    second: Layer_5 1_1
   - first:
-      213: -3688801800585147088
-    second: Layer5_2
+      213: 3055652913653833286
+    second: Layer_5 1_2
   - first:
-      213: 8230045862090082986
-    second: Layer5_3
+      213: -395535133879855620
+    second: Layer_5 1_3
   - first:
-      213: 4162532641686642088
-    second: Layer5_4
+      213: 5918279719100709061
+    second: Layer_5 1_4
   - first:
-      213: -8589737034100979267
-    second: Layer5_5
+      213: -863596814704168036
+    second: Layer_5 1_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -115,7 +115,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Layer5_0
+      name: Layer_5 1_0
       rect:
         serializedVersion: 2
         x: 506
@@ -130,14 +130,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f7afd0155723cb230800000000000000
-      internalID: 3655852476970433151
+      spriteID: 1807b921a56d077e0800000000000000
+      internalID: -1769678971209027455
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Layer5_1
+      name: Layer_5 1_1
       rect:
         serializedVersion: 2
         x: 130
@@ -152,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 94d34b5f0dadc3430800000000000000
-      internalID: 3764123979585174857
+      spriteID: 8140fea6c40b1cb60800000000000000
+      internalID: 7764681074821497880
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Layer5_2
+      name: Layer_5 1_2
       rect:
         serializedVersion: 2
         x: 224
@@ -174,14 +174,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 03d0d457e4ebeccc0800000000000000
-      internalID: -3688801800585147088
+      spriteID: 64e593ba22cd76a20800000000000000
+      internalID: 3055652913653833286
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Layer5_3
+      name: Layer_5 1_3
       rect:
         serializedVersion: 2
         x: 546
@@ -196,14 +196,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: aaa8d0f5b1ff63270800000000000000
-      internalID: 8230045862090082986
+      spriteID: cf597e034e6c28af0800000000000000
+      internalID: -395535133879855620
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Layer5_4
+      name: Layer_5 1_4
       rect:
         serializedVersion: 2
         x: 631
@@ -218,14 +218,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8ad53b1326944c930800000000000000
-      internalID: 4162532641686642088
+      spriteID: 5c875625c04f12250800000000000000
+      internalID: 5918279719100709061
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Layer5_5
+      name: Layer_5 1_5
       rect:
         serializedVersion: 2
         x: 835
@@ -240,8 +240,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: db9c4688daf1bc880800000000000000
-      internalID: -8589737034100979267
+      spriteID: c933666c543e304f0800000000000000
+      internalID: -863596814704168036
       vertices: []
       indices: 
       edges: []
@@ -260,12 +260,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Layer5_0: 3655852476970433151
-      Layer5_1: 3764123979585174857
-      Layer5_2: -3688801800585147088
-      Layer5_3: 8230045862090082986
-      Layer5_4: 4162532641686642088
-      Layer5_5: -8589737034100979267
+      Layer_5 1_0: -1769678971209027455
+      Layer_5 1_1: 7764681074821497880
+      Layer_5 1_2: 3055652913653833286
+      Layer_5 1_3: -395535133879855620
+      Layer_5 1_4: 5918279719100709061
+      Layer_5 1_5: -863596814704168036
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

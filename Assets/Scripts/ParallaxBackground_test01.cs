@@ -24,7 +24,7 @@ public class ParallaxBackground_test01 : MonoBehaviour
         transform.position += moveDirection * scrollSpeed * Time.deltaTime;
 
         //배경이 설정된 범위를 벗어나면 위치 재설정
-        if(transform.position.x <= -scrollAmount)
+        if(transform.position.y <= -scrollAmount)
         {
             transform.position = target.position - moveDirection * scrollAmount;
         }
