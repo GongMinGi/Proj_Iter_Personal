@@ -18,10 +18,10 @@ TagManager:
   - Platform
   - 
   - 
-  - 
-  - 
+  - Cat
+  - Mosquitos
   - Monster
-  - line
+  - Spider
   - 
   - 
   - 
@@ -44,6 +44,15 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Platform
+    uniqueID: 3691800499
+    locked: 0
+  - name: mosquitos
+    uniqueID: 2088732745
+    locked: 0
+  - name: Cat
+    uniqueID: 1878644075
     locked: 0
   m_RenderingLayers:
   - Default
