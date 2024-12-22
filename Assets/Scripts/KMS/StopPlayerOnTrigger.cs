@@ -53,6 +53,7 @@ public class StopPlayerOnTrigger : MonoBehaviour
 
         if (other.CompareTag(targetTag) && !isTriggered)    // 목표 태그와 충돌했으며, 이미 실행된 적이 없다면
         {
+
             isTriggered = true;  // 중복 실행 방지
 
             StopPlayerMovement();   // 플레이어 이동 멈춤
