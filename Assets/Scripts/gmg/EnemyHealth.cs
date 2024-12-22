@@ -17,6 +17,7 @@ public class EnemyHealth : MonoBehaviour
 
     //현재 체력
     private int currentHealth;
+    [SerializeField] private float knockbackForce = 5f; //밀려나는 힘
 
     private Rigidbody2D rb;
     [SerializeField]
@@ -29,14 +30,14 @@ public class EnemyHealth : MonoBehaviour
 
 
     //데미지 처리 및 체력 감소
-    public void Damage(int amount)
+    public void Damage(int amount, Vector2 attackDirection )
     {
         if (!damageable || hit || currentHealth <= 0) return;
 
         hit = true;
         currentHealth -= amount;
 
-
+        ApplyKnockback(attackDirection);
 
         if(currentHealth <= 0)
         {
@@ -52,9 +53,11 @@ public class EnemyHealth : MonoBehaviour
 
     private void ApplyKnockback(Vector2 direction)
     {
+        direction.y = 0;
         if(rb != null)
         {
-            rb.linearVelocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero; //기존 속도 초기화
+            rb.AddForce(direction.normalized * knockbackForce, ForceMode2D.Impulse);
             
         }
     }
