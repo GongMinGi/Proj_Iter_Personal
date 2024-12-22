@@ -5,23 +5,22 @@ public class StopPlayerOnTrigger : MonoBehaviour
 
     [Header("Target Settings")]
     [SerializeField]
-    private string targetTag = "DiscoveryObject"; // 목표 오브젝트의 태그
+    private string targetTag = "DiscoveryObject";    // 목표 오브젝트의 태그
 
     [Header("UI Elements")]
     [SerializeField]
-    private GameObject uiCanvas; // 비활성화할 UI
+    private GameObject uiCanvas;     // 비활성화할 UI
 
-    private PlayerController playerController; // 플레이어 이동 제어 스크립트
-    private Rigidbody2D playerRigidbody; // 플레이어 Rigidbody2D
-    private CameraMover cameraMover; // 카메라 이동 스크립트
+    private PlayerController playerController;  // 플레이어 이동 제어 스크립트
+    private Rigidbody2D playerRigidbody;    // 플레이어 Rigidbody2D
+    private CameraMover cameraMover;     // 카메라 이동 스크립트
 
-    private bool isTriggered = false; // 이미 트리거가 실행되었는지 확인
-    private bool isJumpDisabled = false; // 점프 입력 차단 여부
+    private bool isTriggered = false;   // 이미 트리거가 실행되었는지 확인
+    private bool isJumpDisabled = false;    // 점프 입력 차단 여부
 
     private void Start()
     {
 
-        // 컴포넌트 초기화
         playerController = GetComponent<PlayerController>();
         playerRigidbody = GetComponent<Rigidbody2D>();
         cameraMover = Camera.main.GetComponent<CameraMover>();
