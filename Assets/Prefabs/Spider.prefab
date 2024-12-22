@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8414316664060278841
+--- !u!1 &2561784527938286159
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,41 +8,45 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3988670399083568554}
-  - component: {fileID: 1054574456315977660}
-  - component: {fileID: 1299223911945132580}
-  - component: {fileID: 3555929668755377497}
-  - component: {fileID: 4354470435976134041}
-  - component: {fileID: 1870201362380179800}
-  m_Layer: 13
-  m_Name: slug
+  - component: {fileID: 8009357619939246973}
+  - component: {fileID: 3315546604392572820}
+  - component: {fileID: 3408804198632847396}
+  - component: {fileID: 2263857635786767416}
+  - component: {fileID: 2323626916155714981}
+  - component: {fileID: 3920482682069541171}
+  m_Layer: 12
+  m_Name: Spider
   m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3988670399083568554
-Transform:
+--- !u!224 &8009357619939246973
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8414316664060278841}
-  serializedVersion: 2
+  m_GameObject: {fileID: 2561784527938286159}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.6, y: -0.15, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1054574456315977660
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 3.28, y: -0.1}
+  m_SizeDelta: {x: 1.35, y: 1.6}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!212 &3315546604392572820
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8414316664060278841}
+  m_GameObject: {fileID: 2561784527938286159}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -80,28 +84,28 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 4023212870417349533, guid: d7dcd78071aa093418e8dbbce533f4b8, type: 3}
+  m_Sprite: {fileID: -6420088293366411273, guid: 64c225266c8330241b40cc1f0244b8a7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.4, y: 1.6}
+  m_Size: {x: 1.35, y: 1.6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &1299223911945132580
+--- !u!95 &3408804198632847396
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8414316664060278841}
+  m_GameObject: {fileID: 2561784527938286159}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 507a62b6390032b43b18fef850ffdb3c, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7f753efe1ff4cb94db4a5d39ce7c3b54, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -113,40 +117,13 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!50 &3555929668755377497
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8414316664060278841}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!70 &4354470435976134041
+--- !u!70 &2263857635786767416
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8414316664060278841}
+  m_GameObject: {fileID: 2561784527938286159}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
@@ -170,29 +147,53 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1.4, y: 1.6}
   m_Direction: 0
---- !u!114 &1870201362380179800
+--- !u!50 &2323626916155714981
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2561784527938286159}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 6
+--- !u!114 &3920482682069541171
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8414316664060278841}
+  m_GameObject: {fileID: 2561784527938286159}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b802fc370ce5de441bfc1fd63e7f0ba9, type: 3}
+  m_Script: {fileID: 11500000, guid: 191d247ba036dab47988648d280d89d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  detectionRange: 20
-  stopDistance: 5
-  projectilePrefab: {fileID: 2754299019860258802, guid: b3e56315caa316f4bba04a82de2fa21e, type: 3}
-  projectileSpeed: 4
-  shootCooldown: 2
+  speed: 6
+  detectionRange: 10
+  oscillationRange: 3
   target: {fileID: 0}
