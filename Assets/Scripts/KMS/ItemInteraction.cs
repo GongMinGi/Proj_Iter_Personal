@@ -15,7 +15,8 @@ public class ItemInteraction : MonoBehaviour
     [SerializeField] 
     private bool[] initialActiveStates;  // 초기 활성화 상태 설정
 
-    private bool isPlayerNearby = false;
+    [HideInInspector]
+    public bool isPlayerNearby = false;
 
     void Start()
     {
@@ -63,14 +64,19 @@ public class ItemInteraction : MonoBehaviour
 
     private bool IsInteractionKeyPressed()
     {
-        
-        foreach (var blinkUI in blinkUIs)       // 모든 blinkUIs의 fadeOutKey를 확인
+
+        if (isPlayerNearby)
         {
 
-            if (blinkUI != null && Input.GetKeyDown(blinkUI.fadeOutKey))
+            foreach (var blinkUI in blinkUIs)       // 모든 blinkUIs의 fadeOutKey를 확인
             {
 
-                return true;
+                if (blinkUI != null && Input.GetKeyDown(blinkUI.fadeOutKey))
+                {
+
+                    return true;
+
+                }
 
             }
 

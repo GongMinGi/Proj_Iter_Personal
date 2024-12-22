@@ -4,7 +4,7 @@ using System.Collections;
 public class CameraMover : MonoBehaviour
 {
 
-    [Header("Camera Movement")]
+    [Header("카메라 이동")]
     
     [SerializeField] 
     private Transform[] cameraSpots;
@@ -15,7 +15,7 @@ public class CameraMover : MonoBehaviour
     [SerializeField]
     private float smoothTime = 0.3f;
 
-    [Header("Camera Zoom")]
+    [Header("카메라 줌")]
     
     [SerializeField]
     private float[] zoomLevels;

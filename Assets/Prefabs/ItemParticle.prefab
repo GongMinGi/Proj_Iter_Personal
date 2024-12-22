@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 3637214959046860693}
   - component: {fileID: 2296065257273868671}
   - component: {fileID: 5023037256583680977}
+  - component: {fileID: -2674356018377856248}
   m_Layer: 0
   m_Name: ItemParticle
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 6930857510935979820}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -93,6 +94,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popupController: {fileID: 0}
+  blinkUIs: []
+  UIImages: []
+  initialActiveStates: 
+--- !u!114 &-2674356018377856248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6930857510935979820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccb1c5794dc1fe241bccb91505af1376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 0}
 --- !u!1 &8757527935997525045
 GameObject:
   m_ObjectHideFlags: 0

@@ -36,6 +36,8 @@ public class PopupController : MonoBehaviour
 
         isPopupActive = true;
 
+        Time.timeScale = 0f;
+
     }
 
     public void ClosePopup()
@@ -44,6 +46,8 @@ public class PopupController : MonoBehaviour
         gameObject.SetActive(false);
 
         isPopupActive = false;
+
+        Time.timeScale = 1f;
 
     }
 
