@@ -12,17 +12,7 @@ public class MouseInput : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetMouseButtonDown (0))
-        { 
-            MousePosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-            Collider2D overCollider2d = Physics2D.OverlapCircle (MousePosition, 0.01f, whatisPlatform);
-            {
-                overCollider2d.transform.GetComponent<Bricks>().MakeDot(MousePosition);
-
-            }
-        
-        }
-        else if (Input.GetMouseButtonDown (1)) 
+       if (Input.GetMouseButtonDown (1)) 
                     {
             MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Instantiate(boomClone, MousePosition, Quaternion.identity);

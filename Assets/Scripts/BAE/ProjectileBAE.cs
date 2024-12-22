@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class ProjectileBAE : MonoBehaviour
+
 {
     [SerializeField] private float speed;
     [SerializeField] private Rigidbody2D rb;
