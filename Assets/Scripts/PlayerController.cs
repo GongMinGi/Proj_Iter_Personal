@@ -12,7 +12,8 @@ public class PlayerController : MonoBehaviour
     // 기본변수들
     bool isGround = true;
     Rigidbody2D playerRigid;
-    Transform playerDirection;
+    Transform playerTransform;
+    Vector2 playerDirection;
     Animator playerAnim;
     SpriteRenderer spriteRenderer;
 
@@ -39,6 +40,8 @@ public class PlayerController : MonoBehaviour
 
     //공격 관련 변수들
     [Header("공격 세팅")]
+    [SerializeField] int atk = 1;   //공격력
+    [SerializeField] float attackForce = 20f;
     [SerializeField]
     float attackCurTime = 0f;
     [SerializeField]
@@ -51,7 +54,8 @@ public class PlayerController : MonoBehaviour
     {
         playerRigid = GetComponent<Rigidbody2D>();
         playerAnim = GetComponent<Animator>();
-        playerDirection = GetComponent<Transform>();
+        playerTransform = GetComponent<Transform>();
+
         spriteRenderer = GetComponent<SpriteRenderer>();
         trailRenderer = GetComponent<TrailRenderer>();
     }
@@ -74,6 +78,19 @@ public class PlayerController : MonoBehaviour
         // 또한 getbuttondown은 버튼이 처음으로 눌렸을대만 true를 반환한다.
         if (Input.GetButton("Horizontal"))
             spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") == -1;
+
+
+        if (Mathf.Abs(playerRigid.linearVelocity.normalized.x )>= 0.1 && !isDashing)
+        {
+            playerAnim.SetBool("isMoving", true);
+
+        }
+        else
+        {
+
+            playerAnim.SetBool("isMoving", false);
+        }
+
 
 
         UpdateAttackBoxPosition();
@@ -139,6 +156,11 @@ public class PlayerController : MonoBehaviour
                 foreach (Collider2D collider in collider2Ds)
                 {
                     Debug.Log(collider.tag);
+
+                    if(collider.CompareTag("Monster")) //태그가 Monster인 경우
+                    {
+                        collider.GetComponent<EnemyHealth>().Damage(atk);
+                    }
                 }
                 playerAnim.SetTrigger("Attack");
                 attackCurTime = attackCoolTime;
@@ -149,6 +171,11 @@ public class PlayerController : MonoBehaviour
             attackCurTime -= Time.deltaTime;
         }
     }
+
+
+
+
+
 
 
     private void OnDrawGizmos()
@@ -163,7 +190,9 @@ public class PlayerController : MonoBehaviour
 
         if (!isDashing)
         {
+
             float moveInput = Input.GetAxisRaw("Horizontal");
+
             playerRigid.linearVelocity = new Vector2(moveInput * moveSpeed, playerRigid.linearVelocity.y);
         }
 
