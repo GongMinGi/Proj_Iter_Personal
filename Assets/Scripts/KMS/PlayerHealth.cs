@@ -68,6 +68,14 @@ public class PlayerHealth : MonoBehaviour
 
         DamageTaken?.Invoke(); // DamageTaken 이벤트 호출
 
+        if (health <= 0)
+        {
+
+            Die();
+
+        }
+
+
     }
 
     public void Heal()
@@ -113,5 +121,14 @@ public class PlayerHealth : MonoBehaviour
         }
 
     }
+
+    private void Die()
+    {
+
+        Debug.Log("Player is dead");
+        // 사망 관련 추가 로직 작성
+    
+    }
+
 
 }
