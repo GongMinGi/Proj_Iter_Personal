@@ -350,6 +350,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: mosquito (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7312412703759852316, guid: 8e0533a5b1adec94abc1ac5f23d9c3bc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8921198180602503853, guid: 8e0533a5b1adec94abc1ac5f23d9c3bc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 40.9
@@ -407,6 +411,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 338381826}
+    - target: {fileID: 1870201362380179800, guid: ddc21c328f217e54d8da2bb874cf0e74, type: 3}
+      propertyPath: knockbackSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3988670399083568554, guid: ddc21c328f217e54d8da2bb874cf0e74, type: 3}
       propertyPath: m_LocalPosition.x
       value: 39.4
@@ -450,6 +458,10 @@ PrefabInstance:
     - target: {fileID: 8414316664060278841, guid: ddc21c328f217e54d8da2bb874cf0e74, type: 3}
       propertyPath: m_Name
       value: slug
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414316664060278841, guid: ddc21c328f217e54d8da2bb874cf0e74, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -755,6 +767,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2263857635786767416, guid: 5dcf8ae87182f274396b4d081d1b943e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2561784527938286159, guid: 5dcf8ae87182f274396b4d081d1b943e, type: 3}
       propertyPath: m_Name
       value: Spider
@@ -6452,6 +6468,14 @@ PrefabInstance:
     - target: {fileID: 679990203324027377, guid: 030017093e2fc8e42a3447160a4c5a17, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2582729327549269051, guid: 030017093e2fc8e42a3447160a4c5a17, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 6418265326815496015, guid: 030017093e2fc8e42a3447160a4c5a17, type: 3}
+      propertyPath: boxSize.x
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 7930996368911320404, guid: 030017093e2fc8e42a3447160a4c5a17, type: 3}
       propertyPath: m_LocalPosition.x

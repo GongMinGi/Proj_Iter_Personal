@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ZombieAI : MonoBehaviour
+public class ZombieAI : BaseMonster
 {
     public float speed; // 이동 속도
     public float attackRange; // 공격 범위
@@ -10,9 +10,9 @@ public class ZombieAI : MonoBehaviour
     public float backDistanceY; // 후퇴할 Y 거리
     public Rigidbody2D target; // 주인공 타겟
 
-    private Rigidbody2D rigid;
+    //private Rigidbody2D rigid;
     private SpriteRenderer spriteRenderer;
-    private Animator animator; // Animator 컴포넌트
+    //private Animator animator; // Animator 컴포넌트
 
     private float timeSinceLastAction = 0f; // 마지막 동작 이후 경과 시간
     private bool isMovingToTarget = false; // 주인공에게 이동 중인지 여부
@@ -21,15 +21,17 @@ public class ZombieAI : MonoBehaviour
     private bool hasAttacked = false; // 공격이 이미 이루어졌는지 여부
     private Vector2 backPosition; // 후퇴할 목표 위치
 
-    void Awake()
+    protected override void Awake()
     {
-        rigid = GetComponent<Rigidbody2D>();
+        base.Awake();
+        //rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>(); // Animator 컴포넌트 가져오기
+        //animator = GetComponent<Animator>(); // Animator 컴포넌트 가져오기
     }
 
-    void FixedUpdate()
+    protected override void FixedUpdate()
     {
+        base.FixedUpdate();
         timeSinceLastAction += Time.fixedDeltaTime;
 
         if (isBacking)
@@ -122,6 +124,7 @@ public class ZombieAI : MonoBehaviour
             // 주인공과 충돌 시에만 `Attack` 실행
             isAttacking = true;
             animator.SetTrigger("Attack");
+            collision.gameObject.GetComponentInChildren<PlayerHealth>().TakeDamage(1);
         }
     }
 }

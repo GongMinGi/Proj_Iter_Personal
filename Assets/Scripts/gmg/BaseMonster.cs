@@ -7,17 +7,31 @@ public class BaseMonster : MonoBehaviour
     [SerializeField] public int health = 5;  //체력
     [SerializeField] public float knockbackDistance = 3f;    //넉백 거리
     [SerializeField] public float knockbackSpeed = 20f;  //넉백 속도
-    public float proximityThreshold = 0.1f; //넉백 위치 근접 판정
+    public float proximityThreshold = 0.2f; //넉백 위치 근접 판정
 
     protected Rigidbody2D rigid;        // Rigidbody2D 컴포넌트
     protected Animator animator;        // Animator 컴포넌트
 
-    protected Vector2 knockbackPosition;  // 넉백 목표 위치
-    [SerializeField]protected bool isKnockback = false;
+    [SerializeField] protected Vector2 knockbackPosition;  // 넉백 목표 위치
+    [SerializeField] protected bool isKnockback = false;
     private Vector2 attackSource;
 
     protected virtual void Awake()
     {
+        Collider2D myCollider = GetComponent<Collider2D>();
+
+        GameObject[] objectsWithTargetTag = GameObject.FindGameObjectsWithTag("Monster");
+        foreach (GameObject obj in objectsWithTargetTag)
+        {
+            // 태그가 맞는 오브젝트의 Collider와 충돌 무시 설정
+            Collider2D targetCollider = obj.GetComponent<Collider2D>();
+            if (targetCollider != null && myCollider != null)
+            {
+                Physics2D.IgnoreCollision(myCollider, targetCollider);
+            }
+        }
+
+
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
@@ -26,6 +40,7 @@ public class BaseMonster : MonoBehaviour
     {
         if(isKnockback)
         {
+            
             Knockback(attackSource);
 
         }
@@ -45,8 +60,19 @@ public class BaseMonster : MonoBehaviour
             return;
         }
 
-        //넉백처리
-        //Knockback(damageSourcePosition);
+
+
+        // 넉백 방향 계산 ( x축만)
+        Vector2 knockbackDir = new Vector2(rigid.position.x - damageSourcePosition.x, 0).normalized;
+
+        Debug.Log(knockbackDir);
+
+        //넉백 목표 위치 계산
+        knockbackPosition = rigid.position + knockbackDir * knockbackDistance;
+        Debug.Log(knockbackPosition);
+        //isKnockback = true;
+
+
         isKnockback = true;
     }
 
@@ -60,21 +86,9 @@ public class BaseMonster : MonoBehaviour
 
     protected virtual void Knockback(Vector2 damageSourcePosition)
     {
-        //if (rigid == null) return;
+        if (!isKnockback) return;
 
-        // 넉백 방향 계산 ( x축만)
 
-        //float normalizedDirection = 0 < rigid.position.x - damageSourcePosition.x ? 1 : -1;
-
-        //Vector2 dirVec = new Vector2(normalizedDirection, rigid.position.y);
-        Vector2 dirVec = new Vector2(rigid.position.x - damageSourcePosition.x, 0).normalized;
-
-        Debug.Log(dirVec);
-
-        //넉백 목표 위치 계산
-        knockbackPosition = rigid.position + dirVec * knockbackDistance;
-
-        isKnockback = true;
 
         rigid.MovePosition(Vector2.MoveTowards(rigid.position, knockbackPosition, knockbackSpeed * Time.fixedDeltaTime));
 

@@ -21,15 +21,21 @@ public class Slugmove : BaseMonster
 
     protected override void Awake()
     {
-        rigid = GetComponent<Rigidbody2D>();
+        base.Awake();
+        
         spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();  // Animator 컴포넌트 가져오기
+        
         lastSafePosition = transform.position;
     }
 
     protected override void FixedUpdate()
     {
-        base.FixedUpdate();
+
+        if( isKnockback)
+        {
+            base.FixedUpdate();
+            return;
+        }
 
         // 타겟이 탐지 범위 내에 들어오면
         if (Vector2.Distance(transform.position, target.position) <= detectionRange)
@@ -122,6 +128,19 @@ public class Slugmove : BaseMonster
             projectileScript.Initialize(target); //발사체 초기화 
         }
     }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponentInChildren<PlayerHealth>().TakeDamage(1);
+            Debug.Log("Projectile hit the player!");
+            //Destroy(gameObject);
+        }
+    }
+
+
+
 }
 
 public class Projectile : MonoBehaviour
