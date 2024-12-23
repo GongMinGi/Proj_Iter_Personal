@@ -113,9 +113,9 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!114 &769458063517853946
 MonoBehaviour:
@@ -132,10 +132,12 @@ MonoBehaviour:
   speed: 20
   rb: {fileID: 1805040810713421830}
   lifetime: 5
+  explosionRadius: 3
   whatisPlatform:
     serializedVersion: 2
-    m_Bits: 0
-  explosionRadius: 0
+    m_Bits: 64
+  explosionEffectPrefab: {fileID: 0}
+  isCharged: 0
 --- !u!58 &-3591655897470988460
 CircleCollider2D:
   m_ObjectHideFlags: 0

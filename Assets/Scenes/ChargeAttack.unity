@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &393383307 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2582729327549269051, guid: 030017093e2fc8e42a3447160a4c5a17, type: 3}
+  m_PrefabInstance: {fileID: 1135027204}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &414852876 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 679990203324027377, guid: 030017093e2fc8e42a3447160a4c5a17, type: 3}
@@ -146,16 +151,13 @@ MonoBehaviour:
   dashVelocity: 20
   dashTime: 0.2
   dashCoolDown: 1
-  attackCurTime: 0
+  atk: 1
+  attackForce: 20
+  attackCurTime: 0.1
   attackCoolTime: 0.5
-  attackBoxPos: {fileID: 0}
+  attackBoxPos: {fileID: 393383307}
   boxSize: {x: 0, y: 0}
   glideGravityScale: 0.3
---- !u!50 &414852887 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 3408118293124130620, guid: 030017093e2fc8e42a3447160a4c5a17, type: 3}
-  m_PrefabInstance: {fileID: 1135027204}
-  m_PrefabAsset: {fileID: 0}
 --- !u!231 &414852891
 SpringJoint2D:
   m_ObjectHideFlags: 0
@@ -5977,7 +5979,6 @@ GameObject:
   - component: {fileID: 1118558726}
   - component: {fileID: 1118558730}
   - component: {fileID: 1118558729}
-  - component: {fileID: 1118558728}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -6014,26 +6015,6 @@ Transform:
   - {fileID: 1111398892}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!232 &1118558728
-DistanceJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1118558725}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 414852887}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_BreakAction: 3
-  m_AutoConfigureConnectedAnchor: 0
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0, y: 0}
-  m_AutoConfigureDistance: 0
-  m_Distance: 3
-  m_MaxDistanceOnly: 0
 --- !u!50 &1118558729
 Rigidbody2D:
   serializedVersion: 5
@@ -6042,7 +6023,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1118558725}
-  m_BodyType: 1
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -6125,11 +6106,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7930996368911320404, guid: 030017093e2fc8e42a3447160a4c5a17, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.48
+      value: 15.3
       objectReference: {fileID: 0}
     - target: {fileID: 7930996368911320404, guid: 030017093e2fc8e42a3447160a4c5a17, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.38
+      value: -3.6
       objectReference: {fileID: 0}
     - target: {fileID: 7930996368911320404, guid: 030017093e2fc8e42a3447160a4c5a17, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6281,11 +6262,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1959081202}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90c7259de11d7cb4797e272685023451, type: 3}
+  m_Script: {fileID: 11500000, guid: 52cfb376a9dc36b449022d5240e1bd7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  constantWindSpeed: 18
-  upperHeight: 12
+  windForce: 20
+  upperHeight: 3
   lowerHeight: 0.5
   horizontalRange: 2
   defaultGravityScale: 1
@@ -6420,7 +6401,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1959081202}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 10
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0

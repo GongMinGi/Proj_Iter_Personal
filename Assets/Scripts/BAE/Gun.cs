@@ -41,14 +41,25 @@ public class Gun : MonoBehaviour
 
     void FireRegularProjectile()
     {
-        Instantiate(projectile, firePoint.position, firePoint.rotation);
+        GameObject projectileInstance = Instantiate(projectile, firePoint.position, firePoint.rotation);
+        ProjectileBAE projectileScript = projectileInstance.GetComponent<ProjectileBAE>();
+        if (projectileScript != null)
+        {
+            projectileScript.isCharged = false; // 일반 총알
+        }
     }
 
     void FireChargedProjectile()
     {
-        Instantiate(chargedProjectile, firePoint.position, firePoint.rotation);
+        GameObject chargedInstance = Instantiate(chargedProjectile, firePoint.position, firePoint.rotation);
+        ProjectileBAE chargedScript = chargedInstance.GetComponent<ProjectileBAE>();
+        if (chargedScript != null)
+        {
+            chargedScript.isCharged = true; // 차지 어택
+        }
     }
 }
+
 
 
 

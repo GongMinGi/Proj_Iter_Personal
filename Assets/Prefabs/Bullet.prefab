@@ -132,10 +132,12 @@ MonoBehaviour:
   speed: 20
   rb: {fileID: 4676849383926573980}
   lifetime: 3
+  explosionRadius: 0
   whatisPlatform:
     serializedVersion: 2
     m_Bits: 0
-  explosionRadius: 0
+  explosionEffectPrefab: {fileID: 0}
+  isCharged: 0
 --- !u!58 &-8769199949802863378
 CircleCollider2D:
   m_ObjectHideFlags: 0
