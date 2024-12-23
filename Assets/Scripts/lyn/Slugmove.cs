@@ -149,7 +149,7 @@ public class Projectile : MonoBehaviour
     {
         if (collision.collider.CompareTag("Player"))
         {
-            collision.gameObject.GetComponentInChildren<PlayerHealth>().TakeDamage();
+            collision.gameObject.GetComponentInChildren<PlayerHealth>().TakeDamage(1);
             Debug.Log("Projectile hit the player!");
             Destroy(gameObject);
         }

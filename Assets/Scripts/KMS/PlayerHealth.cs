@@ -58,13 +58,13 @@ public class PlayerHealth : MonoBehaviour
 
     }
 
-    public void TakeDamage()
+    public void TakeDamage(int damage)
     {
 
         if (health <= 0)
             return;
 
-        health -= 1;
+        health -= damage;
 
         DamageTaken?.Invoke(); // DamageTaken 이벤트 호출
 

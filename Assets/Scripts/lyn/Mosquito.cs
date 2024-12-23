@@ -211,7 +211,7 @@ public class Mosquito : BaseMonster
             // 예를 들어, 공격 애니메이션을 시작하거나, 데미지를 주는 등의 동작
             Debug.Log("Mosquito collided with Player!");
 
-            other.GetComponentInChildren<PlayerHealth>().TakeDamage();
+            other.GetComponentInChildren<PlayerHealth>().TakeDamage(1);
         }
     }
 }
