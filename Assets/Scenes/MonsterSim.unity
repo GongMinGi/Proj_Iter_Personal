@@ -135,6 +135,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6418265326815496015, guid: 030017093e2fc8e42a3447160a4c5a17, type: 3}
+      propertyPath: attackCoolTime
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 7930996368911320404, guid: 030017093e2fc8e42a3447160a4c5a17, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.57
@@ -6623,6 +6627,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5197578782335382582, guid: 8e0533a5b1adec94abc1ac5f23d9c3bc, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 579970226}
     - target: {fileID: 6430627045951523235, guid: 8e0533a5b1adec94abc1ac5f23d9c3bc, type: 3}
       propertyPath: m_Enabled
       value: 1
