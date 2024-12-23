@@ -189,6 +189,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b802fc370ce5de441bfc1fd63e7f0ba9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 5
+  knockbackDistance: 10
+  knockbackSpeed: 20
+  proximityThreshold: 0.1
+  isKnockback: 0
   speed: 2
   detectionRange: 20
   stopDistance: 5
