@@ -13,7 +13,8 @@ public class BaseMonster : MonoBehaviour
     protected Animator animator;        // Animator 컴포넌트
 
     protected Vector2 knockbackPosition;  // 넉백 목표 위치
-    [SerializeField]protected bool isKnockback = false; 
+    [SerializeField]protected bool isKnockback = false;
+    private Vector2 attackSource;
 
     protected virtual void Awake()
     {
@@ -21,9 +22,18 @@ public class BaseMonster : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    protected virtual void FixedUpdate()
+    {
+        if(isKnockback)
+        {
+            Knockback(attackSource);
+
+        }
+    }
 
     public virtual void TakeDamage(int damage, Vector2 damageSourcePosition)
     {
+        attackSource = damageSourcePosition;
         //체력감소
         health -= damage;
         Debug.Log($"{gameObject.name} took {damage} damage. Remaining health: {health}");
@@ -36,7 +46,8 @@ public class BaseMonster : MonoBehaviour
         }
 
         //넉백처리
-        Knockback(damageSourcePosition);
+        //Knockback(damageSourcePosition);
+        isKnockback = true;
     }
 
 
@@ -49,13 +60,14 @@ public class BaseMonster : MonoBehaviour
 
     protected virtual void Knockback(Vector2 damageSourcePosition)
     {
-        if (rigid == null) return;
+        //if (rigid == null) return;
 
         // 넉백 방향 계산 ( x축만)
 
-        float normalizedDirection = 0 < rigid.position.x - damageSourcePosition.x ? 1 : -1;
+        //float normalizedDirection = 0 < rigid.position.x - damageSourcePosition.x ? 1 : -1;
 
-        Vector2 dirVec = new Vector2(normalizedDirection, rigid.position.y);
+        //Vector2 dirVec = new Vector2(normalizedDirection, rigid.position.y);
+        Vector2 dirVec = new Vector2(rigid.position.x - damageSourcePosition.x, 0).normalized;
 
         Debug.Log(dirVec);
 
@@ -64,7 +76,7 @@ public class BaseMonster : MonoBehaviour
 
         isKnockback = true;
 
-        rigid.MovePosition(Vector2.MoveTowards(rigid.position, knockbackPosition, knockbackSpeed));
+        rigid.MovePosition(Vector2.MoveTowards(rigid.position, knockbackPosition, knockbackSpeed * Time.fixedDeltaTime));
 
         // 목표 위치에 도달하면 넉백 중지
         if (Vector2.Distance(rigid.position, knockbackPosition) <= proximityThreshold)

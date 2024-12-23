@@ -48,9 +48,9 @@ public class Mosquito : BaseMonster
         //animator = GetComponent<Animator>();
     }
 
-    private void FixedUpdate()
+    protected override void FixedUpdate()
     {
-
+        //base.fixedUpdate();
 
         //활성화되지 않았다면 활성화 거리 확인
         if (!isActivated)
@@ -210,6 +210,8 @@ public class Mosquito : BaseMonster
             // 필요한 추가 동작이 있으면 여기에 추가
             // 예를 들어, 공격 애니메이션을 시작하거나, 데미지를 주는 등의 동작
             Debug.Log("Mosquito collided with Player!");
+
+            other.GetComponentInChildren<PlayerHealth>().TakeDamage();
         }
     }
 }
