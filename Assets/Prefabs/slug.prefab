@@ -191,7 +191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 5
   knockbackDistance: 5
-  knockbackSpeed: 20
+  knockbackSpeed: 10
   proximityThreshold: 0.1
   knockbackPosition: {x: 0, y: 0}
   isKnockback: 0

@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4220048155360591030
 Transform:
   m_ObjectHideFlags: 0
@@ -167,11 +167,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 472c0643367b9fd4dab7cb6b0e12b02b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 5
+  knockbackDistance: 3
+  knockbackSpeed: 20
+  proximityThreshold: 0.2
+  knockbackPosition: {x: 0, y: 0}
+  isKnockback: 0
   speed: 2
   attackRange: 10
   backSpeed: 1.5
   attackDelay: 1
-  backDistanceX: 3
+  backDistanceX: 0
   backDistanceY: 0
   target: {fileID: 0}
 --- !u!95 &4455349605016705419
