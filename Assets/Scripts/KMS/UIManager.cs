@@ -14,6 +14,9 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
+
+        gameOverPanel.SetActive(false);
+
         playerHealth = PlayerHealth.instance;
 
         playerHealth.DamageTaken += UpdateHearts;
@@ -70,6 +73,7 @@ public class UIManager : MonoBehaviour
         {
             gameOverPanel.SetActive(true); // 게임 오버 패널 활성화
         }
+        Time.timeScale = 0f;
     }
 
     void OnDestroy()
