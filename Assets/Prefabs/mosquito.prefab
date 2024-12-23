@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 745393010418616338}
   - component: {fileID: 6430627045951523235}
   - component: {fileID: 5735867246152746079}
-  - component: {fileID: 5197578782335382582}
+  - component: {fileID: 5717027374639642025}
   m_Layer: 10
   m_Name: mosquito
   m_TagString: Monster
@@ -177,7 +177,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5197578782335382582
+--- !u!114 &5717027374639642025
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -191,9 +191,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 5
   knockbackDistance: 3
-  knockbackSpeed: 20
+  knockbackSpeed: 10
   proximityThreshold: 0.1
-  speed: 10
+  isKnockback: 0
+  speed: 15
   chargeDelay: 1.5
   retreatDistanceX: 6
   retreatDistanceY: 3

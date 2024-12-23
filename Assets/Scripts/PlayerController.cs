@@ -160,7 +160,7 @@ public class PlayerController : MonoBehaviour
                     if(collider.CompareTag("Monster")) //태그가 Monster인 경우
                     {
                         //collider.GetComponent<EnemyHealth>().Damage(atk, collider.transform.position - transform.position);
-                        collider.GetComponent<BaseMonster>().TakeDamage(1, transform.position);
+                        collider.GetComponent<BaseMonster>().TakeDamage(1, attackBoxPos.position);
                     }
                 }
                 playerAnim.SetTrigger("Attack");

@@ -12,14 +12,15 @@ public class BaseMonster : MonoBehaviour
     protected Rigidbody2D rigid;        // Rigidbody2D 컴포넌트
     protected Animator animator;        // Animator 컴포넌트
 
-    private Vector2 knockbackPosition;  // 넉백 목표 위치
-    private bool isKnockback = false; 
+    protected Vector2 knockbackPosition;  // 넉백 목표 위치
+    [SerializeField]protected bool isKnockback = false; 
 
     protected virtual void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
+
 
     public virtual void TakeDamage(int damage, Vector2 damageSourcePosition)
     {
@@ -35,8 +36,7 @@ public class BaseMonster : MonoBehaviour
         }
 
         //넉백처리
-        CalculateKnockback(damageSourcePosition);
-
+        Knockback(damageSourcePosition);
     }
 
 
@@ -47,57 +47,37 @@ public class BaseMonster : MonoBehaviour
     }
 
 
-    private void CalculateKnockback(Vector2 damageSourcePosition)
+    protected virtual void Knockback(Vector2 damageSourcePosition)
     {
         if (rigid == null) return;
 
         // 넉백 방향 계산 ( x축만)
-        Vector2 dirVec = new Vector2(rigid.position.x - damageSourcePosition.x, 0).normalized;
+
+        float normalizedDirection = 0 < rigid.position.x - damageSourcePosition.x ? 1 : -1;
+
+        Vector2 dirVec = new Vector2(normalizedDirection, rigid.position.y);
+
+        Debug.Log(dirVec);
 
         //넉백 목표 위치 계산
         knockbackPosition = rigid.position + dirVec * knockbackDistance;
 
         isKnockback = true;
 
-        //넉백 처리 
-        //StartCoroutine(KnockBackRoutine());
-
-    }
-
-    private void HandleKnockback()
-    {
-        rigid.MovePosition(Vector2.MoveTowards(rigid.position, knockbackPosition, knockbackSpeed * Time.fixedDeltaTime));
+        rigid.MovePosition(Vector2.MoveTowards(rigid.position, knockbackPosition, knockbackSpeed));
 
         // 목표 위치에 도달하면 넉백 중지
         if (Vector2.Distance(rigid.position, knockbackPosition) <= proximityThreshold)
         {
             isKnockback = false;
-            OnKnockbackComplete();
+
         }
 
     }
 
-    protected virtual void OnKnockbackComplete()
-    {
-        //넉백 완료 후 추가 행동( 상속받은 클래스에 확장 가능)
-        Debug.Log($"{gameObject.name} completed knockback.");
-    }
 
 
-    //private IEnumerator KnockBackRoutine()
-    //{
-    //    while(isKnockback)
-    //    {
-    //        rigid.MovePosition(Vector2.MoveTowards(rigid.position, knockbackPosition, knockbackSpeed * Time.fixedDeltaTime));
 
-    //        if (Vector2.Distance(rigid.position, knockbackPosition) <= 0.1f)
-    //        {
-    //            isKnockback = false;
-    //        }
-
-    //        yield return null;
-    //    }
-    //}
 
     // Update is called once per frame
     void Update()
