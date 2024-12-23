@@ -13,6 +13,8 @@ public class Tuto_BlinkUI : MonoBehaviour
     public KeyCode fadeOutKey = KeyCode.E;  // 기본값은 E 키
 
     public bool useAnyKey = false;      // 아무 키나 입력으로 페이드아웃
+
+    [HideInInspector]
     public bool isFadedOut = false;      // 페이드아웃 완료 여부
 
     private Coroutine activeCoroutine;   // 현재 실행 중인 코루틴
@@ -61,7 +63,6 @@ public class Tuto_BlinkUI : MonoBehaviour
         Color color = tutorialImage.color;
         color.a = 0f;
         tutorialImage.color = color;
-
 
         while (color.a < 1f)
         {
