@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 4584740890444947815}
   - component: {fileID: 745393010418616338}
   - component: {fileID: 6430627045951523235}
-  - component: {fileID: 9201164210114282213}
   - component: {fileID: 5735867246152746079}
+  - component: {fileID: 5197578782335382582}
   m_Layer: 10
   m_Name: mosquito
   m_TagString: Monster
@@ -155,27 +155,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
---- !u!114 &9201164210114282213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7312412703759852316}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cc6f7c1004f3cc4e9d6e29cb2ef94c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 20
-  chargeDelay: 1.5
-  retreatDistanceX: 6
-  retreatDistanceY: 3
-  retreatSpeed: 5
-  activationDistance: 7
-  knockbackDistance: 2
-  knockbackSpeed: 10
-  target: {fileID: 0}
 --- !u!95 &5735867246152746079
 Animator:
   serializedVersion: 7
@@ -198,3 +177,26 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5197578782335382582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7312412703759852316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cc6f7c1004f3cc4e9d6e29cb2ef94c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 5
+  knockbackDistance: 3
+  knockbackSpeed: 20
+  proximityThreshold: 0.1
+  speed: 10
+  chargeDelay: 1.5
+  retreatDistanceX: 6
+  retreatDistanceY: 3
+  retreatSpeed: 5
+  activationDistance: 7
+  target: {fileID: 0}

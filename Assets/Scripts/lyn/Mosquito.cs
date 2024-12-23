@@ -2,7 +2,7 @@ using UnityEngine;
 
 
 // 모기의 행동( 진동, 타겟으로 이동, 후퇴)를 관리하는 클래스
-public class MosquitoModified : MonoBehaviour
+public class MosquitoModified : BaseMonster
 {
     public float speed; //이동속도  
     public float chargeDelay; //타겟으로 돌진하기 전 대기 시간
@@ -11,14 +11,14 @@ public class MosquitoModified : MonoBehaviour
     public float retreatSpeed; //후퇴 속도
     public float activationDistance; //타겟과의 거리 안에 들어왔을 때 모기 활성화 거리
 
-    public float knockbackDistance; // 피격 시 넉벡 거리
-    public float knockbackSpeed;    // 넉백 속도
+    //public float knockbackDistance; // 피격 시 넉벡 거리
+    //public float knockbackSpeed;    // 넉백 속도
 
     public Rigidbody2D target; // 플레이어의 Rigidbody2D (타겟 대상)
 
-    private Rigidbody2D rigid; // 모기의 Rigidbody2D
+    //private Rigidbody2D rigid; // 모기의 Rigidbody2D
     private SpriteRenderer spriteRenderer; // 모기의 SpriteRenderer
-    private Animator animator; //모기의 애니메이터
+    //private Animator animator; //모기의 애니메이터
 
     private float timeSinceLastAction = 0f; // 현재 상태에서 경과한 시간
     private Vector2 retreatPosition; //모기가 후퇴할 위치
@@ -40,13 +40,13 @@ public class MosquitoModified : MonoBehaviour
     private MosquitoState currentState = MosquitoState.Oscillating; // 현재 상태(초기값: Oscillating)
     private bool isActivated = false;   // 활성화 여부(활성화 거리 안에 들어와야 활성화)
 
-    void Awake()
+    protected override void Awake()
     {
-
+        base.Awake();
         //rigidbody2D, SpriteRenderer, Animator 컴포넌트 초기화
-        rigid = GetComponent<Rigidbody2D>();
+        //rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -87,7 +87,7 @@ public class MosquitoModified : MonoBehaviour
                 break;
 
             case MosquitoState.Knockback:
-                Knockback();
+                //Knockback();
                 break;
         }
     }
@@ -163,25 +163,35 @@ public class MosquitoModified : MonoBehaviour
         }
     }
 
-    private void Knockback()
+    //private void Knockback()
+    //{
+    //    //넉백 이동
+    //    Vector2 dirVec = knockbackPosition - rigid.position;
+    //    rigid.MovePosition(Vector2.MoveTowards(rigid.position, knockbackPosition, knockbackSpeed * Time.fixedDeltaTime));
+
+    //    if (Vector2.Distance(rigid.position, knockbackPosition) <= RETREAT_PROXIMITY_THRESHOLD)
+    //    {
+    //        SetState(MosquitoState.Oscillating);
+    //    }
+    //}
+
+    //protected override void TakeDamage(Vector2 damageSourcePosition)
+    //{
+    //    // 넉백 방향 계산 (x 축 방향으로만)
+    //    Vector2 dirVec = new Vector2(rigid.position.x - damageSourcePosition.x, 0).normalized;
+
+    //    // 넉백 위치 계산 (현재 위치에서 넉백 거리만큼 이동)
+    //    knockbackPosition = rigid.position + dirVec.normalized * knockbackDistance;
+
+    //    // 상태를 Knockback으로 전환
+    //    SetState(MosquitoState.Knockback);
+    //}
+
+    protected override void OnKnockbackComplete()
     {
-        Vector2 dirVec = knockbackPosition - rigid.position;
-        rigid.MovePosition(Vector2.MoveTowards(rigid.position, knockbackPosition, knockbackSpeed * Time.fixedDeltaTime));
+        base.OnKnockbackComplete();
+        SetState(MosquitoState.Oscillating);
 
-        if (Vector2.Distance(rigid.position, knockbackPosition) <= RETREAT_PROXIMITY_THRESHOLD)
-        {
-            SetState(MosquitoState.Oscillating);
-        }
-    }
-
-    public void TakeDamage(Vector2 damageSourcePosition)
-    {
-        // 넉백 위치 계산
-        Vector2 dirVec = rigid.position - damageSourcePosition;
-        knockbackPosition = rigid.position + dirVec.normalized * knockbackDistance;
-
-        // 상태를 Knockback으로 전환
-        SetState(MosquitoState.Knockback);
     }
 
 

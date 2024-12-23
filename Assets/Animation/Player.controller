@@ -564,8 +564,8 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PlayerAttackTemp
-  m_Speed: 2
+  m_Name: PlayerAttack
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -1314669749697902408}
@@ -579,7 +579,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 145cbb7423cde2b4ba207af2dd6ad053, type: 2}
+  m_Motion: {fileID: 7400000, guid: 9eed852f2cd9bf344a186922faab36ca, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

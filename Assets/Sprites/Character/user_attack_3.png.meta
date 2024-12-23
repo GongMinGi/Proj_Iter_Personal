@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e65509cfca36f7e448962f1aca1c4b02
+guid: cbfced71e8bb6c0478b92e5aba42f72e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6495310255437495745
-    second: user_walk_7_0
+      213: 717690734582341997
+    second: user_attack_3_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: user_walk_7_0
+      name: user_attack_3_0
       rect:
         serializedVersion: 2
-        x: 35
+        x: 37
         y: 31
-        width: 57
-        height: 66
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 102
+        height: 64
+      alignment: 9
+      pivot: {x: 0.25, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f3242be7cb50cd5a0800000000000000
-      internalID: -6495310255437495745
+      spriteID: d61ae5dabefb5f900800000000000000
+      internalID: 717690734582341997
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 4b731e0a2bb429b4d91d7557031a73ed
+    spriteID: a37a8e1942539c04a94a3306341d789a
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      user_walk_7_0: -6495310255437495745
+      user_attack_3_0: 717690734582341997
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
