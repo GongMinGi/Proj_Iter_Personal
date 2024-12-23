@@ -3,7 +3,7 @@ using UnityEngine;
 public class WindZoneglide : MonoBehaviour
 {
     [SerializeField]
-    private float windForce = 5f; // 바람의 지속적인 힘
+    private float windForce = 6f; // 바람의 지속적인 힘
     [SerializeField]
     private float upperHeight = 3f; // WindZone 기준 상단 높이
     [SerializeField]
@@ -48,6 +48,43 @@ public class WindZoneglide : MonoBehaviour
     }
 
     [System.Obsolete]
+    private void FixedUpdate()
+    {
+        if (!playerInZone || playerTransform == null || playerRb == null || playerController == null) return;
+
+        // 플레이어의 위치 및 WindZone 범위 계산
+        float playerHeight = playerTransform.position.y;
+        float playerHorizontalDistance = Mathf.Abs(playerTransform.position.x - transform.position.x);
+        float zoneBottom = transform.position.y + lowerHeight;
+        float zoneTop = transform.position.y + upperHeight;
+
+        // 글라이딩 중이고, WindZone 범위 내에 있는 경우
+        if (playerController.IsGliding &&
+            playerHeight >= zoneBottom &&
+            playerHeight <= zoneTop &&
+            playerHorizontalDistance <= horizontalRange)
+        {
+            // 중력을 제거
+            playerRb.gravityScale = 0;
+
+            // 바람의 힘을 높이에 따라 선형적으로 증가시키기
+            float normalizedHeight = (playerHeight - zoneBottom) / (zoneTop - zoneBottom); // 0 ~ 1 사이 값
+            float dynamicWindForce = Mathf.Lerp(1f, windForce, normalizedHeight); // 낮은 높이에서는 약한 힘, 높은 높이에서는 강한 힘
+
+            // 지속적인 바람의 힘 적용
+            Vector2 windDirection = Vector2.up; // 항상 위쪽으로 힘을 가함
+            playerRb.velocity = new Vector2(playerRb.velocity.x, dynamicWindForce);
+        }
+        else
+        {
+            // WindZone을 벗어나거나 글라이딩을 중지하면 중력을 복원
+            playerRb.gravityScale = defaultGravityScale;
+        
+        }
+    }
+}
+
+   /* [System.Obsolete]
     private void FixedUpdate()
     {
         if (!playerInZone || playerTransform == null || playerRb == null || playerController == null) return;
