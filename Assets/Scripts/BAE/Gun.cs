@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using UnityEngine;
 
 public class Gun : MonoBehaviour
@@ -59,12 +59,12 @@ public class Gun : MonoBehaviour
         }
     }
 }
+*/
 
 
 
 
-
-/*using System.Collections; //https://www.youtube.com/watch?v=ZDkMhiNQOwo&t=5s참고
+using System.Collections; //https://www.youtube.com/watch?v=ZDkMhiNQOwo&t=5s참고
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -107,4 +107,3 @@ public class Gun : MonoBehaviour
         chargeTime = 0;
     }
 }
-*/

@@ -16,7 +16,7 @@ public class Booom : MonoBehaviour
 
     IEnumerator Boooom()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
         explosionAreaGO.SetActive(true);
 
         DestroyArea();

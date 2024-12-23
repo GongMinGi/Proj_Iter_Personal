@@ -1,22 +1,22 @@
 using UnityEngine;
 
-public class WindZone : MonoBehaviour
+public class WindZoneglide : MonoBehaviour
 {
     [SerializeField]
-    private float windForce = 5f; // ë°”ëžŒì˜ ì§€ì†ì ì¸ íž˜
+    private float windForce = 5f; // ¹Ù¶÷ÀÇ Áö¼ÓÀûÀÎ Èû
     [SerializeField]
-    private float upperHeight = 3f; // WindZone ê¸°ì¤€ ìƒë‹¨ ë†’ì´
+    private float upperHeight = 3f; // WindZone ±âÁØ »ó´Ü ³ôÀÌ
     [SerializeField]
-    private float lowerHeight = 0.5f; // WindZone ê¸°ì¤€ í•˜ë‹¨ ë†’ì´
+    private float lowerHeight = 0.5f; // WindZone ±âÁØ ÇÏ´Ü ³ôÀÌ
     [SerializeField]
-    private float horizontalRange = 2f; // WindZone ì¤‘ì‹¬ìœ¼ë¡œë¶€í„°ì˜ ìˆ˜í‰ ë²”ìœ„
+    private float horizontalRange = 2f; // WindZone Áß½ÉÀ¸·ÎºÎÅÍÀÇ ¼öÆò ¹üÀ§
     [SerializeField]
-    private float defaultGravityScale = 1f; // í”Œë ˆì´ì–´ì˜ ê¸°ë³¸ ì¤‘ë ¥ ê°’
+    private float defaultGravityScale = 1f; // ÇÃ·¹ÀÌ¾îÀÇ ±âº» Áß·Â °ª
 
     private Transform playerTransform;
     private Rigidbody2D playerRb;
     private PlayerControllerbyBae playerController;
-    private bool playerInZone = false; // í”Œë ˆì´ì–´ê°€ WindZone ì•ˆì— ìžˆëŠ”ì§€ ì—¬ë¶€
+    private bool playerInZone = false; // ÇÃ·¹ÀÌ¾î°¡ WindZone ¾È¿¡ ÀÖ´ÂÁö ¿©ºÎ
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -28,7 +28,7 @@ public class WindZone : MonoBehaviour
 
             if (playerRb != null)
             {
-                defaultGravityScale = playerRb.gravityScale; // ì´ˆê¸° ì¤‘ë ¥ê°’ ì €ìž¥
+                defaultGravityScale = playerRb.gravityScale; // ÃÊ±â Áß·Â°ª ÀúÀå
             }
             playerInZone = true;
         }
@@ -41,7 +41,7 @@ public class WindZone : MonoBehaviour
             playerInZone = false;
             if (playerRb != null)
             {
-                // ì¤‘ë ¥ì„ ë³µì›
+                // Áß·ÂÀ» º¹¿ø
                 playerRb.gravityScale = defaultGravityScale;
             }
         }
@@ -52,28 +52,28 @@ public class WindZone : MonoBehaviour
     {
         if (!playerInZone || playerTransform == null || playerRb == null || playerController == null) return;
 
-        // í”Œë ˆì´ì–´ì˜ ìœ„ì¹˜ ë° WindZone ë²”ìœ„ ê³„ì‚°
+        // ÇÃ·¹ÀÌ¾îÀÇ À§Ä¡ ¹× WindZone ¹üÀ§ °è»ê
         float playerHeight = playerTransform.position.y;
         float playerHorizontalDistance = Mathf.Abs(playerTransform.position.x - transform.position.x);
         float zoneBottom = transform.position.y + lowerHeight;
         float zoneTop = transform.position.y + upperHeight;
 
-        // ê¸€ë¼ì´ë”© ì¤‘ì´ê³ , WindZone ë²”ìœ„ ë‚´ì— ìžˆëŠ” ê²½ìš°
+        // ±Û¶óÀÌµù ÁßÀÌ°í, WindZone ¹üÀ§ ³»¿¡ ÀÖ´Â °æ¿ì
         if (playerController.IsGliding &&
             playerHeight >= zoneBottom &&
             playerHeight <= zoneTop &&
             playerHorizontalDistance <= horizontalRange)
         {
-            // ì¤‘ë ¥ì„ ì œê±°
+            // Áß·ÂÀ» Á¦°Å
             playerRb.gravityScale = 0;
 
-            // ì§€ì†ì ì¸ ë°”ëžŒì˜ íž˜ ì ìš©
-            Vector2 windDirection = Vector2.up; // í•­ìƒ ìœ„ìª½ìœ¼ë¡œ íž˜ì„ ê°€í•¨
+            // Áö¼ÓÀûÀÎ ¹Ù¶÷ÀÇ Èû Àû¿ë
+            Vector2 windDirection = Vector2.up; // Ç×»ó À§ÂÊÀ¸·Î ÈûÀ» °¡ÇÔ
             playerRb.velocity = new Vector2(playerRb.velocity.x, windForce);
         }
         else
         {
-            // WindZoneì„ ë²—ì–´ë‚˜ê±°ë‚˜ ê¸€ë¼ì´ë”©ì„ ì¤‘ì§€í•˜ë©´ ì¤‘ë ¥ì„ ë³µì›
+            // WindZoneÀ» ¹þ¾î³ª°Å³ª ±Û¶óÀÌµùÀ» ÁßÁöÇÏ¸é Áß·ÂÀ» º¹¿ø
             playerRb.gravityScale = defaultGravityScale;
         }
     }
@@ -87,20 +87,20 @@ public class WindZone : MonoBehaviour
 public class WindZone : MonoBehaviour
 {
     [SerializeField]
-    private float windForce = 5f; // ë°”ëžŒì˜ ì—°ì†ì ì¸ íž˜
+    private float windForce = 5f; // ¹Ù¶÷ÀÇ ¿¬¼ÓÀûÀÎ Èû
     [SerializeField]
-    private float upperHeight = 3f; // ìœˆë“œ ì¡´ ê¸°ì¤€ ìƒë‹¨ ë†’ì´
+    private float upperHeight = 3f; // À©µå Á¸ ±âÁØ »ó´Ü ³ôÀÌ
     [SerializeField]
-    private float lowerHeight = 0.5f; // ìœˆë“œ ì¡´ ê¸°ì¤€ í•˜ë‹¨ ë†’ì´
+    private float lowerHeight = 0.5f; // À©µå Á¸ ±âÁØ ÇÏ´Ü ³ôÀÌ
     [SerializeField]
-    private float horizontalRange = 2f; // ë°œíŒ ì¤‘ì‹¬ìœ¼ë¡œë¶€í„°ì˜ ìˆ˜í‰ ë²”ìœ„
+    private float horizontalRange = 2f; // ¹ßÆÇ Áß½ÉÀ¸·ÎºÎÅÍÀÇ ¼öÆò ¹üÀ§
     [SerializeField]
-    private float defaultGravityScale = 1f; // í”Œë ˆì´ì–´ì˜ ê¸°ë³¸ ì¤‘ë ¥ ê°’
+    private float defaultGravityScale = 1f; // ÇÃ·¹ÀÌ¾îÀÇ ±âº» Áß·Â °ª
 
     private Transform playerTransform;
     private Rigidbody2D playerRb;
     private PlayerControllerbyBae playerController;
-    private bool playerInZone = false; // í”Œë ˆì´ì–´ê°€ WindZone ì•ˆì— ìžˆëŠ”ì§€ ì—¬ë¶€
+    private bool playerInZone = false; // ÇÃ·¹ÀÌ¾î°¡ WindZone ¾È¿¡ ÀÖ´ÂÁö ¿©ºÎ
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -112,7 +112,7 @@ public class WindZone : MonoBehaviour
 
             if (playerRb != null)
             {
-                defaultGravityScale = playerRb.gravityScale; // ì´ˆê¸° ì¤‘ë ¥ê°’ ì €ìž¥
+                defaultGravityScale = playerRb.gravityScale; // ÃÊ±â Áß·Â°ª ÀúÀå
             }
             playerInZone = true;
         }
@@ -126,7 +126,7 @@ public class WindZone : MonoBehaviour
             playerInZone = false;
             if (playerRb != null)
             {
-                // ì¤‘ë ¥ê³¼ ì†ë„ ë³µì›
+                // Áß·Â°ú ¼Óµµ º¹¿ø
                 playerRb.gravityScale = defaultGravityScale;
                 playerRb.velocity = new Vector2(playerRb.velocity.x, playerRb.velocity.y);
             }
@@ -138,23 +138,23 @@ public class WindZone : MonoBehaviour
     {
         if (!playerInZone || playerTransform == null || playerRb == null || playerController == null) return;
 
-        // ë°œíŒ ê¸°ì¤€ ë†’ì´ì™€ ìˆ˜í‰ ê±°ë¦¬ ê³„ì‚°
+        // ¹ßÆÇ ±âÁØ ³ôÀÌ¿Í ¼öÆò °Å¸® °è»ê
         float playerHeight = playerTransform.position.y;
         float playerHorizontalDistance = Mathf.Abs(playerTransform.position.x - transform.position.x);
         float zoneBottom = transform.position.y + lowerHeight;
         float zoneTop = transform.position.y + upperHeight;
 
-        // ì¡°ê±´ í™•ì¸: ê¸€ë¼ì´ë”© ì¤‘ì´ë©° í”Œë ˆì´ì–´ê°€ ë†’ì´ì™€ ìˆ˜í‰ ë²”ìœ„ ë‚´ì— ìžˆì„ ë•Œ
+        // Á¶°Ç È®ÀÎ: ±Û¶óÀÌµù ÁßÀÌ¸ç ÇÃ·¹ÀÌ¾î°¡ ³ôÀÌ¿Í ¼öÆò ¹üÀ§ ³»¿¡ ÀÖÀ» ¶§
         if (playerController.IsGliding && playerHeight <= zoneTop && playerHorizontalDistance <= horizontalRange)
         {
-            // ì¤‘ë ¥ì„ ì œê±°
+            // Áß·ÂÀ» Á¦°Å
             playerRb.gravityScale = 0;
 
-            // ìœ„ìª½ ë°©í–¥ìœ¼ë¡œ ì§€ì†ì ìœ¼ë¡œ íž˜ì„ ê°€í•¨
+            // À§ÂÊ ¹æÇâÀ¸·Î Áö¼ÓÀûÀ¸·Î ÈûÀ» °¡ÇÔ
             Vector2 windDirection = (Vector2)transform.up.normalized;
             playerRb.AddForce(windDirection * windForce, ForceMode2D.Force);
 
-            // ìƒë‹¨(upperHeight)ì— ë„ë‹¬í•˜ë©´ ì†ë„ë¥¼ ì œí•œ
+            // »ó´Ü(upperHeight)¿¡ µµ´ÞÇÏ¸é ¼Óµµ¸¦ Á¦ÇÑ
             if (playerHeight >= zoneTop)
             {
                 playerRb.velocity = new Vector2(playerRb.velocity.x, Mathf.Min(playerRb.velocity.y, 0));
@@ -162,7 +162,7 @@ public class WindZone : MonoBehaviour
         }
         else
         {
-            // ì˜ì—­ì„ ë²—ì–´ë‚˜ê±°ë‚˜ ê¸€ë¼ì´ë”©ì„ ì¤‘ì§€í–ˆì„ ê²½ìš° ì¤‘ë ¥ ë³µì›
+            // ¿µ¿ªÀ» ¹þ¾î³ª°Å³ª ±Û¶óÀÌµùÀ» ÁßÁöÇßÀ» °æ¿ì Áß·Â º¹¿ø
             playerRb.gravityScale = defaultGravityScale;
             playerRb.velocity = new Vector2(playerRb.velocity.x, playerRb.velocity.y);
         }
@@ -177,24 +177,24 @@ public class WindZone : MonoBehaviour
 public class WindZone : MonoBehaviour
 {
     [SerializeField]
-    private float constantWindSpeed = 5f; // ë°”ëžŒì˜ ì¼ì •í•œ ì†ë„
+    private float constantWindSpeed = 5f; // ¹Ù¶÷ÀÇ ÀÏÁ¤ÇÑ ¼Óµµ
     [SerializeField]
-    private float upperHeight = 3f; // ìœˆë“œ ì¡´ ê¸°ì¤€ ìƒë‹¨ ë†’ì´
+    private float upperHeight = 3f; // À©µå Á¸ ±âÁØ »ó´Ü ³ôÀÌ
     [SerializeField]
-    private float lowerHeight = 0.5f; // ìœˆë“œ ì¡´ ê¸°ì¤€ í•˜ë‹¨ ë†’ì´
+    private float lowerHeight = 0.5f; // À©µå Á¸ ±âÁØ ÇÏ´Ü ³ôÀÌ
     [SerializeField]
-    private float horizontalRange = 2f; // ë°œíŒ ì¤‘ì‹¬ìœ¼ë¡œë¶€í„°ì˜ ìˆ˜í‰ ë²”ìœ„
+    private float horizontalRange = 2f; // ¹ßÆÇ Áß½ÉÀ¸·ÎºÎÅÍÀÇ ¼öÆò ¹üÀ§
     [SerializeField]
-    private float defaultGravityScale = 1f; // í”Œë ˆì´ì–´ì˜ ê¸°ë³¸ ì¤‘ë ¥ ê°’
+    private float defaultGravityScale = 1f; // ÇÃ·¹ÀÌ¾îÀÇ ±âº» Áß·Â °ª
 
     private Transform playerTransform;
     private Rigidbody2D playerRb;
     private PlayerControllerbyBae playerController;
-    private bool playerInZone = false; // í”Œë ˆì´ì–´ê°€ WindZone ì•ˆì— ìžˆëŠ”ì§€ ì—¬ë¶€
+    private bool playerInZone = false; // ÇÃ·¹ÀÌ¾î°¡ WindZone ¾È¿¡ ÀÖ´ÂÁö ¿©ºÎ
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // í”Œë ˆì´ì–´ê°€ WindZoneì— ë“¤ì–´ì™”ì„ ë•Œ
+        // ÇÃ·¹ÀÌ¾î°¡ WindZone¿¡ µé¾î¿ÔÀ» ¶§
         if (collision.CompareTag("Player"))
         {
             playerTransform = collision.transform;
@@ -203,7 +203,7 @@ public class WindZone : MonoBehaviour
 
             if (playerRb != null)
             {
-                defaultGravityScale = playerRb.gravityScale; // ì´ˆê¸° ì¤‘ë ¥ê°’ ì €ìž¥
+                defaultGravityScale = playerRb.gravityScale; // ÃÊ±â Áß·Â°ª ÀúÀå
             }
             playerInZone = true;
         }
@@ -212,13 +212,13 @@ public class WindZone : MonoBehaviour
     [System.Obsolete]
     private void OnTriggerExit2D(Collider2D collision)
     {
-        // í”Œë ˆì´ì–´ê°€ WindZoneì„ ë‚˜ê°”ì„ ë•Œ
+        // ÇÃ·¹ÀÌ¾î°¡ WindZoneÀ» ³ª°¬À» ¶§
         if (collision.CompareTag("Player"))
         {
             playerInZone = false;
             if (playerRb != null)
             {
-                // ì¤‘ë ¥ê³¼ ì†ë„ ë³µì›
+                // Áß·Â°ú ¼Óµµ º¹¿ø
                 playerRb.gravityScale = defaultGravityScale;
                 playerRb.velocity = new Vector2(playerRb.velocity.x, playerRb.velocity.y);
             }
@@ -230,28 +230,28 @@ public class WindZone : MonoBehaviour
     {
         if (!playerInZone || playerTransform == null || playerRb == null || playerController == null) return;
 
-        // ë°œíŒ ê¸°ì¤€ ë†’ì´ì™€ ìˆ˜í‰ ê±°ë¦¬ ê³„ì‚°
+        // ¹ßÆÇ ±âÁØ ³ôÀÌ¿Í ¼öÆò °Å¸® °è»ê
         float playerHeight = playerTransform.position.y;
         float playerHorizontalDistance = Mathf.Abs(playerTransform.position.x - transform.position.x);
         float zoneBottom = transform.position.y + lowerHeight;
         float zoneTop = transform.position.y + upperHeight;
 
-        // ì¡°ê±´ í™•ì¸: í”Œë ˆì´ì–´ê°€ ë†’ì´ ë²”ìœ„ì™€ ìˆ˜í‰ ë²”ìœ„ ë‚´ì— ìžˆê³  ê¸€ë¼ì´ë”© ì¤‘ì¸ì§€
+        // Á¶°Ç È®ÀÎ: ÇÃ·¹ÀÌ¾î°¡ ³ôÀÌ ¹üÀ§¿Í ¼öÆò ¹üÀ§ ³»¿¡ ÀÖ°í ±Û¶óÀÌµù ÁßÀÎÁö
         if (playerHeight >= zoneBottom && playerHeight <= zoneTop &&
             playerHorizontalDistance <= horizontalRange && playerController.IsGliding)
         {
-            // ì¤‘ë ¥ì„ ì œê±°
+            // Áß·ÂÀ» Á¦°Å
             playerRb.gravityScale = 0;
 
-            // ì´ˆë¡ìƒ‰ ì¶•(ë¡œì»¬ Yì¶•) ë°©í–¥ìœ¼ë¡œ ë°”ëžŒ ì ìš©
+            // ÃÊ·Ï»ö Ãà(·ÎÄÃ YÃà) ¹æÇâÀ¸·Î ¹Ù¶÷ Àû¿ë
             Vector2 windDirection = (Vector2)transform.up.normalized;
 
-            // ë“±ì† ìš´ë™ ì ìš©
+            // µî¼Ó ¿îµ¿ Àû¿ë
             playerRb.velocity = windDirection * constantWindSpeed;
         }
         else
         {
-            // ì˜ì—­ì„ ë²—ì–´ë‚˜ë©´ ì¤‘ë ¥ì„ ì›ëž˜ ê°’ìœ¼ë¡œ ë³µì›
+            // ¿µ¿ªÀ» ¹þ¾î³ª¸é Áß·ÂÀ» ¿ø·¡ °ªÀ¸·Î º¹¿ø
             playerRb.gravityScale = defaultGravityScale;
             playerRb.velocity = new Vector2(playerRb.velocity.x, playerRb.velocity.y);
         }
