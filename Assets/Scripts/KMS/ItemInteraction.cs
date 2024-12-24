@@ -30,6 +30,7 @@ public class ItemInteraction : MonoBehaviour
             {
 
                 bool shouldActivate = i < initialActiveStates.Length && initialActiveStates[i];
+
                 UIImages[i].SetActive(shouldActivate);
 
                 if (shouldActivate && i < blinkUIs.Length && blinkUIs[i] != null)

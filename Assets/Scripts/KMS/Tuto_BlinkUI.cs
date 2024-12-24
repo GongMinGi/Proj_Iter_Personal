@@ -31,7 +31,6 @@ public class Tuto_BlinkUI : MonoBehaviour
 
     }
 
-
     public void StartFadeOut()
     {
 
@@ -40,7 +39,6 @@ public class Tuto_BlinkUI : MonoBehaviour
         activeCoroutine = StartCoroutine(FadeOutImage());
 
     }
-
 
     private void StopActiveCoroutine()
     {
@@ -108,7 +106,6 @@ public class Tuto_BlinkUI : MonoBehaviour
     {
 
         Color color = tutorialImage.color;
-
 
         while (color.a > 0f)
         {

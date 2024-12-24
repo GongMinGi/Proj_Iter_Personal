@@ -16,6 +16,8 @@ public class DialogueController : MonoBehaviour
     private bool skipRequested = false;     // 스킵 요청 여부 확인
     public Rigidbody2D playerRigidbody;     // 플레이어 Rigidbody
 
+    [HideInInspector]
+    public bool isTalking = false;
 
     void Start()
     {
@@ -30,9 +32,11 @@ public class DialogueController : MonoBehaviour
 
         dialogueBox.SetActive(true); 
 
+        isTalking = true;
 
         playerRigidbody.linearVelocity = Vector2.zero; 
-        playerRigidbody.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY; 
+        playerRigidbody.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
+        playerRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
 
         StartCoroutine(TypeText());
 
@@ -88,11 +92,13 @@ public class DialogueController : MonoBehaviour
     public void EndDialogue()
     {
 
-        dialogueBox.SetActive(false); // 말풍선 숨기기
-        dialogueText.text = ""; // 텍스트 숨기기
+        dialogueBox.SetActive(false);   // 말풍선 숨기기
+        dialogueText.text = "";     // 텍스트 숨기기
 
-        playerRigidbody.constraints = RigidbodyConstraints2D.None; // 이동 제한 해제
-        playerRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+        isTalking = false;
+
+        playerRigidbody.constraints = RigidbodyConstraints2D.None;  // 이동 제한 해제
+        playerRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;        // 안하면 캐릭터 뱅글뱅글 돌아감
 
     }
 
