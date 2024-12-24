@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Spidermove : MonoBehaviour
+public class Spidermove : BaseMonster
 {
     public float speed = 3f;  // 이동 속도
     public float detectionRange = 5f;  // 주인공 탐지 범위
@@ -8,23 +8,24 @@ public class Spidermove : MonoBehaviour
 
     public Transform target;  // 주인공의 Transform
 
-    private Rigidbody2D rigid;
+    //private Rigidbody2D rigid;
     private SpriteRenderer spriteRenderer;
-    private Animator animator;
+    //private Animator animator;
     private Vector2 centerPosition; // 주인공 중심 위치
     private float currentOffset; // 현재 중심점으로부터의 오프셋
     private int direction = 1; // 이동 방향 (1 또는 -1)
     private bool isPlayerDetected = false; // 주인공 탐지 여부
     private bool isOscillating = false; // 오실레이션 여부
 
-    void Awake()
+    protected override void Awake()
     {
-        rigid = GetComponent<Rigidbody2D>();
+        base.Awake();
+        //rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
     }
 
-    void FixedUpdate()
+    protected override void FixedUpdate()
     {
         float distanceToTarget = Vector2.Distance(transform.position, target.position);
 
@@ -113,7 +114,10 @@ public class Spidermove : MonoBehaviour
     {
         if (collider.CompareTag("Player"))
         {
+
+            collider.gameObject.GetComponentInChildren<PlayerHealth>().TakeDamage(1);
             Debug.Log("Spider passed through the player!");
+
         }
     }
 }

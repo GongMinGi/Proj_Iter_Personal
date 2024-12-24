@@ -1,17 +1,19 @@
 using UnityEngine;
 
-public class ZombieAI : BaseMonster
+
+// zombieMove 클래스: 좀비의 움직임과 겅격 및 후퇴 동작을 제어
+public class ZombieMove : BaseMonster
 {
     public float speed; // 이동 속도
     public float attackRange; // 공격 범위
     public float backSpeed; // 후퇴 속도 (뒤로 물러날 속도)
-    public float attackDelay; // 공격 대기 시간
+    public float attackDelay; // 공격 대기 시간 (공격과 다음 행동 사이의 지연 시간)
     public float backDistanceX; // 후퇴할 X 거리
     public float backDistanceY; // 후퇴할 Y 거리
-    public Rigidbody2D target; // 주인공 타겟
+    public Rigidbody2D target; // 주인공 타겟 
 
     //private Rigidbody2D rigid;
-    private SpriteRenderer spriteRenderer;
+    private SpriteRenderer spriteRenderer; 
     //private Animator animator; // Animator 컴포넌트
 
     private float timeSinceLastAction = 0f; // 마지막 동작 이후 경과 시간
@@ -32,13 +34,13 @@ public class ZombieAI : BaseMonster
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
-        timeSinceLastAction += Time.fixedDeltaTime;
+        timeSinceLastAction += Time.fixedDeltaTime; // 마지막 동작 이후 경과 시간 누적
 
-        if (isBacking)
+        if (isBacking) // 후퇴 상태일 경우
         {
-            Back(); // 후퇴는 Back 상태에서만 이루어짐
+            Back(); // 후퇴 처리
         }
-        else if (isAttacking)
+        else if (isAttacking)   // 공격 상태일 경우
         {
             // 공격 상태일 때는 `Back` 상태로 가지 않음
             Attack(); // 충돌 시 공격
@@ -50,12 +52,13 @@ public class ZombieAI : BaseMonster
         else
         {
             // Idle 상태에서 아무것도 하지 않음, 단지 애니메이션을 "Idle"로 설정
-            animator.SetTrigger("Idle");
+            animator.SetTrigger("Idle"); // idle  애니메이션 실행
 
             // 후퇴 중이 아니면 공격 대기
+            // 공격 대기 시간이 지나고 후퇴 상태가 아닐 경우
             if (timeSinceLastAction >= attackDelay && !isBacking && !hasAttacked)
             {
-                MoveToTarget();
+                MoveToTarget(); // 주인공에게 이동
                 /*if (Vector2.Distance(transform.position, target.position) <= attackRange) // 충돌 시 공격
                 {
                     isMovingToTarget = true;
@@ -67,21 +70,22 @@ public class ZombieAI : BaseMonster
         }
     }
 
+    //주인공을 향해 이동하는 메서드
     private void MoveToTarget()
     {
-        Vector2 dirVec = target.position - rigid.position;
-        Vector2 nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
+        Vector2 dirVec = target.position - rigid.position; // 주인공과의 방향벡터 계산
+        Vector2 nextVec = dirVec.normalized * speed * Time.fixedDeltaTime; // 이동할 위치 계산
 
-        transform.position += (Vector3)nextVec;
+        transform.position += (Vector3)nextVec; //좀비의 위치 업데이트
 
-        spriteRenderer.flipX = dirVec.x < 0;
+        spriteRenderer.flipX = dirVec.x < 0 ? true : false ; // 주인공 방향에 따라 스프라이트 반전
 
-        if (Vector2.Distance(transform.position, target.position) <= 1.0f) // 충돌 시
+        if (Vector2.Distance(transform.position, target.position) <= 1.0f) // 주인공과 충돌한 경우
         {
             // 주인공과 충돌하면 공격을 한 번만 실행
-            isMovingToTarget = false;
-            isAttacking = true;
-            animator.SetTrigger("Attack");
+            isMovingToTarget = false;   // 이동 중 상태 해제
+            isAttacking = true;         // 공격 상태로 전환 
+            animator.SetTrigger("Attack");  // Attack 애니메이션 실행
         }
     }
 
@@ -92,8 +96,8 @@ public class ZombieAI : BaseMonster
         // 후퇴 위치 계산 (주인공 방향 반대)
         backPosition = rigid.position + new Vector2(backDistanceX, backDistanceY);
 
-        isAttacking = false;
-        isBacking = true;
+        isAttacking = false;  // 공격 상태 해제
+        isBacking = true;       // 후퇴 
 
         // 후퇴 애니메이션 재생
         animator.SetTrigger("Back");
@@ -108,7 +112,7 @@ public class ZombieAI : BaseMonster
         // 후퇴가 완료되면 다시 Idle 상태로 돌아가기
         if (Vector2.Distance(transform.position, backPosition) <= 0.1f)
         {
-            isBacking = false;
+            isBacking = false;  // 후퇴 상태 해제
             timeSinceLastAction = 0f; // 타이머 초기화
 
             // Idle 애니메이션 재생
