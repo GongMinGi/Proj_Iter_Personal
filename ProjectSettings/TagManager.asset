@@ -10,6 +10,7 @@ TagManager:
   - Terraforming
   - Ring
   - FellPoint
+  - SavePoint
   layers:
   - Default
   - TransparentFX

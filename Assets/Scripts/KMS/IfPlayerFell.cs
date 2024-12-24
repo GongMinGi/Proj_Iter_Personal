@@ -8,7 +8,7 @@ public class IfPlayerFell : MonoBehaviour
     private Vector3 lastSafePosition;       // 낭떠러지에 떨어지지 않은 마지막 안전한 위치 저장
     private Rigidbody2D playerRigidbody;    // 플레이어 Rigidbody2D
 
-    public float dangerYThreshold = -100f;
+    public float dangerYThreshold = -50f;
 
     [Header("Fade Settings")]
     public Image fadeScreen;    // Inspector에서 드래그하여 설정
