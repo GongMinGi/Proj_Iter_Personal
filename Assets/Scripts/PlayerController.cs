@@ -151,7 +151,8 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-
+                playerAnim.SetTrigger("Attack");
+                attackCurTime = attackCoolTime;
                 Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(attackBoxPos.position , boxSize, 0);
                 foreach (Collider2D collider in collider2Ds)
                 {
@@ -163,8 +164,8 @@ public class PlayerController : MonoBehaviour
                         collider.GetComponent<BaseMonster>().TakeDamage(1, attackBoxPos.position);
                     }
                 }
-                playerAnim.SetTrigger("Attack");
-                attackCurTime = attackCoolTime;
+                
+                
             }
         }
         else
