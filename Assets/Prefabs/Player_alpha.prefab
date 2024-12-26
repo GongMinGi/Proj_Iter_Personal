@@ -6043,7 +6043,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  jumpForce: 7
+  jumpForce: 8
   dashVelocity: 20
   dashTime: 0.2
   dashCoolDown: 1
@@ -6052,7 +6052,7 @@ MonoBehaviour:
   attackCurTime: 0
   attackCoolTime: 0.5
   attackBoxPos: {fileID: 7554955864405861581}
-  boxSize: {x: 1.5, y: 2}
+  boxSize: {x: 2.5, y: 2}
 --- !u!1 &5150349978286110563
 GameObject:
   m_ObjectHideFlags: 0

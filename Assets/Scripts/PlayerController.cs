@@ -80,7 +80,8 @@ public class PlayerController : MonoBehaviour
             spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") == -1;
 
 
-        if (Mathf.Abs(playerRigid.linearVelocity.normalized.x )>= 0.1 && !isDashing)
+        //if (Mathf.Abs(playerRigid.linearVelocity.normalized.x )>= 0.1 && !isDashing)
+        if (Mathf.Abs(playerRigid.linearVelocity.normalized.x) >= 0.1)
         {
             playerAnim.SetBool("isMoving", true);
 
@@ -99,11 +100,21 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         Move();
-        
+
+
+        if (playerRigid.linearVelocity.y < 0 && !isGround)
+        {
+            playerAnim.SetBool("isFalling", true);
+        }
+        else
+        {
+            playerAnim.SetBool("isFalling", false);
+        }
+
 
 
         //landing platform
-        if(playerRigid.linearVelocity.y < 0 ) //추락할때만 레이를 아래로 쏜다.
+        if (playerRigid.linearVelocity.y < 0 ) //추락할때만 레이를 아래로 쏜다.
         {
             Debug.DrawRay(playerRigid.position, Vector3.down, new Color(0, 1, 0));
             RaycastHit2D rayHit = Physics2D.Raycast(playerRigid.position, Vector3.down, 1, LayerMask.GetMask("Platform"));
@@ -115,8 +126,10 @@ public class PlayerController : MonoBehaviour
                 {
                     Debug.Log(rayHit.collider.name);
                     playerAnim.SetBool("isJumping", false);
+                    isGround = true;
                 }
             }
+            isGround = false;
         }
 
     }
@@ -214,7 +227,7 @@ public class PlayerController : MonoBehaviour
         dashDirection = new Vector2(Input.GetAxisRaw("Horizontal"), 0).normalized;
 
 
-        //입력이 없을 경우 캐릭터의 현재 방향을 기준으로 설정
+        //입력이 없을 경우 대시 불가
         if ( dashDirection == Vector2.zero)
         {
             return;
@@ -222,6 +235,8 @@ public class PlayerController : MonoBehaviour
         }
 
         isDashing = true;   // 대시 시작 설정
+        playerAnim.SetBool("isDashing", true);
+
         canDash = false; // 대시 가능 상태 비활성화
 
         if ( trailRenderer != null)
@@ -250,8 +265,24 @@ public class PlayerController : MonoBehaviour
         playerRigid.linearVelocity = Vector2.zero; // 속도 초기화
         isDashing = false;
 
+        playerAnim.SetBool("isDashing", false);
+
+
+        //낙하 상태 확인
+        if (playerAnim.GetBool("isJumping"))
+        {
+            playerAnim.SetBool("isFalling", true);
+        }
+        else
+        {
+            playerAnim.SetBool("isFalling", false);
+            playerAnim.SetBool("isMovinng", false); //Idle로 전환
+        }
+
+
+
         //Trail Renderer 비활성화
-        if(trailRenderer != null)
+        if (trailRenderer != null)
         {
             trailRenderer.emitting = false;
         }
