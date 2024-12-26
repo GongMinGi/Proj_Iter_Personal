@@ -3,7 +3,7 @@
 public class ProjectileBAE : MonoBehaviour
 {
     [SerializeField] private float speed; // 발사 속도
-    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Rigidbody2D rigid;
     [SerializeField] private float lifetime; // 수명
     [SerializeField] private float explosionRadius; // 폭발 반경
     [SerializeField] private LayerMask whatisPlatform; // 타일맵 파괴 대상
@@ -14,7 +14,7 @@ public class ProjectileBAE : MonoBehaviour
     [System.Obsolete]
     void Start()
     {
-        rb.velocity = transform.right * speed; // 총알 이동
+        rigid.velocity = transform.right * speed; // 총알 이동
         Destroy(gameObject, lifetime); // 일정 시간 후 삭제
     }
 
@@ -135,7 +135,7 @@ using UnityEngine;
 public class ProjectileBAE : MonoBehaviour
 {
     [SerializeField] private float speed; // 발사 속도
-    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Rigidbody2D rigid;
     [SerializeField] private float lifetime; // 수명
     [SerializeField] private float explosionRadius; // 폭발 반경
     [SerializeField] private LayerMask whatisPlatform; // 타일맵 및 파괴 대상
@@ -146,7 +146,7 @@ public class ProjectileBAE : MonoBehaviour
     [System.Obsolete]
     void Start()
     {
-        rb.velocity = transform.right * speed; // 총알 이동
+        rigid.velocity = transform.right * speed; // 총알 이동
         Destroy(gameObject, lifetime); // 일정 시간 후 삭제
     }
 
@@ -202,7 +202,7 @@ public class ProjectileBAE : MonoBehaviour
 
 {
     [SerializeField] private float speed;
-    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Rigidbody2D rigid;
     [SerializeField] private float lifetime;
     [SerializeField] private LayerMask whatisPlatform;
     [SerializeField] private float explosionRadius;
@@ -210,7 +210,7 @@ public class ProjectileBAE : MonoBehaviour
     [System.Obsolete]
     void Start()
     {
-        rb.velocity = transform.right * speed;
+        rigid.velocity = transform.right * speed;
         Invoke("DestroyProjectile", lifetime); // 일정 시간 후 삭제
     }
 

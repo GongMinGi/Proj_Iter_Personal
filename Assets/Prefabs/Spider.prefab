@@ -193,6 +193,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 191d247ba036dab47988648d280d89d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 5
+  knockbackTime: 0.2
+  hitDirectionForce: 10
+  constantForce: 5
+  knockbackDistance: 3
+  knockbackSpeed: 20
+  proximityThreshold: 0.2
+  knockbackPosition: {x: 0, y: 0}
+  isKnockback: 0
   speed: 6
   detectionRange: 10
   oscillationRange: 3
