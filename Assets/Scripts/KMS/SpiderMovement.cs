@@ -105,14 +105,11 @@ public class SpiderMovement : BaseMonster
         Debug.Log("Spider transitioned to zombie behavior.");
 
         // ZombieMove 스크립트를 동적으로 추가
-        ZombieMove zombieBehavior = gameObject.AddComponent<ZombieMove>();
+        ZombieMoveTemp zombieBehavior = gameObject.AddComponent<ZombieMoveTemp>();
         zombieBehavior.speed = speed;               // 거미 이동 속도 전달
         zombieBehavior.attackRange = 1.0f;          // 공격 범위 설정
         zombieBehavior.target = target.GetComponent<Rigidbody2D>();
-        zombieBehavior.backSpeed = 2.0f;            // 후퇴 속도 설정
-        zombieBehavior.backDistanceX = 1.0f;        // 후퇴 거리 X
-        zombieBehavior.backDistanceY = 0.5f;        // 후퇴 거리 Y
-        zombieBehavior.attackDelay = 1.5f;          // 공격 딜레이 설정
+        zombieBehavior.attackCooldown = 1.5f;          // 공격 딜레이 설정
 
         // SpiderMovement 스크립트를 비활성화
         this.enabled = false;

@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
 
         playerHealth.DamageTaken += UpdateHearts;
         playerHealth.HealthUpgraded += AddHearts;
-        playerHealth.PlayerDied += ShowGameOverScreen;  // 사망 이벤트 구독
+//        playerHealth.PlayerDied += ShowGameOverScreen;  // 사망 이벤트 구독
 
         StartCoroutine(DelayedInitialize());    // 초기 하트 생성 및 UI 반영
     }
@@ -83,20 +83,20 @@ public class UIManager : MonoBehaviour
 
     }
 
-    void ShowGameOverScreen()
-    {
+    //void ShowGameOverScreen()
+    //{
 
-        Debug.Log("Game Over!");
+    //    Debug.Log("Game Over!");
 
-        if (gameOverPanel != null)
-        {
+    //    if (gameOverPanel != null)
+    //    {
 
-            gameOverPanel.SetActive(true); // 게임 오버 패널 활성화
-        }
+    //        gameOverPanel.SetActive(true); // 게임 오버 패널 활성화
+    //    }
 
-        Time.timeScale = 0f;
+    //    Time.timeScale = 0f;
 
-    }
+    //}
 
     void OnDestroy()
     {
@@ -106,7 +106,7 @@ public class UIManager : MonoBehaviour
 
             playerHealth.DamageTaken -= UpdateHearts;
             playerHealth.HealthUpgraded -= AddHearts;
-            playerHealth.PlayerDied -= ShowGameOverScreen; // 이벤트 해제
+ //           playerHealth.PlayerDied -= ShowGameOverScreen; // 이벤트 해제
 
         }
 

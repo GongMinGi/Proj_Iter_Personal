@@ -47,7 +47,7 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
 
-        LoadHealth();    // 저장된 체력 데이터 복원
+//        LoadHealth();    // 저장된 체력 데이터 복원
 
         if (health == 0)     // 데이터가 없으면 초기화
         {
@@ -106,27 +106,33 @@ public class PlayerHealth : MonoBehaviour
         HealthUpgraded?.Invoke();   // HealthUpgraded 이벤트 호출
 
     }
-    public void SaveHealth()
-    {
+    //public void SaveHealth()
+    //{
 
-        PlayerPrefs.SetInt("CurrentHealth", health);
-        PlayerPrefs.SetInt("MaxHealth", maxHealth);
-        PlayerPrefs.Save();
+    //    PlayerPrefs.SetInt("CurrentHealth", health);
+    //    PlayerPrefs.SetInt("MaxHealth", maxHealth);
+    //    PlayerPrefs.Save();
 
-    }
+    //}
 
-    public void LoadHealth()
-    {
+    //public void LoadHealth()
+    //{
 
-        if (PlayerPrefs.HasKey("CurrentHealth"))
-        {
+    //    if (PlayerPrefs.HasKey("CurrentHealth"))
+    //    {
 
-            health = PlayerPrefs.GetInt("CurrentHealth");
-            maxHealth = PlayerPrefs.GetInt("MaxHealth");
+    //        health = PlayerPrefs.GetInt("CurrentHealth");
+    //        maxHealth = PlayerPrefs.GetInt("MaxHealth");
 
-        }
+    //    }
+    //    else
+    //    {
 
-    }
+    //        health = maxHealth;     // 인스펙터의 값을 유지
+
+    //    }
+
+    //}
 
     private void Die()
     {
