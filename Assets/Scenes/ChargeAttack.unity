@@ -148,17 +148,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   jumpForce: 8
+  glideGravityScale: 0.3
   dashVelocity: 20
   dashTime: 0.2
   dashCoolDown: 1
-  firePoint: {fileID: 0}
   atk: 1
-  attackForce: 20
-  attackCurTime: 0.1
   attackCoolTime: 0.5
+  chargeTime: 2
   attackBoxPos: {fileID: 393383307}
   boxSize: {x: 0, y: 0}
-  glideGravityScale: 0.3
 --- !u!1 &526050062
 GameObject:
   m_ObjectHideFlags: 0
@@ -5697,9 +5695,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8217ac8c8831e8f4894f61d996a944a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 983741766}
+  playerTransform: {fileID: 414852883}
+  firePoint: {fileID: 983741766}
   boomClone: {fileID: 3194093848042196227, guid: 87eacfe564f11fc4d98d32d16ef132ce, type: 3}
-  bombSpeed: 10
+  bombSpeed: 5
+  chargeTime: 2
 --- !u!4 &591145287
 Transform:
   m_ObjectHideFlags: 0
@@ -5739,11 +5739,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 983741764}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6e7b6bb6940c2f46af1e05d7e7a11b6, type: 3}
+  m_Script: {fileID: 11500000, guid: 8217ac8c8831e8f4894f61d996a944a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerTransform: {fileID: 414852883}
+  firePoint: {fileID: 983741766}
+  boomClone: {fileID: 3194093848042196227, guid: 87eacfe564f11fc4d98d32d16ef132ce, type: 3}
+  bombSpeed: 10
+  chargeTime: 1
 --- !u!4 &983741766
 Transform:
   m_ObjectHideFlags: 0
@@ -5778,6 +5783,10 @@ PrefabInstance:
     - target: {fileID: 1961153700856531414, guid: 030017093e2fc8e42a3447160a4c5a17, type: 3}
       propertyPath: jumpForce
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1961153700856531414, guid: 030017093e2fc8e42a3447160a4c5a17, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1961153700856531414, guid: 030017093e2fc8e42a3447160a4c5a17, type: 3}
       propertyPath: moveSpeed
@@ -5823,9 +5832,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9077826013819602594, guid: 030017093e2fc8e42a3447160a4c5a17, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6418265326815496015, guid: 030017093e2fc8e42a3447160a4c5a17, type: 3}
-    m_RemovedGameObjects: []
+    - {fileID: 1961153700856531414, guid: 030017093e2fc8e42a3447160a4c5a17, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 2913445228825216521, guid: 030017093e2fc8e42a3447160a4c5a17, type: 3}
+    - {fileID: 9077826013819602594, guid: 030017093e2fc8e42a3447160a4c5a17, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7930996368911320404, guid: 030017093e2fc8e42a3447160a4c5a17, type: 3}
       insertIndex: -1

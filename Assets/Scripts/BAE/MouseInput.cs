@@ -3,63 +3,86 @@ using UnityEngine;
 public class MouseInput : MonoBehaviour
 {
     public Transform playerTransform; // 플레이어의 Transform
+    public Transform firePoint; // 발사체가 생성될 FirePoint 위치
     public GameObject boomClone; // 폭탄 프리팹
     public float bombSpeed = 5f; // 폭탄의 속도
+    public float chargeTime = 1f; // 발사에 필요한 최소 충전 시간
+
+    private float chargeCounter = 0f; // 마우스 버튼 누른 시간
+    private SpriteRenderer spriteRenderer; // 플레이어의 SpriteRenderer
+
+    private void Awake()
+    {
+        // SpriteRenderer 가져오기
+        spriteRenderer = playerTransform.GetComponent<SpriteRenderer>();
+    }
 
     private void OnDrawGizmos()
     {
-        // 디버깅을 위해 마우스 위치를 시각화
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(Input.mousePosition), 0.2f);
+        // FirePoint 위치 시각화
+        if (firePoint != null)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawSphere(firePoint.position, 0.1f);
+        }
     }
 
     [System.Obsolete]
-    void Update()
+    private void Update()
     {
-        if (Input.GetMouseButtonDown(1)) // 마우스 우클릭
+        // FirePoint 위치 동기화
+        UpdateFirePointPosition();
+
+        // 마우스 버튼이 눌린 상태라면 시간 누적
+        if (Input.GetMouseButton(0)) // 마우스 우클릭
         {
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mousePosition.z = 0; // 2D 좌표에서 Z 축 제거
+            chargeCounter += Time.deltaTime; // 누른 시간 누적
+        }
 
-            // 폭탄 생성
-            GameObject bomb = Instantiate(boomClone, playerTransform.position, Quaternion.identity);
-
-            // 폭탄의 방향 설정
-            Vector2 direction = (mousePosition - playerTransform.position).normalized;
-
-            // 폭탄에 Rigidbody2D 추가 후 속도 설정
-            Rigidbody2D rb = bomb.GetComponent<Rigidbody2D>();
-            if (rb != null)
+        // 마우스 버튼을 뗄 때 발사 조건 확인
+        if (Input.GetMouseButtonUp(0)) // 마우스 버튼에서 손을 뗌
+        {
+            if (chargeCounter >= chargeTime) // 충전 시간이 조건 충족
             {
-                rb.velocity = direction * bombSpeed;
+                FireProjectile();
             }
+            chargeCounter = 0f; // 충전 시간 초기화
+        }
+    }
+
+    private void UpdateFirePointPosition()
+    {
+        if (spriteRenderer.flipX)
+        {
+            firePoint.localPosition = new Vector3(-Mathf.Abs(firePoint.localPosition.x), firePoint.localPosition.y, firePoint.localPosition.z);
+        }
+        else
+        {
+            firePoint.localPosition = new Vector3(Mathf.Abs(firePoint.localPosition.x), firePoint.localPosition.y, firePoint.localPosition.z);
+        }
+    }
+
+    [System.Obsolete]
+    private void FireProjectile()
+    {
+        // 발사 전에 FirePoint 위치 동기화
+        UpdateFirePointPosition();
+
+        // 플레이어가 보고 있는 방향 확인
+        bool isFacingRight = !spriteRenderer.flipX;
+        Vector2 direction = isFacingRight ? Vector2.right : Vector2.left;
+
+        // 폭탄 생성
+        GameObject bomb = Instantiate(boomClone, firePoint.position, Quaternion.identity);
+
+        // Rigidbody2D에 속도 설정
+        Rigidbody2D rb = bomb.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.velocity = direction * bombSpeed;
         }
     }
 }
 
 
 
-
-/*using UnityEngine;
-
-public class MouseInput : MonoBehaviour
-{
-    Vector3 MousePosition;
-    public LayerMask whatisPlatform;
-    public GameObject boomClone;
-    private void OnDrawGizmos ()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere (MousePosition, 0.2f);
-    }
-    void Update()
-    {
-       if (Input.GetMouseButtonDown (1)) 
-                    {
-            MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Instantiate(boomClone, MousePosition, Quaternion.identity);
-
-        }
-    }
-}
-*/
