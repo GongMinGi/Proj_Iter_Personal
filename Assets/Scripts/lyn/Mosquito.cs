@@ -11,10 +11,9 @@ public class Mosquito : BaseMonster
     public float retreatSpeed; //후퇴 속도
     public float activationDistance; //타겟과의 거리 안에 들어왔을 때 모기 활성화 거리
 
-    //public float knockbackDistance; // 피격 시 넉벡 거리
-    //public float knockbackSpeed;    // 넉백 속도
 
     public Rigidbody2D target; // 플레이어의 Rigidbody2D (타겟 대상)
+    //Vector2 dirVec;             // 타겟 방향
 
     //private Rigidbody2D rigid; // 모기의 Rigidbody2D
     private SpriteRenderer spriteRenderer; // 모기의 SpriteRenderer
@@ -68,6 +67,7 @@ public class Mosquito : BaseMonster
             }
         }
 
+
         // 현재 상태에 따라 동작 수행
         timeSinceLastAction += Time.fixedDeltaTime;
 
@@ -93,6 +93,7 @@ public class Mosquito : BaseMonster
         }
     }
 
+
     private void MoveToTarget()
     {
         //타겟 방향 계산
@@ -102,7 +103,8 @@ public class Mosquito : BaseMonster
 
 
         // 타겟의 위치에 따라 스프라이트 방향 설정
-        spriteRenderer.flipX = dirVec.x < 0;
+        //spriteRenderer.flipX = dirVec.x < 0;
+        transform.localScale = dirVec.x < 0 ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1); // 주인공 방향에 따라 스프라이트 반전
 
         //타겟 근처에 도달하면 후퇴 상태로 전환
         if (Vector2.Distance(rigid.position, targetPosition) <= TARGET_PROXIMITY_THRESHOLD)
@@ -155,7 +157,9 @@ public class Mosquito : BaseMonster
         // 후퇴 방향 계산
         Vector2 dirVec = retreatPosition - rigid.position;
         rigid.MovePosition(Vector2.MoveTowards(rigid.position, retreatPosition, retreatSpeed * Time.fixedDeltaTime)); // 후퇴 이동
-        spriteRenderer.flipX = dirVec.x < 0; // 후퇴 방향에 따라 스프라이트 방향 설정
+        //spriteRenderer.flipX = dirVec.x < 0; // 후퇴 방향에 따라 스프라이트 방향 설정
+        transform.localScale = dirVec.x > 0 ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1); // 주인공 방향에 따라 스프라이트 반전
+
 
         //후퇴 위치 근처에 도달하면 상태를 진동 상태로 전환
         if (Vector2.Distance(rigid.position, retreatPosition) <= RETREAT_PROXIMITY_THRESHOLD)

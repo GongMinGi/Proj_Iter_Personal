@@ -17,6 +17,7 @@ public class Slugmove : BaseMonster
     private float lastShootTime = 0f;  // 마지막 발사 시간
 
     private bool isMovingToTarget = false;  // 타겟에게 이동 중인지 여부
+    private bool isAttacking = false;
     private Vector3 lastSafePosition;       // 낭떠러지에 떨어지지 않은 마지막 안전한 위치 저장
 
     protected override void Awake()
@@ -58,6 +59,9 @@ public class Slugmove : BaseMonster
         Vector2 dirVec = target.transform.position - transform.position;    //타겟 방향 계산
         float distanceToTarget = dirVec.magnitude;      //타겟과의 거리 계산
 
+        //transform.localScale = dirVec.x > 0 ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1); // 주인공 방향에 따라 스프라이트 반전
+
+
         if (distanceToTarget > stopDistance)    // 타겟과의 거리가 멈추는 거리보다 크면 이동
         {
             Vector2 nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;  // 이동 벡터 계산
@@ -67,7 +71,7 @@ public class Slugmove : BaseMonster
             {
                 transform.position = nextPosition;  // 이동
                 lastSafePosition = transform.position;  //마지막 안전 위치 갱신
-                spriteRenderer.flipX = dirVec.x < 0;    // 타겟 방향에 따라 스프라이트 뒤집기
+                spriteRenderer.flipX = dirVec.x > 0;    // 타겟 방향에 따라 스프라이트 뒤집기
             }
             else
             {
@@ -79,7 +83,7 @@ public class Slugmove : BaseMonster
 
         if (distanceToTarget <= stopDistance && projectilePrefab != null) //멈추는 거리 안에 들어오면
         {
-            ShootProjectile(); //발사체 발사
+            StartAttack(); //발사체 발사 모션 스타트 
         }
     }
 
@@ -105,6 +109,21 @@ public class Slugmove : BaseMonster
         }
     }
 
+
+    private void StartAttack()
+    {
+        if(Time.time - lastShootTime < shootCooldown) // 쿨타임 아직 남았으면 리턴
+        {
+            return;
+        }
+
+        isAttacking = true;
+        animator.SetBool("isAttacking", true);
+
+
+    }
+
+
     private void ShootProjectile()
     {
         if (Time.time - lastShootTime >= shootCooldown) // 발사 간격이 지나면
@@ -127,6 +146,9 @@ public class Slugmove : BaseMonster
             Projectile projectileScript = projectile.AddComponent<Projectile>(); // 발사체에 Projectile 스크립트 추가
             projectileScript.Initialize(target); //발사체 초기화 
         }
+        isAttacking = false;
+        animator.SetBool("isAttacking", false);
+
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -172,5 +194,6 @@ public class Projectile : MonoBehaviour
             Debug.Log("Projectile hit the player!");
             Destroy(gameObject);
         }
+        else Destroy(gameObject);
     }
 }

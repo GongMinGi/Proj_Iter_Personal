@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3988670399083568554
 Transform:
   m_ObjectHideFlags: 0
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 4023212870417349533, guid: d7dcd78071aa093418e8dbbce533f4b8, type: 3}
+  m_Sprite: {fileID: 368746673022191736, guid: 7f625990c571ad644927049d713a71b2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -174,9 +174,9 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.4, y: 1.6}
-  m_Direction: 0
+  m_Offset: {x: 0.10237624, y: 0.019360771}
+  m_Size: {x: 2.3985445, y: 1.322149}
+  m_Direction: 1
 --- !u!114 &1870201362380179800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,6 +190,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 5
+  knockbackTime: 0.2
+  hitDirectionForce: 10
+  constantForce: 5
   knockbackDistance: 5
   knockbackSpeed: 10
   proximityThreshold: 0.1
