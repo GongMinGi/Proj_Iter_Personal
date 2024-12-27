@@ -19,7 +19,6 @@ public class Tuto_BlinkUI : MonoBehaviour
 
     private Coroutine activeCoroutine;   // 현재 실행 중인 코루틴
 
-
     void OnEnable()
     {
 
@@ -54,7 +53,6 @@ public class Tuto_BlinkUI : MonoBehaviour
 
     }
 
-
     IEnumerator FadeInImage()
     {
 
@@ -79,7 +77,6 @@ public class Tuto_BlinkUI : MonoBehaviour
 
     }
 
-
     IEnumerator BlinkImage()
     {
 
@@ -99,8 +96,6 @@ public class Tuto_BlinkUI : MonoBehaviour
         }
 
     }
-
-
 
     IEnumerator FadeOutImage()
     {

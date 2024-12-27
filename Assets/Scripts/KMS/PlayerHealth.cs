@@ -11,15 +11,15 @@ public class PlayerHealth : MonoBehaviour
 
     public event Action DamageTaken;
     public event Action HealthUpgraded;
-    public event Action PlayerDied; 
+    public event Action PlayerDied;
 
     public int Health
     {
 
-        get
+        get 
         {
 
-            return health;
+            return health; 
 
         }
 
@@ -32,13 +32,12 @@ public class PlayerHealth : MonoBehaviour
         {
 
             instance = this;
-            DontDestroyOnLoad(gameObject); // 씬 전환 시 객체 유지
 
         }
         else
         {
 
-            Destroy(gameObject); // 중복 방지
+            Destroy(gameObject);
 
         }
 
@@ -47,12 +46,16 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
 
-//        LoadHealth();    // 저장된 체력 데이터 복원
-
-        if (health == 0)     // 데이터가 없으면 초기화
+        if (GameManager.instance != null)
         {
 
-            health = maxHealth;
+            GameManager.instance.LoadPlayerData(out health, out maxHealth);
+
+        }
+        else
+        {
+
+            health = maxHealth; 
 
         }
 
@@ -66,12 +69,11 @@ public class PlayerHealth : MonoBehaviour
 
         health -= damage;
 
-        DamageTaken?.Invoke();  // DamageTaken 이벤트 호출
+        DamageTaken?.Invoke(); 
 
         if (health <= 0)
         {
 
-            Debug.Log("Die 호출");
             Die();
 
         }
@@ -89,11 +91,11 @@ public class PlayerHealth : MonoBehaviour
         if (health > maxHealth)
         {
 
-            health = maxHealth;  // 최대 체력을 초과하지 않도록
+            health = maxHealth;
 
         }
 
-        DamageTaken?.Invoke();  // DamageTaken 이벤트 호출
+        DamageTaken?.Invoke();
 
     }
 
@@ -103,42 +105,26 @@ public class PlayerHealth : MonoBehaviour
         maxHealth++;
         health = maxHealth;
 
-        HealthUpgraded?.Invoke();   // HealthUpgraded 이벤트 호출
+        HealthUpgraded?.Invoke(); // Trigger HealthUpgraded event
 
     }
-    //public void SaveHealth()
-    //{
-
-    //    PlayerPrefs.SetInt("CurrentHealth", health);
-    //    PlayerPrefs.SetInt("MaxHealth", maxHealth);
-    //    PlayerPrefs.Save();
-
-    //}
-
-    //public void LoadHealth()
-    //{
-
-    //    if (PlayerPrefs.HasKey("CurrentHealth"))
-    //    {
-
-    //        health = PlayerPrefs.GetInt("CurrentHealth");
-    //        maxHealth = PlayerPrefs.GetInt("MaxHealth");
-
-    //    }
-    //    else
-    //    {
-
-    //        health = maxHealth;     // 인스펙터의 값을 유지
-
-    //    }
-
-    //}
 
     private void Die()
     {
 
-        Debug.Log("Player is dead");
-        PlayerDied?.Invoke();   // 사망 이벤트 호출
+        PlayerDied?.Invoke(); // Trigger PlayerDied event
+
+    }
+
+    private void OnDestroy()
+    {
+        
+        if (GameManager.instance != null)
+        {
+
+            GameManager.instance.SavePlayerData(health, maxHealth);
+
+        }
 
     }
 

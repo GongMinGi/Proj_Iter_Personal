@@ -1,0 +1,49 @@
+using UnityEngine;
+
+public class GameManager : MonoBehaviour
+{
+
+    public static GameManager instance;
+
+    // 플레이어 상태 데이터
+    public int maxHealth;
+    public int health;
+
+    void Awake()
+    {
+        // 싱글톤 패턴 구현
+        if (instance == null)
+        {
+
+            instance = this;
+            DontDestroyOnLoad(gameObject); // 씬 전환 시 유지
+
+        }
+        else
+        {
+
+            Destroy(gameObject); // 중복된 GameManager 제거
+
+        }
+
+    }
+
+    // 플레이어 데이터 저장
+    public void SavePlayerData(int currentHealth, int maxHealth)
+    {
+
+        this.health = currentHealth;
+        this.maxHealth = maxHealth;
+
+    }
+
+    // 플레이어 데이터 로드
+    public void LoadPlayerData(out int currentHealth, out int maxHealth)
+    {
+
+        currentHealth = this.health;
+        maxHealth = this.maxHealth;
+
+    }
+
+}
