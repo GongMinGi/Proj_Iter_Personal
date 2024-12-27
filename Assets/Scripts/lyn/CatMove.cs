@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CatMove : MonoBehaviour
+public class CatMove : BaseMonster
 {
     public float moveSpeed; // 이동 속도
     public float detectionRange; // 플레이어 탐지 범위
@@ -12,22 +12,25 @@ public class CatMove : MonoBehaviour
     [SerializeField] public float attackWaitTime; //도약 직전 대기하는 시간 (자세잡는시간)
     [SerializeField] public float horizontalJumpForce;
 
-    private Rigidbody2D rigid;
+    //private Rigidbody2D rigid;
     private SpriteRenderer spriteRenderer;
-    private Animator animator;
+    //private Animator animator;
 
     private float lastAttackTime = 0f;  // 마지막 공격 시간이 저장된다.
     private bool isGrounded = true;  // 고양이가 바닥에 있는지 여부
     private bool isWaiting = false;  //wait 상태(공격 준비 상태) 여부
+    //private bool isAttacking = false;
 
-    void Awake()
+
+    protected override void Awake()
     {
-        rigid = GetComponent<Rigidbody2D>();
+        base.Awake();
+        //rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
     }
 
-    void FixedUpdate()
+    protected override void FixedUpdate()
     {
         float distanceToTarget = Vector2.Distance(transform.position, target.position); // 타겟과의 거리 계산
 
@@ -70,7 +73,9 @@ public class CatMove : MonoBehaviour
         {
             Vector2 direction = (target.position - transform.position).normalized;  // 타겟 방향 계산
             rigid.linearVelocity = new Vector2(direction.x * moveSpeed, rigid.linearVelocity.y); // 속도 설정
-            spriteRenderer.flipX = direction.x < 0; // 방향에 따라 스프라이트 반전
+            //spriteRenderer.flipX = direction.x < 0; // 방향에 따라 스프라이트 반전
+            transform.localScale = direction.x < 0 ?  new Vector3 ( 1, 1, 1) :  new Vector3 (-1, 1,1); // 주인공 방향에 따라 스프라이트 반전
+
         }
     }
 
@@ -91,6 +96,7 @@ public class CatMove : MonoBehaviour
     {
         // 공격 실행 
         isWaiting = false; // wait 상태 해제 
+        //isAttacking = true;
         lastAttackTime = Time.time; // 마지막 공격 시간 업데이트
 
         // Jump 공격 실행
@@ -133,15 +139,23 @@ public class CatMove : MonoBehaviour
             rigid.linearVelocity = Vector2.zero; // 속도 초기화
         }
 
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") )
         {
             //플레이어와 충돌한 경우 
             Debug.Log("Player와 충돌: 고양이가 튕겨 나갑니다.");
+            collision.gameObject.GetComponentInChildren<PlayerHealth>().TakeDamage(1);
+            // Walk -> Wait -> Attack 반복
+
+
             BounceBackFromPlayer(collision); // 플레이어로부터 튕겨나감
 
-            // Walk -> Wait -> Attack 반복
+            //isAttacking = false;
+
             SetAnimatorState(0); // Idle 애니메이션 실행 
             rigid.linearVelocity = Vector2.zero; // 속도 초기화
+
+
+
             //ChaseTarget();
             Invoke(nameof(ChaseTarget), attackWaitTime); // 1초 후 타겟 추적( walk 상태로 전환) 
         }
@@ -151,6 +165,8 @@ public class CatMove : MonoBehaviour
     {
         // 플레이어와 충돌 시 튕겨나가는 동작
         Vector2 bounceDirection = (transform.position - collision.transform.position).normalized;
+        Debug.Log($"바운스 방향:{bounceDirection}");
+
         rigid.AddForce(new Vector2(bounceDirection.x * bounceForceX, Mathf.Clamp(bounceDirection.y, 0.1f, 1f) * bounceForceY));
     }
 
