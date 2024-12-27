@@ -115,7 +115,7 @@ public class Spidermove : BaseMonster
         if (collider.CompareTag("Player"))
         {
 
-            collider.gameObject.GetComponentInChildren<PlayerHealth>().TakeDamage(1);
+            collider.gameObject.GetComponentInChildren<PlayerHealth>().TakeDamage(1, transform.position);
             Debug.Log("Spider passed through the player!");
 
         }

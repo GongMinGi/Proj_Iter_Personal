@@ -101,7 +101,7 @@ public class SpiderLanded : BaseMonster
             if (collider.CompareTag("Player")) 
             {
 
-                collider.GetComponentInChildren<PlayerHealth>().TakeDamage(1);
+                collider.GetComponentInChildren<PlayerHealth>().TakeDamage(1, transform.position);
 
             }
 

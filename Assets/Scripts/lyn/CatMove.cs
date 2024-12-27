@@ -143,7 +143,7 @@ public class CatMove : BaseMonster
         {
             //플레이어와 충돌한 경우 
             Debug.Log("Player와 충돌: 고양이가 튕겨 나갑니다.");
-            collision.gameObject.GetComponentInChildren<PlayerHealth>().TakeDamage(1);
+            collision.gameObject.GetComponentInChildren<PlayerHealth>().TakeDamage(1, transform.position);
             // Walk -> Wait -> Attack 반복
 
 

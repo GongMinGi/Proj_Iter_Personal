@@ -261,11 +261,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1775855634866998281, guid: 020f5b10354fb5942953f053cfda059b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 36.73
+      value: 37.54
       objectReference: {fileID: 0}
     - target: {fileID: 1775855634866998281, guid: 020f5b10354fb5942953f053cfda059b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 20
+      value: 19.76
       objectReference: {fileID: 0}
     - target: {fileID: 1775855634866998281, guid: 020f5b10354fb5942953f053cfda059b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -306,6 +306,10 @@ PrefabInstance:
     - target: {fileID: 7321744667904647298, guid: 020f5b10354fb5942953f053cfda059b, type: 3}
       propertyPath: m_Name
       value: excat
+      objectReference: {fileID: 0}
+    - target: {fileID: 7321744667904647298, guid: 020f5b10354fb5942953f053cfda059b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -432,6 +436,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: mosquito (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7312412703759852316, guid: 8e0533a5b1adec94abc1ac5f23d9c3bc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8921198180602503853, guid: 8e0533a5b1adec94abc1ac5f23d9c3bc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 36.2
@@ -491,11 +499,11 @@ PrefabInstance:
       objectReference: {fileID: 3408118292347415915}
     - target: {fileID: 3988670399083568554, guid: ddc21c328f217e54d8da2bb874cf0e74, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 35.67
+      value: 34.39
       objectReference: {fileID: 0}
     - target: {fileID: 3988670399083568554, guid: ddc21c328f217e54d8da2bb874cf0e74, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 19.67
+      value: 19.77
       objectReference: {fileID: 0}
     - target: {fileID: 3988670399083568554, guid: ddc21c328f217e54d8da2bb874cf0e74, type: 3}
       propertyPath: m_LocalPosition.z
@@ -532,6 +540,10 @@ PrefabInstance:
     - target: {fileID: 8414316664060278841, guid: ddc21c328f217e54d8da2bb874cf0e74, type: 3}
       propertyPath: m_Name
       value: slug
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414316664060278841, guid: ddc21c328f217e54d8da2bb874cf0e74, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12991,17 +13003,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: zombi_modified
       objectReference: {fileID: 0}
+    - target: {fileID: 2409762338807922404, guid: d1a5acf4cd652f64f85d9b280526cb6d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4401742670086620029, guid: d1a5acf4cd652f64f85d9b280526cb6d, type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 3408118292347415915}
     - target: {fileID: 7430685518399763233, guid: d1a5acf4cd652f64f85d9b280526cb6d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 37.68
+      value: 38.95
       objectReference: {fileID: 0}
     - target: {fileID: 7430685518399763233, guid: d1a5acf4cd652f64f85d9b280526cb6d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 19.75
+      value: 19.79
       objectReference: {fileID: 0}
     - target: {fileID: 7430685518399763233, guid: d1a5acf4cd652f64f85d9b280526cb6d, type: 3}
       propertyPath: m_LocalPosition.z

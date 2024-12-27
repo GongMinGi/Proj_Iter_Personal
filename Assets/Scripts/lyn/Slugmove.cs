@@ -155,7 +155,7 @@ public class Slugmove : BaseMonster
     {
         if (collision.collider.CompareTag("Player"))
         {
-            collision.gameObject.GetComponentInChildren<PlayerHealth>().TakeDamage(1);
+            collision.gameObject.GetComponentInChildren<PlayerHealth>().TakeDamage(1, transform.position);
             Debug.Log("Projectile hit the player!");
             //Destroy(gameObject);
         }
@@ -190,7 +190,7 @@ public class Projectile : MonoBehaviour
     {
         if (collision.collider.CompareTag("Player"))
         {
-            collision.gameObject.GetComponentInChildren<PlayerHealth>().TakeDamage(1);
+            collision.gameObject.GetComponentInChildren<PlayerHealth>().TakeDamage(1, transform.position);
             Debug.Log("Projectile hit the player!");
             Destroy(gameObject);
         }

@@ -128,7 +128,7 @@ public class ZombieMove : BaseMonster
             // 주인공과 충돌 시에만 `Attack` 실행
             isAttacking = true;
             animator.SetTrigger("Attack");
-            collision.gameObject.GetComponentInChildren<PlayerHealth>().TakeDamage(1);
+            collision.gameObject.GetComponentInChildren<PlayerHealth>().TakeDamage(1, transform.position);
         }
     }
 }

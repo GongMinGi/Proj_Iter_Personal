@@ -81,7 +81,7 @@ public class ZombieMoveTemp : BaseMonster
             if (collider.CompareTag("Player")) //태그가 Monster인 경우
             {
                 //collider.GetComponent<EnemyHealth>().Damage(atk, collider.transform.position - transform.position);
-                collider.GetComponentInChildren<PlayerHealth>().TakeDamage(1);
+                collider.GetComponentInChildren<PlayerHealth>().TakeDamage(1, transform.position);
             }
         }
 
@@ -103,6 +103,7 @@ public class ZombieMoveTemp : BaseMonster
     {
         if (collision.collider.CompareTag("Player"))
         {
+            collision.gameObject.GetComponentInChildren<PlayerHealth>().TakeDamage(1, transform.position);
 
 
             Debug.Log("플레이어와 충돌");
