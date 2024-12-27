@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Attack2Frame
+  m_Name: chargeattack
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -17,19 +17,8 @@ AnimationClip:
   m_PositionCurves: []
   m_ScaleCurves: []
   m_FloatCurves: []
-  m_PPtrCurves:
-  - serializedVersion: 2
-    curve:
-    - time: 0
-      value: {fileID: -4552396431274425875, guid: 69c8101f5509ba542b811f1631999f85, type: 3}
-    - time: 0.083333336
-      value: {fileID: 717690734582341997, guid: cbfced71e8bb6c0478b92e5aba42f72e, type: 3}
-    attribute: m_Sprite
-    path: 
-    classID: 212
-    script: {fileID: 0}
-    flags: 2
-  m_SampleRate: 12
+  m_PPtrCurves: []
+  m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -42,7 +31,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.16666667
+    m_StopTime: 1
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
