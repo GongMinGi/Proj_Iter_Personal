@@ -178,4 +178,15 @@ public class CatMove : BaseMonster
         //rigid.linearVelocity = Vector2.zero;
         Invoke(nameof(PerformAttack), attackWaitTime); // Wait 상태 후 공격 실행
     }
+
+    public override void TakeDamage(int damage, Vector2 damageSourcePosition)
+    {
+
+        base.TakeDamage(damage, damageSourcePosition);
+
+        animator.SetTrigger("Damaged");
+
+    }
+
+
 }
