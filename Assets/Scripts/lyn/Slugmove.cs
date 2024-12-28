@@ -161,7 +161,14 @@ public class Slugmove : BaseMonster
         }
     }
 
+    public override void TakeDamage(int damage, Vector2 damageSourcePosition)
+    {
 
+        base.TakeDamage(damage, damageSourcePosition);
+
+        animator.SetTrigger("Damaged");
+
+    }
 
 }
 
