@@ -7,6 +7,7 @@ public class PlayerHealth : MonoBehaviour
     public static PlayerHealth instance;
 
     public int maxHealth;
+    public float playerKnockbackForce;
     private int health;
 
     public event Action DamageTaken;
@@ -87,8 +88,9 @@ public class PlayerHealth : MonoBehaviour
 
         GetComponentInParent<SpriteRenderer>().color = new Color(1, 1, 1, 0.4f);
 
-        int dirc = transform.parent.transform.position.x - enemyPos.x >0 ? 1 : -1;
-        GetComponentInParent<Rigidbody2D>().AddForce(new Vector2(dirc, 1) * 7, ForceMode2D.Impulse);
+
+        float dirc = enemyPos.x - transform.parent.transform.position.x > 0 ? -1 : 1;
+        GetComponentInParent<Rigidbody2D>().AddForce(new Vector2(dirc, 0.2f) * playerKnockbackForce, ForceMode2D.Impulse);
 
 
         Invoke("OffDamaged", 3);

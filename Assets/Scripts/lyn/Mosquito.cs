@@ -186,6 +186,8 @@ public class Mosquito : BaseMonster
         health -= damage;
         Debug.Log($"{gameObject.name} took {damage} damage. Remaining health: {health}");
 
+        animator.SetTrigger("Damaged");
+
         //Á×À½ Ã³¸®
         if (health <= 0)
         {
@@ -218,4 +220,7 @@ public class Mosquito : BaseMonster
             other.GetComponentInChildren<PlayerHealth>().TakeDamage(1, transform.position);
         }
     }
+
+
+
 }

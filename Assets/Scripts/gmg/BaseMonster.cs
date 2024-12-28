@@ -15,7 +15,9 @@ public class BaseMonster : MonoBehaviour
     protected Rigidbody2D rigid;        // Rigidbody2D 컴포넌트
     protected Animator animator;        // Animator 컴포넌트
 
-    private Coroutine KnockbackCoroutine; 
+    private Coroutine KnockbackCoroutine;
+
+    [SerializeField] private GameObject deathEffect;     // 죽음 파티클
 
 
     [SerializeField] protected Vector2 knockbackPosition;  // 넉백 목표 위치
@@ -94,12 +96,99 @@ public class BaseMonster : MonoBehaviour
 
     }
 
-
-    protected virtual void Die()
+    protected virtual void Die()        // 원래 사망 코드
     {
         Debug.Log($"{gameObject.name} died!");
         Destroy(gameObject);
     }
+
+    /*
+     protected virtual void Die()
+{
+    Debug.Log($"{gameObject.name} died!");
+    
+    // 스프라이트 뒤집기와 넉백을 동시에 처리
+    StartCoroutine(DieAnimation());
+}
+
+private IEnumerator DieAnimation()
+{
+    // 넉백 관련 변수
+    Vector2 hitDirection = new Vector2(rigid.position.x - attackSource.x, 0).normalized; 
+    Vector2 constantForceDirection = Vector2.zero; 
+    float inputDirection = 0f; 
+
+    // 회전 관련 변수
+    float rotationSpeed = 200f; // 회전 속도
+    float targetRotation = 180f; // 목표 회전 각도
+    float currentRotation = 0f;
+
+    float elapsedTime = 0f; // 넉백 경과 시간 초기화
+
+    while (elapsedTime < knockbackTime)
+    {
+        elapsedTime += Time.fixedDeltaTime;
+
+        // 1. 회전 처리 (Z축 기준)
+        float rotationStep = rotationSpeed * Time.fixedDeltaTime;
+        if (currentRotation < targetRotation)
+        {
+            currentRotation += rotationStep;
+            transform.Rotate(0f, 0f, rotationStep); // Z축 기준으로 회전
+        }
+
+        // 2. 넉백 처리
+        Vector2 hitForce = hitDirection * hitDirectionForce;
+        Vector2 constForce = constantForceDirection * constantForce;
+        Vector2 knockbackForce = hitForce + constForce;
+
+        if (inputDirection != 0)
+        {
+            knockbackForce += new Vector2(inputDirection * hitDirectionForce, 0);
+        }
+
+        rigid.linearVelocity = knockbackForce;
+
+        yield return new WaitForFixedUpdate(); // FixedUpdate와 동기화
+    }
+
+    // 넉백 종료 후 정지
+    rigid.linearVelocity = Vector2.zero;
+
+    // 3. 약간의 시간 대기
+    yield return new WaitForSeconds(0.5f); // 0.5초 대기
+
+    // 4. GameObject 파괴
+    Destroy(gameObject);
+}
+
+     */     // 넉백 및 회전 후에 destroy시키는 사망모션 (방향 및 회전 설정 필요, z회전을 푸는 방식도 해봤는데 생각대로 안 움직임)
+
+    /*
+    protected virtual void Die()
+    {
+        Debug.Log($"{gameObject.name} died!");
+
+        if (deathEffect != null)
+        {
+            // Instantiate the death effect at the current position and rotation
+            GameObject effect = Instantiate(deathEffect, transform.position, Quaternion.identity);
+
+            // Get the ParticleSystem component and explicitly play it
+            ParticleSystem particleSystem = effect.GetComponent<ParticleSystem>();
+            if (particleSystem != null)
+            {
+                particleSystem.Play(); // Explicitly start the particle system
+            }
+
+            // Destroy the effect object after the particle system duration
+            Destroy(effect, particleSystem.main.duration);
+        }
+
+        Destroy(gameObject); // Destroy the current game object
+    }
+
+    */      // 죽으면 파티클 재생하는 사망모션 (이미지는 아무거나 넣음)
 
 
     protected virtual void Knockback(Vector2 damageSourcePosition)

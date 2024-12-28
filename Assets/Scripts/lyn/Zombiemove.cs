@@ -131,4 +131,5 @@ public class ZombieMove : BaseMonster
             collision.gameObject.GetComponentInChildren<PlayerHealth>().TakeDamage(1, transform.position);
         }
     }
+
 }
