@@ -117,4 +117,14 @@ public class ZombieMoveTemp : BaseMonster
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(attackBoxPos.position, boxSize);
     }
+
+    public override void TakeDamage(int damage, Vector2 damageSourcePosition)
+    {
+
+        base.TakeDamage(damage, damageSourcePosition);
+
+        animator.SetTrigger("Damaged");
+
+    }
+
 }
