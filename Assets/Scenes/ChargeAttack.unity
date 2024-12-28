@@ -5698,7 +5698,7 @@ MonoBehaviour:
   playerTransform: {fileID: 414852883}
   firePoint: {fileID: 983741766}
   boomClone: {fileID: 3194093848042196227, guid: 87eacfe564f11fc4d98d32d16ef132ce, type: 3}
-  bombSpeed: 5
+  bombSpeed: 15
   chargeTime: 2
 --- !u!4 &591145287
 Transform:
@@ -5792,6 +5792,10 @@ PrefabInstance:
       propertyPath: moveSpeed
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4010169860075743864, guid: 030017093e2fc8e42a3447160a4c5a17, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ad75d49437fbe4141b7876922f1f0fe6, type: 2}
     - target: {fileID: 7930996368911320404, guid: 030017093e2fc8e42a3447160a4c5a17, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.3

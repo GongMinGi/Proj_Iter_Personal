@@ -5,7 +5,7 @@ public class MouseInput : MonoBehaviour
     public Transform playerTransform; // 플레이어의 Transform
     public Transform firePoint; // 발사체가 생성될 FirePoint 위치
     public GameObject boomClone; // 폭탄 프리팹
-    public float bombSpeed = 5f; // 폭탄의 속도
+    public float bombSpeed = 50f; // 폭탄의 속도
     public float chargeTime = 1f; // 발사에 필요한 최소 충전 시간
 
     private float chargeCounter = 0f; // 마우스 버튼 누른 시간
