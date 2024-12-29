@@ -1,13 +1,16 @@
 fileFormatVersion: 2
-guid: 6076c6560569c8747941c01b4af5e59c
+guid: 1d743f3190ac87b4dbf4d679d1ddddfe
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1294759808718933129
-    second: Attack__0
+      213: -2819003247498809533
+    second: Energy_Charge_5_0
   - first:
-      213: -6484154573452704869
-    second: Attack__1
+      213: -9106029893440958145
+    second: Energy_Charge_5_1
+  - first:
+      213: -8608260737448674563
+    second: Energy_Charge_5_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,23 +106,67 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Attack__0
+      name: Energy_Charge_5_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 10
-        width: 62
-        height: 50
+        x: 39
+        y: 27
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 773fadb50d6180ee0800000000000000
-      internalID: -1294759808718933129
+      spriteID: 34f292c6b73e0e8d0800000000000000
+      internalID: -2819003247498809533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Energy_Charge_5_1
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 55
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f311d57ce02e0a180800000000000000
+      internalID: -9106029893440958145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Energy_Charge_5_2
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 35
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfafd62c770598880800000000000000
+      internalID: -8608260737448674563
       vertices: []
       indices: 
       edges: []
@@ -128,7 +175,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 8423755ec472a94418867a16cc877476
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -138,8 +185,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Attack__0: -1294759808718933129
-      Attack__1: -6484154573452704869
+      Energy_Charge_5_0: -2819003247498809533
+      Energy_Charge_5_1: -9106029893440958145
+      Energy_Charge_5_2: -8608260737448674563
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

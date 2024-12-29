@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Mosquito_Attack
+  m_Name: Cat_Walk
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,11 +21,13 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -4251873897208396832, guid: c3c3cb3deb7bd044093cd47d72a033f0, type: 3}
+      value: {fileID: 368746673022191736, guid: 66dd87e2a7003e74fa0fa3ae6fc7b5da, type: 3}
     - time: 0.083333336
-      value: {fileID: -8915327726919978405, guid: bff29db4afdaee142872a046d2475b80, type: 3}
+      value: {fileID: -530822252542669481, guid: f23ce145b0eeb644abda260a7fdb1b8b, type: 3}
     - time: 0.16666667
-      value: {fileID: -1294759808718933129, guid: 6076c6560569c8747941c01b4af5e59c, type: 3}
+      value: {fileID: -5013387339712744066, guid: bbb5a6412fc8d0442bb469db4542cab6, type: 3}
+    - time: 0.33333334
+      value: {fileID: 1788440024534259019, guid: 9ba6f4172e4cf3845bfca3e261d05f2c, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -48,20 +50,21 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: -4251873897208396832, guid: c3c3cb3deb7bd044093cd47d72a033f0, type: 3}
-    - {fileID: -8915327726919978405, guid: bff29db4afdaee142872a046d2475b80, type: 3}
-    - {fileID: -1294759808718933129, guid: 6076c6560569c8747941c01b4af5e59c, type: 3}
+    - {fileID: 368746673022191736, guid: 66dd87e2a7003e74fa0fa3ae6fc7b5da, type: 3}
+    - {fileID: -530822252542669481, guid: f23ce145b0eeb644abda260a7fdb1b8b, type: 3}
+    - {fileID: -5013387339712744066, guid: bbb5a6412fc8d0442bb469db4542cab6, type: 3}
+    - {fileID: 1788440024534259019, guid: 9ba6f4172e4cf3845bfca3e261d05f2c, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.25
+    m_StopTime: 0.4166667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
-    m_LoopTime: 0
+    m_LoopTime: 1
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0

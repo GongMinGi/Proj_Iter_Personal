@@ -49,6 +49,9 @@ public class PlayerController : MonoBehaviour
     public Transform attackBoxPos;
     public Vector2 boxSize;
 
+    // 피격 관련 변수
+    public float playerKnockbackForce;
+
 
     void Awake()
     {
@@ -294,5 +297,34 @@ public class PlayerController : MonoBehaviour
 
 
     }
-    
+
+    public void OnDamaged(Vector2 enemyPos)
+    {
+        playerAnim.SetBool("onDamaged", true);
+
+        gameObject.layer = 7;
+
+        spriteRenderer.color = new Color(1, 1, 1, 0.4f);
+
+
+        float dirc = enemyPos.x - transform.position.x > 0 ? -1 : 1;
+        playerRigid.AddForce(new Vector2(dirc, 0.2f) * playerKnockbackForce, ForceMode2D.Impulse);
+
+
+        Invoke("OffDamaged", 3);
+    }
+
+
+    private void OffDamaged()
+    {
+        //Animator anim = GetComponentInParent<Animator>();
+        playerAnim.SetBool("onDamaged", false);
+
+        gameObject.layer = 0;
+        spriteRenderer.color = new Color(1, 1, 1, 1);
+
+
+
+    }
+
 }

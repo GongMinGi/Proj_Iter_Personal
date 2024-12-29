@@ -7,13 +7,12 @@ public class PlayerHealth : MonoBehaviour
     public static PlayerHealth instance;
 
     public int maxHealth;
-    public float playerKnockbackForce;
     private int health;
 
     public event Action DamageTaken;
     public event Action HealthUpgraded;
     public event Action PlayerDied;
-
+    Animator anim;
     public int Health
     {
 
@@ -46,7 +45,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
-
+        anim = GetComponentInParent<Animator>();
         if (GameManager.instance != null)
         {
 
@@ -69,8 +68,8 @@ public class PlayerHealth : MonoBehaviour
             return;
 
         health -= damage;
-
-        OnDamaged(enemyDirection);
+        
+        GetComponentInParent<PlayerController>().OnDamaged(enemyDirection);
 
         DamageTaken?.Invoke(); 
 
@@ -82,28 +81,33 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    private void OnDamaged(Vector2 enemyPos)
-    {
-        transform.parent.gameObject.layer = 7;
+    //private void OnDamaged(Vector2 enemyPos)
+    //{
 
-        GetComponentInParent<SpriteRenderer>().color = new Color(1, 1, 1, 0.4f);
+    //    transform.parent.gameObject.layer = 7;
 
-
-        float dirc = enemyPos.x - transform.parent.transform.position.x > 0 ? -1 : 1;
-        GetComponentInParent<Rigidbody2D>().AddForce(new Vector2(dirc, 0.2f) * playerKnockbackForce, ForceMode2D.Impulse);
+    //    GetComponentInParent<SpriteRenderer>().color = new Color(1, 1, 1, 0.4f);
 
 
-        Invoke("OffDamaged", 3);
-    }
+    //    float dirc = enemyPos.x - transform.parent.transform.position.x > 0 ? -1 : 1;
+    //    GetComponentInParent<Rigidbody2D>().AddForce(new Vector2(dirc, 0.2f) * playerKnockbackForce, ForceMode2D.Impulse);
 
 
-    private void OffDamaged()
-    {
-        transform.parent.gameObject.layer = 0;
-        GetComponentInParent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+    //    Invoke("OffDamaged", 3);
+    //}
 
 
-    }
+    //private void OffDamaged()
+    //{
+    //    //Animator anim = GetComponentInParent<Animator>();
+    //    anim.SetBool("onDamaged", false);
+
+    //    transform.parent.gameObject.layer = 0;
+    //    GetComponentInParent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+        
+
+
+    //}
 
     public void Heal(int healAmount)
     {

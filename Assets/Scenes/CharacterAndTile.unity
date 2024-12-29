@@ -309,7 +309,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7321744667904647298, guid: 020f5b10354fb5942953f053cfda059b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8318993986155271824, guid: 020f5b10354fb5942953f053cfda059b, type: 3}
+      propertyPath: m_Size.x
+      value: 1.7698065
+      objectReference: {fileID: 0}
+    - target: {fileID: 8318993986155271824, guid: 020f5b10354fb5942953f053cfda059b, type: 3}
+      propertyPath: m_Size.y
+      value: 0.99611473
+      objectReference: {fileID: 0}
+    - target: {fileID: 8318993986155271824, guid: 020f5b10354fb5942953f053cfda059b, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.014983121
+      objectReference: {fileID: 0}
+    - target: {fileID: 8318993986155271824, guid: 020f5b10354fb5942953f053cfda059b, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.017683744
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -432,6 +448,22 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 3408118292347415915}
+    - target: {fileID: 6430627045951523235, guid: 8e0533a5b1adec94abc1ac5f23d9c3bc, type: 3}
+      propertyPath: m_Size.x
+      value: 0.9322357
+      objectReference: {fileID: 0}
+    - target: {fileID: 6430627045951523235, guid: 8e0533a5b1adec94abc1ac5f23d9c3bc, type: 3}
+      propertyPath: m_Size.y
+      value: 1.0783901
+      objectReference: {fileID: 0}
+    - target: {fileID: 6430627045951523235, guid: 8e0533a5b1adec94abc1ac5f23d9c3bc, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.03388214
+      objectReference: {fileID: 0}
+    - target: {fileID: 6430627045951523235, guid: 8e0533a5b1adec94abc1ac5f23d9c3bc, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.027106285
+      objectReference: {fileID: 0}
     - target: {fileID: 7312412703759852316, guid: 8e0533a5b1adec94abc1ac5f23d9c3bc, type: 3}
       propertyPath: m_Name
       value: mosquito (1)
@@ -543,7 +575,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8414316664060278841, guid: ddc21c328f217e54d8da2bb874cf0e74, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
