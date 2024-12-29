@@ -43,11 +43,23 @@ public class PlayerController : MonoBehaviour
     [SerializeField] int atk = 1;   //공격력
     [SerializeField] float attackForce = 20f;
     [SerializeField]
-    float attackCurTime = 0f;
+    float attackCurTime = 0f;   // 지속적으로 감소
     [SerializeField]
-    float attackCoolTime = 0.5f;
+    float attackCoolTime = 0.5f; // 공격시 attackCUrTime에 넣어준다.
     public Transform attackBoxPos;
     public Vector2 boxSize;
+
+    //차지 공격 관련 변수와 상태
+    [SerializeField] float chargeStartTime = 0.5f; //차지공격 준비에 필요한 시간
+    [SerializeField] float chargeIsReady = 2f;
+
+    private float chargeCounter = 0f; //마우스 버튼을 누른 시가 
+    private bool isCharging = false; //현재 차지 공격 상태 여부
+    private bool movementDisabled = false; // 차지공격 상태일 때 이동 제한
+
+    [SerializeField] private GameObject energyBallPrefab;
+    [SerializeField] private Transform weaponTip; // 무기의 끝, 에너미볼 생성 위치
+    private GameObject currentEnergyBall;
 
     // 피격 관련 변수
     public float playerKnockbackForce;
@@ -72,8 +84,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(playerAnim.GetCurrentAnimatorStateInfo(0).IsName("PlayerCharge"));
+
         Jump();
-        Attack();
+        HandleAttack();
 
         if (Input.GetMouseButton(1) && !isGround) // 마우스 우측 버튼 눌림
         {
@@ -196,39 +210,140 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void Attack()
+    //차지 시작시 구체 생성 
+    private void EnergyBallStart()
     {
+        // 이미 구체가 있다면 중복생성 방지
+        if (currentEnergyBall != null) return;
 
-        if (attackCurTime <= 0f)
-        {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                playerAnim.SetTrigger("Attack");
-                attackCurTime = attackCoolTime;
-                Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(attackBoxPos.position , boxSize, 0);
-                foreach (Collider2D collider in collider2Ds)
-                {
-                    Debug.Log(collider.tag);
+        // 구체 프리팹 생성 
+        currentEnergyBall = Instantiate(energyBallPrefab, weaponTip.position, quaternion.identity);
 
-                    if(collider.CompareTag("Monster")) //태그가 Monster인 경우
-                    {
-                        //collider.GetComponent<EnemyHealth>().Damage(atk, collider.transform.position - transform.position);
-                        collider.GetComponent<BaseMonster>().TakeDamage(1, transform.position);
-                    }
-                }
-                
-                
-            }
-        }
-        else
+        // 구체를 weaponTip의 자식으로 둬서 위치 고정
+        currentEnergyBall.transform.SetParent(weaponTip);
+    }
+
+    //차지가 끝나면 구체 해제 
+    private void EndCharge()
+    {
+        if(currentEnergyBall != null)
         {
-            attackCurTime -= Time.deltaTime;
+            Destroy(currentEnergyBall);
         }
     }
 
 
+    void HandleAttack()
+    {
+        // (1) 마우스 왼쪽 버튼을 누르고 있는 동안 시간 카운트 
+        if(Input.GetMouseButtonDown(0))
+        {
+            //공격 쿨타임이 남아잇다면 리턴
+            if (attackCurTime > 0f) return;
+
+            //새로 누르기 시작했으니 타이머 초기화
+            chargeCounter = 0f;
+            isCharging = false;
+        }
+
+        if(Input.GetMouseButton(0))
+        {
+            chargeCounter += Time.deltaTime; //버튼 누른 시간 증가
+            
+            //chargeStarttime이 지나면 차지 모션 시작 ( 단 한번만)
+            if( !isCharging  && chargeCounter >= chargeStartTime )
+            {
+                isCharging = true;
+                playerAnim.SetBool("isCharging", true); // 차지 애니메이션 시작
+                EnergyBallStart();
+                movementDisabled = true; //이동제한
+            }
+        }
+
+        //(2) 마우스를 때는 순간 분기
+        if(Input.GetMouseButtonUp(0)) //마우스 왼쪽 버튼을 땔 때
+        {
+            // (2-1) 충분히 길게 누른 상태라면 => 차지공격
+            if (isCharging && chargeCounter >= chargeIsReady)
+            {
+                //차지 공격 실행
+                PerformChargeAttack();
+            }
+            else  // (2-1) 차지 중이 아니거나, 차지시간이 모자라다면 => 일반공격
+            {
+                PerformNormalAttack(); // 일반공격
+            }
+
+            //공격 후 상태 초기화
+            chargeCounter = 0; //누른 시간 초기화
+            isCharging = false;//  차지상태 해제 
+            movementDisabled = false; // 이동가능
+            playerAnim.SetBool("isCharging", false); //차지 애니메이션 해제
+            EndCharge();
+        }
 
 
+        //(3) 공격 쿨타임 감소
+        if (attackCurTime > 0f)
+        {
+            attackCurTime -= Time.deltaTime;
+        }
+    }
+    
+    public void StartChargeLoop()
+    {
+
+        // 현재 애니메이션 상태를 반복 재생
+        playerAnim.Play("PlayerCharge", 0, 0.15f);
+    }
+
+
+    private void PerformNormalAttack()
+    {
+        //일반 공격 애니메이션
+        playerAnim.SetTrigger("Attack");
+        //쿨타임 리셋
+        attackCurTime = attackCoolTime;
+
+        Collider2D[] hitColliders = Physics2D.OverlapBoxAll(attackBoxPos.position, boxSize, 0f);
+        foreach(Collider2D col in hitColliders)
+        {
+            if(col.CompareTag("Monster"))
+            {
+                BaseMonster monster = col.GetComponent<BaseMonster>();
+                if(monster != null)
+                {
+                    monster.TakeDamage(1, transform.position);
+                }
+            }
+        }
+    }
+
+    private void PerformChargeAttack()
+    {
+        Debug.Log("차지공격실행");
+        
+        //차지 공격 애니메이션
+        playerAnim.SetTrigger("chargeAttack");
+        GetComponent<RaycastBeamShooter>().ShootBeam();
+        //쿨타임 리셋
+        attackCurTime = attackCoolTime;
+
+        // 실제 데미지 판정 (차지 데미지를 더 높게 설정하는 예시)
+        Collider2D[] hitColliders = Physics2D.OverlapBoxAll(attackBoxPos.position, boxSize, 0f);
+        foreach ( Collider2D col in hitColliders )
+        {
+            if(col.CompareTag("Monster"))
+            {
+                BaseMonster monster = col.GetComponent<BaseMonster>();
+                if(monster != null)
+                {
+                    monster.TakeDamage( 2, transform.position);
+                }
+            }
+        }
+
+    }
 
 
 
@@ -242,7 +357,7 @@ public class PlayerController : MonoBehaviour
     void Move()
     {
 
-        if (!isDashing)
+        if (!isDashing && !movementDisabled) //차지 혹은 대시 중에는 이동 부락
         {
 
             float moveInput = Input.GetAxisRaw("Horizontal");

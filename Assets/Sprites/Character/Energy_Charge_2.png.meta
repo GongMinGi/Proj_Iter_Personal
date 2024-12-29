@@ -103,35 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Energy_Charge_2_0
-      rect:
-        serializedVersion: 2
-        x: 37
-        y: 49
-        width: 8
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 113753ac43776f8b0800000000000000
-      internalID: -5118772857845484783
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Energy_Charge_2_1
       rect:
         serializedVersion: 2
-        x: 43
-        y: 23
-        width: 30
-        height: 34
+        x: 38
+        y: 24
+        width: 34
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,7 +128,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 182d1ca7775f35144b3953d5d89286cc
     internalID: 0
     vertices: []
     indices: 

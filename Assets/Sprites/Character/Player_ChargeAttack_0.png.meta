@@ -1,16 +1,10 @@
 fileFormatVersion: 2
-guid: 1d743f3190ac87b4dbf4d679d1ddddfe
+guid: e68bd78a4fc848548a914a6dadc9cbde
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2819003247498809533
-    second: Energy_Charge_5_0
-  - first:
-      213: -9106029893440958145
-    second: Energy_Charge_5_1
-  - first:
-      213: -8608260737448674563
-    second: Energy_Charge_5_2
+      213: -4014605853200376269
+    second: Player_ChargeAttack_0_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -106,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Energy_Charge_5_0
+      name: Player_ChargeAttack_0_0
       rect:
         serializedVersion: 2
         x: 39
-        y: 28
-        width: 32
-        height: 36
+        y: 31
+        width: 86
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.42}
+      pivot: {x: 0.2, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 34f292c6b73e0e8d0800000000000000
-      internalID: -2819003247498809533
+      spriteID: 33e99ce2f314948c0800000000000000
+      internalID: -4014605853200376269
       vertices: []
       indices: 
       edges: []
@@ -131,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: fdd15315d3c133f4694ac4c720f55d3b
+    spriteID: f10a01414081327449e4aaa9f73940a8
     internalID: 0
     vertices: []
     indices: 
@@ -141,9 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Energy_Charge_5_0: -2819003247498809533
-      Energy_Charge_5_1: -9106029893440958145
-      Energy_Charge_5_2: -8608260737448674563
+      Player_ChargeAttack_0_0: -4014605853200376269
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
