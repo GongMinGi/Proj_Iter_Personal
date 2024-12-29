@@ -36,6 +36,8 @@ public class ZombieMoveTemp : BaseMonster
         if (distanceToTarget <= attackRange && Time.time >= lastAttackTime + attackCooldown)
         {
             StartAttack(); // 공격 실행
+
+            AudioManager.instance.PlaySfx(AudioManager.Sfx.Zombie2);
         }
         else if (distanceToTarget > attackRange && !isAttack)
         {

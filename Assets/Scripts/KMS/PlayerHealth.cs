@@ -71,8 +71,8 @@ public class PlayerHealth : MonoBehaviour
         
         GetComponentInParent<PlayerController>().OnDamaged(enemyDirection);
 
-        DamageTaken?.Invoke(); 
-
+        DamageTaken?.Invoke();
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.Iamattattacked);
         if (health <= 0)
         {
 

@@ -60,6 +60,7 @@ public class BaseMonster : MonoBehaviour
         //체력감소
         health -= damage;
         Debug.Log($"{gameObject.name} took {damage} damage. Remaining health: {health}");
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.attacksuccess);
 
         //죽음 처리
         if (health <= 0 )
