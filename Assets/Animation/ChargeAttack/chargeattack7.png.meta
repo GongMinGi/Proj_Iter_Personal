@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c0c773c6f0822044aaf7ad2fdd9fa1dc
+guid: aa60f44a7e09ba64ea35f85c9215ab44
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7681705657734891478
-    second: player_chargeattack8_0
+      213: 3992299909718568191
+    second: chargeattack7_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 50
+  spritePixelsToUnits: 75
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: player_chargeattack8_0
+      name: chargeattack7_0
       rect:
         serializedVersion: 2
-        x: 66
-        y: 48
-        width: 135
-        height: 96
+        x: 65
+        y: 47
+        width: 137
+        height: 98
       alignment: 9
       pivot: {x: 0.2, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a287a995769156590800000000000000
-      internalID: -7681705657734891478
+      spriteID: ffc6993ad9f776730800000000000000
+      internalID: 3992299909718568191
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: df58b9b63dd0a764989309d55191b118
+    spriteID: 1e3bd5fdaa0237f4ca9edaa814b9b11d
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      player_chargeattack8_0: -7681705657734891478
+      chargeattack7_0: 3992299909718568191
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
