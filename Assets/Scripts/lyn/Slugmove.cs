@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class Slugmove : BaseMonster
 {
+    public Transform[] waypoints;       // zz
+    public float rayDistance = 20f;    // zz
+    public LayerMask playerLayer;      // zz
+    private int currentWaypointIndex = 0; // zz
     public float speed = 2f;  // 슬러그의 이동 속도
     public float detectionRange = 5f;  //슬러그의 타겟 탐지 범위
     public float stopDistance = 1.5f;  // 타겟과의 거리가 이 값보다 작아지면 멈춤
@@ -25,14 +29,21 @@ public class Slugmove : BaseMonster
         base.Awake();
         
         spriteRenderer = GetComponent<SpriteRenderer>();
-        
+        animator.SetBool("isWalking", true);     // zz
+        rigid.gravityScale = 0;         // zz
+
         lastSafePosition = transform.position;
     }
 
     protected override void FixedUpdate()
     {
 
-        if( isKnockback)
+        if (waypoints.Length == 0)      // zz
+        {
+            return;
+        }
+
+        if ( isKnockback)
         {
             base.FixedUpdate();
             return;
@@ -48,14 +59,54 @@ public class Slugmove : BaseMonster
         else
         {
             isMovingToTarget = false;    // 타겟으로 이동 플래그 비활성화   
-            animator.SetBool("IsWalking", false);  // Idle 상태로 전환
+            MoveAlongWaypoints();       // zz
+            DetectPlayer();             // zz
+            //animator.SetBool("IsWalking", false);  // Idle 상태로 전환
         }
 
         CheckForEdge(); // 낭떠러지 감지 및 처리
     }
 
+    private void MoveAlongWaypoints()       //zz
+    {
+        Transform targetWaypoint = waypoints[currentWaypointIndex];
+        transform.position = Vector2.MoveTowards(transform.position, targetWaypoint.position, speed * Time.deltaTime);
+
+        Vector2 dirVec = targetWaypoint.position - transform.position;
+        UpdateDirection(dirVec);  // 방향 업데이트
+
+        if (Vector2.Distance(transform.position, targetWaypoint.position) < 0.1f)
+        {
+            currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;   // 순환 이동
+        }
+    }
+
+    private void DetectPlayer()     //zz
+    {
+        Vector2 rayOrigin = new Vector2(transform.position.x, transform.position.y - spriteRenderer.bounds.extents.y);
+        Debug.DrawRay(rayOrigin, Vector2.down * rayDistance, Color.red); // Ray 시각적 디버그
+
+        RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, rayDistance, playerLayer);
+
+        if (hit.collider != null && hit.collider.CompareTag("Player"))
+        {
+            MoveToTarget();
+        }
+    }
+
+    private void UpdateDirection(Vector2 direction)     //zz
+    {
+
+        if (Mathf.Abs(direction.x) > 0.01f)  // 매우 작은 움직임 방지
+        {
+            spriteRenderer.flipX = direction.x > 0 ? true : false;
+        }
+    }
+
     private void MoveToTarget()
     {
+        rigid.gravityScale = 1; // zz
+
         Vector2 dirVec = target.transform.position - transform.position;    //타겟 방향 계산
         float distanceToTarget = dirVec.magnitude;      //타겟과의 거리 계산
 

@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class CatMove : BaseMonster
 {
+    public Transform[] waypoints;       // zz
+    public float rayDistance = 20f;    // zz
+    public LayerMask playerLayer;      // zz
+    private int currentWaypointIndex = 0; // zz
+
     public float moveSpeed; // 이동 속도
     public float detectionRange; // 플레이어 탐지 범위
     public float attackCooldown; // 공격 대기 시간 (쿨타임) 
@@ -19,6 +24,7 @@ public class CatMove : BaseMonster
     private float lastAttackTime = 0f;  // 마지막 공격 시간이 저장된다.
     private bool isGrounded = true;  // 고양이가 바닥에 있는지 여부
     private bool isWaiting = false;  //wait 상태(공격 준비 상태) 여부
+    private bool hasFlippedOnce = false;
     //private bool isAttacking = false;
 
 
@@ -28,10 +34,18 @@ public class CatMove : BaseMonster
         //rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         //animator = GetComponent<Animator>();
+
+        SetAnimatorState(1);     // zz
+        rigid.gravityScale = 0;         // zz
     }
 
     protected override void FixedUpdate()
     {
+
+        if (waypoints.Length == 0)      // zz
+        {
+            return;
+        }
         float distanceToTarget = Vector2.Distance(transform.position, target.position); // 타겟과의 거리 계산
 
         if (isWaiting)
@@ -44,7 +58,9 @@ public class CatMove : BaseMonster
         if (distanceToTarget > detectionRange)
         {
             //타겟이 탐지 범위 밖에 있는 경우
-            SetAnimatorState(0); // Idle 애니메이션 실행
+            MoveAlongWaypoints();       // zz
+
+            // SetAnimatorState(0); // Idle 애니메이션 실행
             rigid.linearVelocity = Vector2.zero; // 속도 초기화
         }
         else if (distanceToTarget > 4.0f)
@@ -60,6 +76,29 @@ public class CatMove : BaseMonster
         }
     }
 
+    private void MoveAlongWaypoints()       //zz
+    {
+        Transform targetWaypoint = waypoints[currentWaypointIndex];
+        transform.position = Vector2.MoveTowards(transform.position, targetWaypoint.position, moveSpeed * Time.deltaTime);
+
+        Vector2 dirVec = targetWaypoint.position - transform.position;
+        UpdateDirection(dirVec);  // 방향 업데이트
+
+        if (Vector2.Distance(transform.position, targetWaypoint.position) < 0.1f)
+        {
+            currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;   // 순환 이동
+        }
+    }
+
+    private void UpdateDirection(Vector2 direction)     //zz
+    {
+
+        if (Mathf.Abs(direction.x) > 0.01f)  // 매우 작은 움직임 방지
+        {
+            spriteRenderer.flipX = direction.x > 0 ? true : false;
+        }
+    }
+
     private void SetAnimatorState(int state)
     {
         // 애니메이션 상태를 변경
@@ -68,6 +107,15 @@ public class CatMove : BaseMonster
 
     private void ChaseTarget()
     {
+
+        rigid.gravityScale = 1; // zz
+        if (currentWaypointIndex == 1 && !hasFlippedOnce)       //zz
+        {
+
+            spriteRenderer.flipX = !spriteRenderer.flipX;
+            hasFlippedOnce = true;
+
+        }
         //타겟을 추적하는 동작
         if (isGrounded)
         {

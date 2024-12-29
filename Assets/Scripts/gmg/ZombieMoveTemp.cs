@@ -6,7 +6,7 @@ public class ZombieMoveTemp : BaseMonster
     public float attackRange; // 공격 범위
     public float attackCooldown; // 공격 쿨타임
     public Rigidbody2D target; // 주인공 타겟
-
+    public float detectionRange = 3f;  //zombie의 타겟 탐지 범위
     private SpriteRenderer spriteRenderer; // 스프라이트 렌더러: 좀비 이미지 반전 및 표시
     private float lastAttackTime = 0f; // 마지막 공격 시간이 저장됨
     private bool isMovingToTarget = false; // 주인공에게 이동 중인지 여부
@@ -20,6 +20,9 @@ public class ZombieMoveTemp : BaseMonster
     {
         base.Awake(); // BaseMonster의 Awake 메서드 호출
         spriteRenderer = GetComponent<SpriteRenderer>(); // SpriteRenderer 컴포넌트 가져오기
+        speed = Random.Range(speed - 1f, speed + 1f); // 실수 범위에서 랜덤값
+        knockbackDistance = Random.Range(knockbackDistance - 0.1f * speed, knockbackDistance + 0.1f * speed);
+        knockbackSpeed= Random.Range(knockbackSpeed - 2f, knockbackSpeed + 2f);
     }
 
     protected override void FixedUpdate()
@@ -33,11 +36,11 @@ public class ZombieMoveTemp : BaseMonster
 
         float distanceToTarget = Vector2.Distance(transform.position, target.position); // 주인공과의 거리 계산
 
-        if (distanceToTarget <= attackRange && Time.time >= lastAttackTime + attackCooldown)
+        if (distanceToTarget <= attackRange && Time.time >= lastAttackTime + attackCooldown && distanceToTarget <= detectionRange)
         {
             StartAttack(); // 공격 실행
         }
-        else if (distanceToTarget > attackRange && !isAttack)
+        else if (distanceToTarget > attackRange && !isAttack && distanceToTarget <= detectionRange)
         {
             MoveToTarget(); // 주인공을 향해 이동
         }
