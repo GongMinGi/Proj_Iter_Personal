@@ -151,6 +151,7 @@ public class PlayerControllerbyBae : MonoBehaviour
             if (!isCharging && chargeCounter < chargeTime) // 일반 공격 조건
             {
                 PerformNormalAttack(); // 일반 공격 실행
+                AudioManager.instance.PlaySfx(AudioManager.Sfx.Attack);
             }
 
             // 상태 초기화
