@@ -53,6 +53,12 @@ public class PlayerController : MonoBehaviour
     public float playerKnockbackForce;
 
 
+    // 글라이딩 관련 변수들
+    [Header("글라이딩 세팅")]
+    [SerializeField] private float glideGravityScale = 0.5f; // 글라이딩 중 중력 값
+    public bool isGliding = false;// 글라이딩 상태 플래그
+    [SerializeField] private float velocityLimit;
+
     void Awake()
     {
         playerRigid = GetComponent<Rigidbody2D>();
@@ -69,8 +75,17 @@ public class PlayerController : MonoBehaviour
         Jump();
         Attack();
 
+        if (Input.GetMouseButton(1) && !isGround) // 마우스 우측 버튼 눌림
+        {
+            StartGliding();
+        }
+        else if (isGliding)
+        {
+            StopGliding();
+        }
 
-        if(Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
             StartDash();
         }    
@@ -104,6 +119,9 @@ public class PlayerController : MonoBehaviour
     {
         Move();
 
+        VelocityLimit();
+
+
 
         if (playerRigid.linearVelocity.y < 0 && !isGround)
         {
@@ -132,10 +150,28 @@ public class PlayerController : MonoBehaviour
                     isGround = true;
                 }
             }
-            isGround = false;
+            else
+            {
+                isGround = false;
+            }
         }
 
     }
+
+    // y축으로 플레이어의 속도가 제한값을 벗어날 경우 최대치로 다시 초기화
+    void VelocityLimit()
+    {
+        if(playerRigid.linearVelocity.y > 0 && Mathf.Abs(playerRigid.linearVelocity.y) > velocityLimit )
+        {
+            playerRigid.linearVelocity = new Vector2(playerRigid.linearVelocity.x, velocityLimit);
+        }
+        else if (playerRigid.linearVelocity.y < 0 &&  Mathf.Abs(playerRigid.linearVelocity.y) > velocityLimit)
+        {
+            Debug.Log("FUck");
+            playerRigid.linearVelocity = new Vector2(playerRigid.linearVelocity.x, -velocityLimit);
+        }
+    }
+
 
     void Jump()
     {
@@ -300,7 +336,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnDamaged(Vector2 enemyPos)
     {
-        playerAnim.SetBool("onDamaged", true);
+        playerAnim.SetTrigger("onDamaged");
 
         gameObject.layer = 7;
 
@@ -311,20 +347,46 @@ public class PlayerController : MonoBehaviour
         playerRigid.AddForce(new Vector2(dirc, 0.2f) * playerKnockbackForce, ForceMode2D.Impulse);
 
 
-        Invoke("OffDamaged", 3);
+        Invoke("OffDamaged", 1.5f);
     }
 
 
     private void OffDamaged()
     {
         //Animator anim = GetComponentInParent<Animator>();
-        playerAnim.SetBool("onDamaged", false);
+        //playerAnim.SetBool("onDamaged", false);
 
         gameObject.layer = 0;
         spriteRenderer.color = new Color(1, 1, 1, 1);
 
 
 
+    }
+
+
+    void StartGliding()
+    {
+        if (playerRigid.linearVelocity.y < 0) // 아래로 떨어질 때만 글라이딩 가능
+        {
+            isGliding = true;
+            velocityLimit = 2;
+            playerRigid.gravityScale = glideGravityScale;
+            playerAnim.SetBool("isGliding", true);
+        }
+    }
+
+    void StopGliding()
+    {
+        isGliding = false;
+        velocityLimit = 100;
+        playerRigid.gravityScale = 1f;
+        playerAnim.SetBool("isGliding", false);
+    }
+
+    public void StartGlideLoop()
+    {
+        // 현재 애니메이션 상태를 반복 재생
+        playerAnim.Play("PlayerGliding", 0, 0.5f); // 50%에서 시작
     }
 
 }
