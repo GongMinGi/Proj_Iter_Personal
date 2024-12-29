@@ -70,6 +70,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float glideGravityScale = 0.5f; // 글라이딩 중 중력 값
     public bool isGliding = false;// 글라이딩 상태 플래그
     [SerializeField] private float velocityLimit;
+    private bool isGlideSoundPlaying = false;
 
     void Awake()
     {
@@ -92,6 +93,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButton(1) && !isGround) // 마우스 우측 버튼 눌림
         {
             StartGliding();
+
+           // AudioManager.instance.PlaySfx(AudioManager.Sfx.glide);
         }
         else if (isGliding)
         {
@@ -102,6 +105,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
             StartDash();
+
+            AudioManager.instance.PlaySfx(AudioManager.Sfx.dash1);
         }    
 
 
@@ -253,6 +258,7 @@ public class PlayerController : MonoBehaviour
             //chargeStarttime이 지나면 차지 모션 시작 ( 단 한번만)
             if( !isCharging  && chargeCounter >= chargeStartTime )
             {
+                //AudioManager.instance.PlaySfx(AudioManager.Sfx.ChargeattackCharging);
                 isCharging = true;
                 playerAnim.SetBool("isCharging", true); // 차지 애니메이션 시작
                 EnergyBallStart();
@@ -268,10 +274,12 @@ public class PlayerController : MonoBehaviour
             {
                 //차지 공격 실행
                 PerformChargeAttack();
+                AudioManager.instance.PlaySfx(AudioManager.Sfx.ChargeAttackRelease1_1);
             }
             else  // (2-1) 차지 중이 아니거나, 차지시간이 모자라다면 => 일반공격
             {
                 PerformNormalAttack(); // 일반공격
+                AudioManager.instance.PlaySfx(AudioManager.Sfx.attack3);
             }
 
             //공격 후 상태 초기화
@@ -426,6 +434,7 @@ public class PlayerController : MonoBehaviour
         if (playerAnim.GetBool("isJumping"))
         {
             playerAnim.SetBool("isFalling", true);
+         
         }
         else
         {

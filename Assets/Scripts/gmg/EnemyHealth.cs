@@ -38,8 +38,9 @@ public class EnemyHealth : MonoBehaviour
         currentHealth -= amount;
 
         ApplyKnockback(attackDirection);
+    
 
-        if(currentHealth <= 0)
+        if (currentHealth <= 0)
         {
             // 체력이 0 이하일때 오브젝트 비활성화
             gameObject.SetActive(false);

@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class ZombieMoveTemp : BaseMonster
 {
-    public float speed; // ÀÌµ¿ ¼Óµµ
-    public float attackRange; // °ø°Ý ¹üÀ§
-    public float attackCooldown; // °ø°Ý ÄðÅ¸ÀÓ
-    public Rigidbody2D target; // ÁÖÀÎ°ø Å¸°Ù
-    public float detectionRange = 3f;  //zombieÀÇ Å¸°Ù Å½Áö ¹üÀ§
-    private SpriteRenderer spriteRenderer; // ½ºÇÁ¶óÀÌÆ® ·»´õ·¯: Á»ºñ ÀÌ¹ÌÁö ¹ÝÀü ¹× Ç¥½Ã
-    private float lastAttackTime = 0f; // ¸¶Áö¸· °ø°Ý ½Ã°£ÀÌ ÀúÀåµÊ
-    private bool isMovingToTarget = false; // ÁÖÀÎ°ø¿¡°Ô ÀÌµ¿ ÁßÀÎÁö ¿©ºÎ
+    public float speed; // ï¿½Ìµï¿½ ï¿½Óµï¿½
+    public float attackRange; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    public float attackCooldown; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½
+    public Rigidbody2D target; // ï¿½ï¿½ï¿½Î°ï¿½ Å¸ï¿½ï¿½
+    public float detectionRange = 3f;  //zombieï¿½ï¿½ Å¸ï¿½ï¿½ Å½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    private SpriteRenderer spriteRenderer; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ç¥ï¿½ï¿½
+    private float lastAttackTime = 0f; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
+    private bool isMovingToTarget = false; // ï¿½ï¿½ï¿½Î°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
     public Transform attackBoxPos;
     public Vector2 boxSize;
@@ -18,49 +18,51 @@ public class ZombieMoveTemp : BaseMonster
 
     protected override void Awake()
     {
-        base.Awake(); // BaseMonsterÀÇ Awake ¸Þ¼­µå È£Ãâ
-        spriteRenderer = GetComponent<SpriteRenderer>(); // SpriteRenderer ÄÄÆ÷³ÍÆ® °¡Á®¿À±â
-        speed = Random.Range(speed - 1f, speed + 1f); // ½Ç¼ö ¹üÀ§¿¡¼­ ·£´ý°ª
+        base.Awake(); // BaseMonsterï¿½ï¿½ Awake ï¿½Þ¼ï¿½ï¿½ï¿½ È£ï¿½ï¿½
+        spriteRenderer = GetComponent<SpriteRenderer>(); // SpriteRenderer ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        speed = Random.Range(speed - 1f, speed + 1f); // ï¿½Ç¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         knockbackDistance = Random.Range(knockbackDistance - 0.1f * speed, knockbackDistance + 0.1f * speed);
         knockbackSpeed= Random.Range(knockbackSpeed - 2f, knockbackSpeed + 2f);
     }
 
     protected override void FixedUpdate()
     {
-        //base.FixedUpdate(); // ºÎ¸ð Å¬·¡½ºÀÇ FixedUpdate È£Ãâ
+        //base.FixedUpdate(); // ï¿½Î¸ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ FixedUpdate È£ï¿½ï¿½
         if ( isAttack)
         {
             return;
         }
 
 
-        float distanceToTarget = Vector2.Distance(transform.position, target.position); // ÁÖÀÎ°ø°úÀÇ °Å¸® °è»ê
+        float distanceToTarget = Vector2.Distance(transform.position, target.position); // ï¿½ï¿½ï¿½Î°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½
 
         if (distanceToTarget <= attackRange && Time.time >= lastAttackTime + attackCooldown && distanceToTarget <= detectionRange)
         {
-            StartAttack(); // °ø°Ý ½ÇÇà
+            StartAttack(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+
+            AudioManager.instance.PlaySfx(AudioManager.Sfx.Zombie2);
         }
         else if (distanceToTarget > attackRange && !isAttack && distanceToTarget <= detectionRange)
         {
-            MoveToTarget(); // ÁÖÀÎ°øÀ» ÇâÇØ ÀÌµ¿
+            MoveToTarget(); // ï¿½ï¿½ï¿½Î°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
         }
         else
         {
-            Idle(); // Idle »óÅÂ·Î ÀüÈ¯
+            Idle(); // Idle ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½È¯
         }
     }
 
     private void MoveToTarget()
     {
-        Vector2 dirVec = target.position - (Vector2)transform.position; // ÁÖÀÎ°ø°úÀÇ ¹æÇâ º¤ÅÍ °è»ê
-        Vector2 nextVec = dirVec.normalized * speed * Time.fixedDeltaTime; // ÀÌµ¿ÇÒ À§Ä¡ °è»ê (¼Óµµ * ½Ã°£)
+        Vector2 dirVec = target.position - (Vector2)transform.position; // ï¿½ï¿½ï¿½Î°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+        Vector2 nextVec = dirVec.normalized * speed * Time.fixedDeltaTime; // ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ (ï¿½Óµï¿½ * ï¿½Ã°ï¿½)
 
         animator.SetTrigger("Walk");
 
-        transform.position += (Vector3)nextVec; // Á»ºñÀÇ À§Ä¡ ¾÷µ¥ÀÌÆ®
+        transform.position += (Vector3)nextVec; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
 
-        //spriteRenderer.flipX = dirVec.x > 0 ? true : false ; // ÁÖÀÎ°ø ¹æÇâ¿¡ µû¶ó ½ºÇÁ¶óÀÌÆ® ¹ÝÀü
-        transform.localScale = dirVec.x > 0 ?  new Vector3 ( 1, 1, 1) :  new Vector3 (-1, 1,1); // ÁÖÀÎ°ø ¹æÇâ¿¡ µû¶ó ½ºÇÁ¶óÀÌÆ® ¹ÝÀü
+        //spriteRenderer.flipX = dirVec.x > 0 ? true : false ; // ï¿½ï¿½ï¿½Î°ï¿½ ï¿½ï¿½ï¿½â¿¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
+        transform.localScale = dirVec.x > 0 ?  new Vector3 ( 1, 1, 1) :  new Vector3 (-1, 1,1); // ï¿½ï¿½ï¿½Î°ï¿½ ï¿½ï¿½ï¿½â¿¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 
     }
 
@@ -68,9 +70,9 @@ public class ZombieMoveTemp : BaseMonster
     public void StartAttack()
     {
         isAttack = true;
-        // °ø°Ý Ã³¸®
-        lastAttackTime = Time.time; // ¸¶Áö¸· °ø°Ý ½Ã°£ °»½Å
-        animator.SetTrigger("Attack"); // °ø°Ý ¾Ö´Ï¸ÞÀÌ¼Ç ½ÇÇà
+        // ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
+        lastAttackTime = Time.time; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½
+        animator.SetTrigger("Attack"); // ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 
     public void Attack()
@@ -81,7 +83,7 @@ public class ZombieMoveTemp : BaseMonster
         {
             Debug.Log(collider.tag);
 
-            if (collider.CompareTag("Player")) //ÅÂ±×°¡ MonsterÀÎ °æ¿ì
+            if (collider.CompareTag("Player")) //ï¿½Â±×°ï¿½ Monsterï¿½ï¿½ ï¿½ï¿½ï¿½
             {
                 //collider.GetComponent<EnemyHealth>().Damage(atk, collider.transform.position - transform.position);
                 collider.GetComponentInChildren<PlayerHealth>().TakeDamage(1, transform.position);
@@ -98,8 +100,8 @@ public class ZombieMoveTemp : BaseMonster
 
     private void Idle()
     {
-        // Idle »óÅÂ Ã³¸®
-        animator.SetTrigger("Idle"); // Idle ¾Ö´Ï¸ÞÀÌ¼Ç ½ÇÇà
+        // Idle ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
+        animator.SetTrigger("Idle"); // Idle ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -109,8 +111,8 @@ public class ZombieMoveTemp : BaseMonster
             collision.gameObject.GetComponentInChildren<PlayerHealth>().TakeDamage(1, transform.position);
 
 
-            Debug.Log("ÇÃ·¹ÀÌ¾î¿Í Ãæµ¹");
-            // Ãæµ¹ÇÑ °´Ã¼°¡ ÁÖÀÎ°øÀÏ °æ¿ì (ÇÊ¿ä ½Ã Ãß°¡ ·ÎÁ÷ ±¸Çö °¡´É)
+            Debug.Log("ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ ï¿½æµ¹");
+            // ï¿½æµ¹ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½Î°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ (ï¿½Ê¿ï¿½ ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
         }
     }
 
