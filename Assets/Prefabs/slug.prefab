@@ -196,6 +196,7 @@ MonoBehaviour:
   knockbackDistance: 5
   knockbackSpeed: 10
   proximityThreshold: 0.1
+  deathEffect: {fileID: 0}
   knockbackPosition: {x: 0, y: 0}
   isKnockback: 0
   speed: 2

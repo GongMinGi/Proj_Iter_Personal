@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1775855634866998281
 Transform:
   m_ObjectHideFlags: 0
@@ -174,8 +174,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.014983129, y: -0.07491303}
-  m_Size: {x: 1.7698063, y: 1.1105719}
+  m_Offset: {x: -0.014983121, y: -0.017683744}
+  m_Size: {x: 1.7698065, y: 0.99611473}
   m_Direction: 1
 --- !u!114 &4484829370862105516
 MonoBehaviour:
@@ -196,6 +196,7 @@ MonoBehaviour:
   knockbackDistance: 3
   knockbackSpeed: 20
   proximityThreshold: 0.2
+  deathEffect: {fileID: 0}
   knockbackPosition: {x: 0, y: 0}
   isKnockback: 0
   moveSpeed: 2

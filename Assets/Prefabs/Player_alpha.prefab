@@ -6053,6 +6053,10 @@ MonoBehaviour:
   attackCoolTime: 0.5
   attackBoxPos: {fileID: 7554955864405861581}
   boxSize: {x: 2.5, y: 2}
+  playerKnockbackForce: 0
+  glideGravityScale: 0.5
+  isGliding: 0
+  velocityLimit: 100
 --- !u!1 &5150349978286110563
 GameObject:
   m_ObjectHideFlags: 0
