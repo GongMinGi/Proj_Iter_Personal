@@ -29,7 +29,7 @@ public class Slugmove : BaseMonster
         base.Awake();
         
         spriteRenderer = GetComponent<SpriteRenderer>();
-        animator.SetBool("isWalking", true);     // zz
+        animator.SetBool("IsWalking", true);     // zz
         rigid.gravityScale = 0;         // zz
 
         lastSafePosition = transform.position;
@@ -65,6 +65,7 @@ public class Slugmove : BaseMonster
         }
 
         CheckForEdge(); // 낭떠러지 감지 및 처리
+
     }
 
     private void MoveAlongWaypoints()       //zz

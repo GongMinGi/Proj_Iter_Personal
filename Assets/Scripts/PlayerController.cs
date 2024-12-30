@@ -58,8 +58,11 @@ public class PlayerController : MonoBehaviour
     private bool movementDisabled = false; // 차지공격 상태일 때 이동 제한
 
     [SerializeField] private GameObject energyBallPrefab;
+    [SerializeField] private GameObject chargeBeamPrefab;
     [SerializeField] private Transform weaponTip; // 무기의 끝, 에너미볼 생성 위치
+    
     private GameObject currentEnergyBall;
+    private GameObject currentEnergyBeam;
 
 
 
@@ -78,6 +81,7 @@ public class PlayerController : MonoBehaviour
     private bool IsJumpSoundPlaying = false;
     void Awake()
     {
+        weaponTip.SetParent(transform);
         playerRigid = GetComponent<Rigidbody2D>();
         playerAnim = GetComponent<Animator>();
         playerTransform = GetComponent<Transform>();
@@ -209,9 +213,9 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !playerAnim.GetBool("isJumping"))
+        if (Input.GetKeyDown(KeyCode.Space) && !playerAnim.GetBool("isJumping") && !playerAnim.GetBool("isCharging"))
         {
-            playerRigid.linearVelocity = new Vector2(playerRigid.linearVelocity.y, jumpForce);
+            playerRigid.linearVelocity = new Vector2(playerRigid.linearVelocity.x, jumpForce);
             playerAnim.SetBool("isJumping", true);
 
             // 점프 소리 재생 조건 추가
@@ -236,10 +240,14 @@ public class PlayerController : MonoBehaviour
         if (spriteRenderer.flipX)
         {
             attackBoxPos.localPosition = new Vector2(-Mathf.Abs(attackBoxPos.localPosition.x), attackBoxPos.localPosition.y);
+            weaponTip.localPosition = new Vector2(-Mathf.Abs(weaponTip.localPosition.x), weaponTip.localPosition.y);
+
         }
         else
         {
             attackBoxPos.localPosition = new Vector2(Mathf.Abs(attackBoxPos.localPosition.x), attackBoxPos.localPosition.y);
+            weaponTip.localPosition = new Vector2(Mathf.Abs(weaponTip.localPosition.x), weaponTip.localPosition.y);
+
         }
 
     }
@@ -360,9 +368,29 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("차지공격실행");
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5e5cbea8904e3e10a1e33a0a529de27c5ecfefd0
         //차지 공격 애니메이션
         playerAnim.SetTrigger("chargeAttack");
-        GetComponent<RaycastBeamShooter>().ShootBeam();
+
+        //GetComponent<RaycastBeamShooter>().ShootBeam();
+        //빔 발사 프리팹 생성
+        GameObject beamObj = Instantiate(chargeBeamPrefab, weaponTip.position, quaternion.identity);
+
+
+        if(spriteRenderer.flipX)
+        {
+            beamObj.transform.localScale = new Vector3(-1, 1, 1);
+        }
+
+        
+        beamObj.transform.SetParent(weaponTip);
+
+        // 빔 일정시간 이후 파괴
+        Destroy(beamObj, 1f);
+
         //쿨타임 리셋
         attackCurTime = attackCoolTime;
 
@@ -425,6 +453,11 @@ public class PlayerController : MonoBehaviour
             //dashDirection = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
         }
 
+        if(playerAnim.GetBool("isGliding"))
+        {
+            return;
+        }
+
         isDashing = true;   // 대시 시작 설정
         playerAnim.SetBool("isDashing", true);
 
@@ -468,7 +501,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             playerAnim.SetBool("isFalling", false);
-            playerAnim.SetBool("isMovinng", false); //Idle로 전환
+            playerAnim.SetBool("isMoving", false); //Idle로 전환
         }
 
 

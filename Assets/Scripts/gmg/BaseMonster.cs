@@ -97,11 +97,11 @@ public class BaseMonster : MonoBehaviour
 
     }
 
-    protected virtual void Die()        // 원래 사망 코드
-    {
-        Debug.Log($"{gameObject.name} died!");
-        Destroy(gameObject);
-    }
+    //protected virtual void Die()        // 원래 사망 코드
+    //{
+    //    Debug.Log($"{gameObject.name} died!");
+    //    Destroy(gameObject);
+    //}
 
     /*
      protected virtual void Die()
@@ -165,7 +165,7 @@ private IEnumerator DieAnimation()
 
      */     // 넉백 및 회전 후에 destroy시키는 사망모션 (방향 및 회전 설정 필요, z회전을 푸는 방식도 해봤는데 생각대로 안 움직임)
 
-    /*
+    
     protected virtual void Die()
     {
         Debug.Log($"{gameObject.name} died!");
@@ -189,7 +189,7 @@ private IEnumerator DieAnimation()
         Destroy(gameObject); // Destroy the current game object
     }
 
-    */      // 죽으면 파티클 재생하는 사망모션 (이미지는 아무거나 넣음)
+          // 죽으면 파티클 재생하는 사망모션 (이미지는 아무거나 넣음)
 
 
     protected virtual void Knockback(Vector2 damageSourcePosition)
