@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Zeus_terraforming_2x_1_0: 2849047157143521118
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

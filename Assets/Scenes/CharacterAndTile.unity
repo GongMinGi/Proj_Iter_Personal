@@ -636,7 +636,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
-<<<<<<< HEAD
 --- !u!1 &886004112
 GameObject:
   m_ObjectHideFlags: 0
@@ -805,8 +804,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9c7132e738f31a45a58de8c36ab66f8, type: 3}
-=======
->>>>>>> 5e5cbea8904e3e10a1e33a0a529de27c5ecfefd0
 --- !u!224 &1057689766 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5170908566141517264, guid: 5b0f14af18020f046abd25e47e673aef, type: 3}
@@ -15245,8 +15242,4 @@ SceneRoots:
   - {fileID: 1757908333}
   - {fileID: 2256818028786041110}
   - {fileID: 141136565}
-<<<<<<< HEAD
   - {fileID: 960861472}
-=======
-  - {fileID: 7449871381823637276}
->>>>>>> 5e5cbea8904e3e10a1e33a0a529de27c5ecfefd0

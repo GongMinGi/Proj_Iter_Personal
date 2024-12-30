@@ -368,10 +368,7 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("차지공격실행");
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 5e5cbea8904e3e10a1e33a0a529de27c5ecfefd0
         //차지 공격 애니메이션
         playerAnim.SetTrigger("chargeAttack");
 
