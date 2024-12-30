@@ -15,7 +15,7 @@ public class ToRealGame : MonoBehaviour
     public float fadeSpeed = 1.0f;
 
     [Header("Scene Settings")]
-    public string sceneToLoad = "PuzzleTestScene";
+    public string sceneToLoad = "FinalScene";
 
     private bool isTransitioning = false;
 

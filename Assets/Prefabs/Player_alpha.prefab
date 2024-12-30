@@ -307,7 +307,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6287039208005710281
 Transform:
   m_ObjectHideFlags: 0
@@ -5445,7 +5445,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -5
+  m_SortingOrder: -4
   m_SortAtRoot: 0
 --- !u!1 &2770815248982166527
 GameObject:
@@ -5754,7 +5754,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6602212373881649325
 Transform:
   m_ObjectHideFlags: 0
@@ -6074,6 +6074,7 @@ GameObject:
   - component: {fileID: 6190647648678415582}
   - component: {fileID: 492995554984942758}
   - component: {fileID: 8899123534445545830}
+  - component: {fileID: 19607949647464236}
   m_Layer: 0
   m_Name: Quad (2)
   m_TagString: Untagged
@@ -6184,6 +6185,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.1
+--- !u!210 &19607949647464236
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3944856072969064069}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: -5
+  m_SortAtRoot: 0
 --- !u!1 &4064316808287566099
 GameObject:
   m_ObjectHideFlags: 0
@@ -6771,6 +6784,7 @@ GameObject:
   - component: {fileID: 317626468081391315}
   - component: {fileID: 26434909127736034}
   - component: {fileID: 3416442823742327253}
+  - component: {fileID: 5284597298610899546}
   m_Layer: 0
   m_Name: Quad (3)
   m_TagString: Untagged
@@ -6881,6 +6895,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.1
+--- !u!210 &5284597298610899546
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5178769418027177833}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: -5
+  m_SortAtRoot: 0
 --- !u!1 &5765740658106057078
 GameObject:
   m_ObjectHideFlags: 0
@@ -6894,6 +6920,7 @@ GameObject:
   - component: {fileID: 7202257758120581766}
   - component: {fileID: 1667791282390201291}
   - component: {fileID: 4407411472685017195}
+  - component: {fileID: 3534801556850591798}
   m_Layer: 0
   m_Name: Quad (1)
   m_TagString: Untagged
@@ -7004,6 +7031,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.1
+--- !u!210 &3534801556850591798
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5765740658106057078}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: -5
+  m_SortAtRoot: 0
 --- !u!1 &6163489075838268814
 GameObject:
   m_ObjectHideFlags: 0
@@ -7263,6 +7302,7 @@ GameObject:
   - component: {fileID: 3356912061480437261}
   - component: {fileID: 3116301425784731786}
   - component: {fileID: 6293050205985564507}
+  - component: {fileID: 2319769003885103303}
   m_Layer: 0
   m_Name: Quad
   m_TagString: Untagged
@@ -7373,6 +7413,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.1
+--- !u!210 &2319769003885103303
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7064656244233829021}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: -5
+  m_SortAtRoot: 0
 --- !u!1 &7654703042590440169
 GameObject:
   m_ObjectHideFlags: 0

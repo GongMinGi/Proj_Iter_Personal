@@ -265,7 +265,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4484829370862105516, guid: 020f5b10354fb5942953f053cfda059b, type: 3}
       propertyPath: health
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4484829370862105516, guid: 020f5b10354fb5942953f053cfda059b, type: 3}
       propertyPath: deathEffect

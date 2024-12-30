@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cc6f7c1004f3cc4e9d6e29cb2ef94c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 5
+  health: 3
   knockbackTime: 0.2
   hitDirectionForce: 10
   constantForce: 5

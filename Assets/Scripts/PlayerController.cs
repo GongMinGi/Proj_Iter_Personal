@@ -573,6 +573,6 @@ public class PlayerController : MonoBehaviour
     public void StartGlideLoop()
     {
         // 현재 애니메이션 상태를 반복 재생
-        playerAnim.Play("PlayerGliding", 0, 0.5f); // 50%에서 시작
+        playerAnim.Play("PlayerGliding", 0, 0.6f); // 50%에서 시작
     }
 }

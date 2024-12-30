@@ -5,9 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/StartCutScene.unity
-    guid: f52cd1c3a24949c4a851b8ab53bc1ba9
   - enabled: 1
     path: Assets/Scenes/LabABasementScene.unity
     guid: c021779447888bc40914f114f37a925c
@@ -15,8 +12,8 @@ EditorBuildSettings:
     path: Assets/Scenes/LabARooftopScene.unity
     guid: cf14be16375b2e742baaafbb1d47e30a
   - enabled: 1
-    path: Assets/Scenes/PuzzleTestScene.unity
-    guid: 88082fd810eef4245847bcf08069ac53
+    path: Assets/Scenes/FinalScene.unity
+    guid: d848708eb570a7f408cfae068f4082a4
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

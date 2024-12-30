@@ -150,10 +150,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ea4caf685b48f648be14172ef1e1491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  windForce: 17
-  upperHeight: 20
+  windForce: 30
+  upperHeight: 80
   lowerHeight: 0.5
-  horizontalRange: 30
+  horizontalRange: 80
   defaultGravityScale: 1
 --- !u!198 &2621405804428640096
 ParticleSystem:
@@ -238,7 +238,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
