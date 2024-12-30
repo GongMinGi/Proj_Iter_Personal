@@ -73,6 +73,7 @@ public class CatMove : BaseMonster
         {
             // 타겟이 가까이 있는 경우 공격 상태로 전환
             TriggerWaitAndAttack(distanceToTarget);
+           
         }
     }
 

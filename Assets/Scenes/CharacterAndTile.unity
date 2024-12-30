@@ -172,6 +172,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 236717823263204706, guid: 9b9f791ad1de2ef46a7367000af8e4ba, type: 3}
+      propertyPath: 'sfxClips.Array.data[11]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 2067da80ea6d02742b49cefb536832ea, type: 3}
     - target: {fileID: 8209972782697060351, guid: 9b9f791ad1de2ef46a7367000af8e4ba, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -219,10 +223,6 @@ PrefabInstance:
     - target: {fileID: 8452988404687057033, guid: 9b9f791ad1de2ef46a7367000af8e4ba, type: 3}
       propertyPath: m_Volume
       value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 8452988404687057033, guid: 9b9f791ad1de2ef46a7367000af8e4ba, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

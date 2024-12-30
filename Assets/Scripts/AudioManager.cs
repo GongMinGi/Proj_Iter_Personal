@@ -17,7 +17,7 @@ public class AudioManager : MonoBehaviour
     AudioSource[] sfxPlayers;
     int channelIndex;
 
-    public enum Sfx { attack3, attacksuccess, Cat,ChargeattackCharging, ChargeAttackRelease1_1, dash1, Falling, glide, Iamattattacked, jump1,Mosquito,RockCrush,Snail,SpiderNo4,Zombie2}
+    public enum Sfx { attack3, attacksuccess, Cat,ChargeattackCharging, ChargeAttackRelease1_1, dash1, Falling, glide, Iamattattacked, jump1,Mosquito,RockCrush1,Snail,SpiderNo4,Zombie2}
 
     void Awake() //5. 채널 인덱스 선언-채널이 몇 번인가?
     {

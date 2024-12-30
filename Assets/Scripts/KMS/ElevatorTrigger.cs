@@ -25,6 +25,7 @@ public class ElevatorTrigger : MonoBehaviour
         {
 
             ShowPopup();
+            AudioManager.instance.PlayBgm(true);
 
         }
 
@@ -37,7 +38,7 @@ public class ElevatorTrigger : MonoBehaviour
         {
 
             HidePopup();
-
+            AudioManager.instance.PlayBgm(false);
         }
 
     }
