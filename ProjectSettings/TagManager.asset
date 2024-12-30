@@ -11,6 +11,7 @@ TagManager:
   - Ring
   - FellPoint
   - SavePoint
+  - Destroyable
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - Spider
   - Slug
   - Slug_slime
-  - 
+  - Weather
   - 
   - 
   - 
@@ -56,6 +57,15 @@ TagManager:
     locked: 0
   - name: Cat
     uniqueID: 1878644075
+    locked: 0
+  - name: frontOfParticle
+    uniqueID: 1815567925
+    locked: 0
+  - name: Particle
+    uniqueID: 1982626603
+    locked: 0
+  - name: BackOfParticle
+    uniqueID: 186063231
     locked: 0
   m_RenderingLayers:
   - Default

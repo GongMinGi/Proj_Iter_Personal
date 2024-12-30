@@ -168,6 +168,7 @@ GameObject:
   - component: {fileID: 656184397851719634}
   - component: {fileID: 5497186027713619491}
   - component: {fileID: 5671856291978457436}
+  - component: {fileID: 3988059410779830052}
   m_Layer: 0
   m_Name: Quad (3)
   m_TagString: Untagged
@@ -278,6 +279,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.1
+--- !u!210 &3988059410779830052
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522632102322102961}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: -1
+  m_SortAtRoot: 0
 --- !u!1 &1507831084007455471
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,6 +478,7 @@ GameObject:
   - component: {fileID: 5167026380178828883}
   - component: {fileID: 2080823646961582956}
   - component: {fileID: 7857886084213848326}
+  - component: {fileID: 8616043221730307565}
   m_Layer: 0
   m_Name: Quad (1)
   m_TagString: Untagged
@@ -553,7 +567,7 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 32768
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -575,6 +589,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.1
+--- !u!210 &8616043221730307565
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2187856659387212679}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: -3
+  m_SortAtRoot: 0
 --- !u!1 &2631556252151055994
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,6 +612,7 @@ GameObject:
   - component: {fileID: 1869435238444132801}
   - component: {fileID: 6580946415471834403}
   - component: {fileID: 5907401965651321942}
+  - component: {fileID: 8146610971120094422}
   m_Layer: 0
   m_Name: Particle System
   m_TagString: Untagged
@@ -602,7 +629,7 @@ Transform:
   m_GameObject: {fileID: 2631556252151055994}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -1.0599991, y: 6.8900003, z: 1}
+  m_LocalPosition: {x: -0.88, y: 6.49, z: 6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5355,7 +5382,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: c98b5afb99c348f428410b7b029f7434, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5408,6 +5435,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!210 &8146610971120094422
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2631556252151055994}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: -5
+  m_SortAtRoot: 0
 --- !u!1 &2770815248982166527
 GameObject:
   m_ObjectHideFlags: 0
@@ -5576,6 +5615,7 @@ GameObject:
   - component: {fileID: 4340533455320188457}
   - component: {fileID: 5714554954168768087}
   - component: {fileID: 8478327771840081122}
+  - component: {fileID: 4341029309805381123}
   m_Layer: 0
   m_Name: Quad (2)
   m_TagString: Untagged
@@ -5686,6 +5726,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.1
+--- !u!210 &4341029309805381123
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2874814748050176251}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: -2
+  m_SortAtRoot: 0
 --- !u!1 &3022382766138210387
 GameObject:
   m_ObjectHideFlags: 0
@@ -5750,6 +5802,7 @@ GameObject:
   - component: {fileID: 8387944119620440392}
   - component: {fileID: 1293769839687068538}
   - component: {fileID: 5201868288918171706}
+  - component: {fileID: 5018996211933641375}
   m_Layer: 0
   m_Name: Quad (4)
   m_TagString: Untagged
@@ -5860,6 +5913,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.1
+--- !u!210 &5018996211933641375
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3447211010220798593}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!1 &3673268151475189006
 GameObject:
   m_ObjectHideFlags: 0
@@ -5873,6 +5938,7 @@ GameObject:
   - component: {fileID: 5808823433803561900}
   - component: {fileID: 743919999619320613}
   - component: {fileID: 7929268645831205796}
+  - component: {fileID: 6489343080405429440}
   m_Layer: 0
   m_Name: Quad
   m_TagString: Untagged
@@ -5889,7 +5955,7 @@ Transform:
   m_GameObject: {fileID: 3673268151475189006}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 6}
+  m_LocalPosition: {x: 0, y: 0, z: 8}
   m_LocalScale: {x: 28, y: 14, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5983,6 +6049,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.1
+--- !u!210 &6489343080405429440
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3673268151475189006}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: -6
+  m_SortAtRoot: 0
 --- !u!1 &3944856072969064069
 GameObject:
   m_ObjectHideFlags: 0
@@ -6244,7 +6322,6 @@ GameObject:
   - component: {fileID: 483493905425822775}
   - component: {fileID: 204294458783946647}
   - component: {fileID: 9097920515530511410}
-  - component: {fileID: 1416615825722486897}
   m_Layer: 0
   m_Name: Player_alpha
   m_TagString: Player
@@ -6361,7 +6438,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1.5
+  m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: cbb33c412a059fb448f5834b954be48f, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -6552,29 +6629,12 @@ MonoBehaviour:
   chargeStartTime: 0.5
   chargeIsReady: 2
   energyBallPrefab: {fileID: 5926484336847022773, guid: 031881e2bea1ebd4885c2685fcd7a4ac, type: 3}
+  chargeBeamPrefab: {fileID: 5903109319743580958, guid: a409af018f88a2a4c85c2ccf43c7a30b, type: 3}
   weaponTip: {fileID: 4029910560339051001}
   playerKnockbackForce: 0
   glideGravityScale: 0.5
   isGliding: 0
   velocityLimit: 100
---- !u!114 &1416615825722486897
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4500352044457283628}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc2621d1a73ff4148bf73b9b49e24b97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  beamLinePrefab: {fileID: 3021152603177659748, guid: f34b55f93dddac44387d075b157ad506, type: 3}
-  firepoint: {fileID: 4029910560339051001}
-  maxDistance: 10
-  hitLayers:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!1 &5150349978286110563
 GameObject:
   m_ObjectHideFlags: 0

@@ -391,19 +391,19 @@ public class PlayerController : MonoBehaviour
         //쿨타임 리셋
         attackCurTime = attackCoolTime;
 
-        // 실제 데미지 판정 (차지 데미지를 더 높게 설정하는 예시)
-        Collider2D[] hitColliders = Physics2D.OverlapBoxAll(attackBoxPos.position, boxSize, 0f);
-        foreach (Collider2D col in hitColliders)
-        {
-            if (col.CompareTag("Monster"))
-            {
-                BaseMonster monster = col.GetComponent<BaseMonster>();
-                if (monster != null)
-                {
-                    monster.TakeDamage(2, transform.position);
-                }
-            }
-        }
+        //// 실제 데미지 판정 (차지 데미지를 더 높게 설정하는 예시)
+        //Collider2D[] hitColliders = Physics2D.OverlapBoxAll(attackBoxPos.position, boxSize, 0f);
+        //foreach (Collider2D col in hitColliders)
+        //{
+        //    if (col.CompareTag("Monster"))
+        //    {
+        //        BaseMonster monster = col.GetComponent<BaseMonster>();
+        //        if (monster != null)
+        //        {
+        //            monster.TakeDamage(2, transform.position);
+        //        }
+        //    }
+        //}
 
     }
 
