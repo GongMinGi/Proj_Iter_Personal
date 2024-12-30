@@ -20,7 +20,8 @@ public class BeamCollider : MonoBehaviour
         else if( other.CompareTag("Destroyable"))
         {
             Destroy(other.gameObject);
-            
+            AudioManager.instance.PlaySfx(AudioManager.Sfx.RockCrush1);
+
         }
     }
 }

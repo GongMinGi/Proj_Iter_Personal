@@ -19685,6 +19685,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 236717823263204706, guid: 9b9f791ad1de2ef46a7367000af8e4ba, type: 3}
+      propertyPath: bgmClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4acfb0863be47814085e4ff5a59ca64d, type: 3}
     - target: {fileID: 8209972782697060351, guid: 9b9f791ad1de2ef46a7367000af8e4ba, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
