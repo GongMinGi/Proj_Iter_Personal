@@ -61,6 +61,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform weaponTip; // 무기의 끝, 에너미볼 생성 위치
     private GameObject currentEnergyBall;
 
+
+
     // 피격 관련 변수
     public float playerKnockbackForce;
 
@@ -72,6 +74,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float velocityLimit;
     private bool isGlideSoundPlaying = false;
 
+    // 점프 관련 변수들
+    private bool IsJumpSoundPlaying = false;
     void Awake()
     {
         playerRigid = GetComponent<Rigidbody2D>();
@@ -94,20 +98,31 @@ public class PlayerController : MonoBehaviour
         {
             StartGliding();
 
-           // AudioManager.instance.PlaySfx(AudioManager.Sfx.glide);
+            if (!isGlideSoundPlaying)
+            {
+                AudioManager.instance.PlaySfx(AudioManager.Sfx.glide);
+                isGlideSoundPlaying = true; // 재생 상태 설정
+            }
         }
         else if (isGliding)
         {
             StopGliding();
+            isGlideSoundPlaying = false; // 소리 재생 가능 상태로 초기화
         }
-
+        /*AudioManager.instance.PlaySfx(AudioManager.Sfx.glide);
+    }
+    else if (isGliding)
+    {
+        StopGliding();
+    }
+        */
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
             StartDash();
 
             AudioManager.instance.PlaySfx(AudioManager.Sfx.dash1);
-        }    
+        }
 
 
         //sprite를 뒤집는 코드. GetAxisRaw(horizontal)은 a를 누를땐 -1, d를 누를 땐 1이므로 
@@ -154,7 +169,7 @@ public class PlayerController : MonoBehaviour
 
 
         //landing platform
-        if (playerRigid.linearVelocity.y < 0 ) //추락할때만 레이를 아래로 쏜다.
+        if (playerRigid.linearVelocity.y < 0) //추락할때만 레이를 아래로 쏜다.
         {
             Debug.DrawRay(playerRigid.position, Vector3.down, new Color(0, 1, 0));
             RaycastHit2D rayHit = Physics2D.Raycast(playerRigid.position, Vector3.down, 1, LayerMask.GetMask("Platform"));
@@ -180,11 +195,11 @@ public class PlayerController : MonoBehaviour
     // y축으로 플레이어의 속도가 제한값을 벗어날 경우 최대치로 다시 초기화
     void VelocityLimit()
     {
-        if(playerRigid.linearVelocity.y > 0 && Mathf.Abs(playerRigid.linearVelocity.y) > velocityLimit )
+        if (playerRigid.linearVelocity.y > 0 && Mathf.Abs(playerRigid.linearVelocity.y) > velocityLimit)
         {
             playerRigid.linearVelocity = new Vector2(playerRigid.linearVelocity.x, velocityLimit);
         }
-        else if (playerRigid.linearVelocity.y < 0 &&  Mathf.Abs(playerRigid.linearVelocity.y) > velocityLimit)
+        else if (playerRigid.linearVelocity.y < 0 && Mathf.Abs(playerRigid.linearVelocity.y) > velocityLimit)
         {
             Debug.Log("FUck");
             playerRigid.linearVelocity = new Vector2(playerRigid.linearVelocity.x, -velocityLimit);
@@ -198,9 +213,23 @@ public class PlayerController : MonoBehaviour
         {
             playerRigid.linearVelocity = new Vector2(playerRigid.linearVelocity.y, jumpForce);
             playerAnim.SetBool("isJumping", true);
+
+            // 점프 소리 재생 조건 추가
+            if (!IsJumpSoundPlaying)
+            {
+                AudioManager.instance.PlaySfx(AudioManager.Sfx.jump1); // 점프 효과음
+                IsJumpSoundPlaying = true; // 소리 재생 상태 설정
+            }
+        }
+
+        // 점프 종료 시 초기화
+        if (playerAnim.GetBool("isJumping") == false && IsJumpSoundPlaying)
+        {
+            IsJumpSoundPlaying = false; // 점프 소리 재생 가능 상태로 초기화
         }
     }
 
+    //void Jump 소리 중복으로 인한 수정
 
     void UpdateAttackBoxPosition()
     {
@@ -231,7 +260,7 @@ public class PlayerController : MonoBehaviour
     //차지가 끝나면 구체 해제 
     private void EndCharge()
     {
-        if(currentEnergyBall != null)
+        if (currentEnergyBall != null)
         {
             Destroy(currentEnergyBall);
         }
@@ -241,7 +270,7 @@ public class PlayerController : MonoBehaviour
     void HandleAttack()
     {
         // (1) 마우스 왼쪽 버튼을 누르고 있는 동안 시간 카운트 
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             //공격 쿨타임이 남아잇다면 리턴
             if (attackCurTime > 0f) return;
@@ -251,12 +280,12 @@ public class PlayerController : MonoBehaviour
             isCharging = false;
         }
 
-        if(Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0))
         {
             chargeCounter += Time.deltaTime; //버튼 누른 시간 증가
-            
+
             //chargeStarttime이 지나면 차지 모션 시작 ( 단 한번만)
-            if( !isCharging  && chargeCounter >= chargeStartTime )
+            if (!isCharging && chargeCounter >= chargeStartTime)
             {
                 //AudioManager.instance.PlaySfx(AudioManager.Sfx.ChargeattackCharging);
                 isCharging = true;
@@ -267,7 +296,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //(2) 마우스를 때는 순간 분기
-        if(Input.GetMouseButtonUp(0)) //마우스 왼쪽 버튼을 땔 때
+        if (Input.GetMouseButtonUp(0)) //마우스 왼쪽 버튼을 땔 때
         {
             // (2-1) 충분히 길게 누른 상태라면 => 차지공격
             if (isCharging && chargeCounter >= chargeIsReady)
@@ -297,7 +326,7 @@ public class PlayerController : MonoBehaviour
             attackCurTime -= Time.deltaTime;
         }
     }
-    
+
     public void StartChargeLoop()
     {
 
@@ -314,12 +343,12 @@ public class PlayerController : MonoBehaviour
         attackCurTime = attackCoolTime;
 
         Collider2D[] hitColliders = Physics2D.OverlapBoxAll(attackBoxPos.position, boxSize, 0f);
-        foreach(Collider2D col in hitColliders)
+        foreach (Collider2D col in hitColliders)
         {
-            if(col.CompareTag("Monster"))
+            if (col.CompareTag("Monster"))
             {
                 BaseMonster monster = col.GetComponent<BaseMonster>();
-                if(monster != null)
+                if (monster != null)
                 {
                     monster.TakeDamage(1, transform.position);
                 }
@@ -330,7 +359,7 @@ public class PlayerController : MonoBehaviour
     private void PerformChargeAttack()
     {
         Debug.Log("차지공격실행");
-        
+
         //차지 공격 애니메이션
         playerAnim.SetTrigger("chargeAttack");
         GetComponent<RaycastBeamShooter>().ShootBeam();
@@ -339,14 +368,14 @@ public class PlayerController : MonoBehaviour
 
         // 실제 데미지 판정 (차지 데미지를 더 높게 설정하는 예시)
         Collider2D[] hitColliders = Physics2D.OverlapBoxAll(attackBoxPos.position, boxSize, 0f);
-        foreach ( Collider2D col in hitColliders )
+        foreach (Collider2D col in hitColliders)
         {
-            if(col.CompareTag("Monster"))
+            if (col.CompareTag("Monster"))
             {
                 BaseMonster monster = col.GetComponent<BaseMonster>();
-                if(monster != null)
+                if (monster != null)
                 {
-                    monster.TakeDamage( 2, transform.position);
+                    monster.TakeDamage(2, transform.position);
                 }
             }
         }
@@ -373,7 +402,7 @@ public class PlayerController : MonoBehaviour
             playerRigid.linearVelocity = new Vector2(moveInput * moveSpeed, playerRigid.linearVelocity.y);
         }
 
-        
+
     }
 
     void StartDash()
@@ -390,7 +419,7 @@ public class PlayerController : MonoBehaviour
 
 
         //입력이 없을 경우 대시 불가
-        if ( dashDirection == Vector2.zero)
+        if (dashDirection == Vector2.zero)
         {
             return;
             //dashDirection = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
@@ -401,7 +430,7 @@ public class PlayerController : MonoBehaviour
 
         canDash = false; // 대시 가능 상태 비활성화
 
-        if ( trailRenderer != null)
+        if (trailRenderer != null)
         {
             trailRenderer.emitting = true;
         }
@@ -417,7 +446,7 @@ public class PlayerController : MonoBehaviour
 
 
         //대시 지속 시간 동안 속도 적용
-        while ( Time.time < startTime + dashTime)
+        while (Time.time < startTime + dashTime)
         {
             playerRigid.linearVelocity = dashDirection * dashVelocity;
             yield return null; // 다음 프레임까지 대기
@@ -434,7 +463,7 @@ public class PlayerController : MonoBehaviour
         if (playerAnim.GetBool("isJumping"))
         {
             playerAnim.SetBool("isFalling", true);
-         
+
         }
         else
         {
@@ -488,7 +517,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    void StartGliding()
+    public void StartGliding()
     {
         if (playerRigid.linearVelocity.y < 0) // 아래로 떨어질 때만 글라이딩 가능
         {
@@ -499,7 +528,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void StopGliding()
+    public void StopGliding()
     {
         isGliding = false;
         velocityLimit = 100;
@@ -512,5 +541,4 @@ public class PlayerController : MonoBehaviour
         // 현재 애니메이션 상태를 반복 재생
         playerAnim.Play("PlayerGliding", 0, 0.5f); // 50%에서 시작
     }
-
 }

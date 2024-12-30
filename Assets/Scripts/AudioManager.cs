@@ -10,6 +10,7 @@ public class AudioManager : MonoBehaviour
     AudioSource bgmPlayer;
 
     [Header("#SFX")] //3.
+    [Header("#SFX")] //3.
     public AudioClip[] sfxClips;
     public float sfxVolume;
     public int channels;//4. 채널 개수 변수 선언 for 다량의 효과음들
