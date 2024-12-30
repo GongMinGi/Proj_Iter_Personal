@@ -346,6 +346,10 @@ public class PlayerController : MonoBehaviour
     private void PerformNormalAttack()
     {
         //일반 공격 애니메이션
+        if(isDashing || playerAnim.GetBool("isFalling"))
+        {
+            return;
+        }
         playerAnim.SetTrigger("Attack");
         //쿨타임 리셋
         attackCurTime = attackCoolTime;
