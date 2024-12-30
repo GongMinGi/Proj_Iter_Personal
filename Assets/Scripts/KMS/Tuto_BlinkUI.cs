@@ -112,7 +112,7 @@ public class Tuto_BlinkUI : MonoBehaviour
 
         }
 
-        tutorialImage.gameObject.SetActive(false);  // 페이드아웃 완료 후 비활성화
+        color.a = 0f;  // 페이드아웃 완료 후 비활성화
 
         isFadedOut = true;  // 페이드아웃 완료 상태 업데이트
 

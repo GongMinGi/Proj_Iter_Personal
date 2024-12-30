@@ -153,8 +153,16 @@ public class ItemInteraction : MonoBehaviour
             popupController.ShowPopup();       // 페이드아웃 완료 후 팝업 표시
 
         }
-        
-        gameObject.SetActive(false);        // 아이템 오브젝트 비활성화
+
+        CanvasGroup canvasGroup = gameObject.GetComponent<CanvasGroup>();
+        if (canvasGroup == null)
+        {
+            canvasGroup = gameObject.AddComponent<CanvasGroup>();
+        }
+
+        canvasGroup.alpha = 0f; // GameObject가 보이지 않게 처리
+        canvasGroup.interactable = false; // 상호작용 비활성화
+        canvasGroup.blocksRaycasts = false; // 클릭 막기
 
     }
 
@@ -168,7 +176,15 @@ public class ItemInteraction : MonoBehaviour
 
         }
 
-        gameObject.SetActive(false);     // 아이템 비활성화
+        CanvasGroup canvasGroup = gameObject.GetComponent<CanvasGroup>();
+        if (canvasGroup == null)
+        {
+            canvasGroup = gameObject.AddComponent<CanvasGroup>();
+        }
+
+        canvasGroup.alpha = 0f; // GameObject가 보이지 않게 처리
+        canvasGroup.interactable = false; // 상호작용 비활성화
+        canvasGroup.blocksRaycasts = false; // 클릭 막기
 
     }
 

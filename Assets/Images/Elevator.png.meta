@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: dbabb07965398d64fb686772161b0817
+guid: 6121e186ea4f8194982ab463605e12a3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7963368079086336497
-    second: tile_0047_0
+      213: 8103168948674493137
+    second: Elevator_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tile_0047_0
+      name: Elevator_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 18
-        height: 18
+        width: 128
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f06cf5e7cee6c7190800000000000000
-      internalID: -7963368079086336497
+      spriteID: 1daf7b4f93d347070800000000000000
+      internalID: 8103168948674493137
       vertices: []
       indices: 
       edges: []
