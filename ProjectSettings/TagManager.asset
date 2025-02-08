@@ -12,6 +12,7 @@ TagManager:
   - FellPoint
   - SavePoint
   - Destroyable
+  - Boss
   layers:
   - Default
   - TransparentFX

@@ -59,7 +59,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private GameObject energyBallPrefab;
     [SerializeField] private GameObject chargeBeamPrefab;
-    [SerializeField] private Transform weaponTip; // 무기의 끝, 에너미볼 생성 위치
+    [SerializeField] private Transform weaponTip; // 무기의 끝, 에너지볼 생성 위치
+    
     
     private GameObject currentEnergyBall;
     private GameObject currentEnergyBeam;
@@ -365,6 +366,11 @@ public class PlayerController : MonoBehaviour
                     monster.TakeDamage(1, transform.position);
                 }
             }
+
+            else if ( col.CompareTag("Boss"))
+            {
+                col.GetComponent<Boss>().TakeDamage(1);
+            }
         }
     }
 
@@ -377,17 +383,19 @@ public class PlayerController : MonoBehaviour
         playerAnim.SetTrigger("chargeAttack");
 
         //GetComponent<RaycastBeamShooter>().ShootBeam();
+
+
         //빔 발사 프리팹 생성
         GameObject beamObj = Instantiate(chargeBeamPrefab, weaponTip.position, quaternion.identity);
 
 
-        if(spriteRenderer.flipX)
+        if (spriteRenderer.flipX)
         {
             beamObj.transform.localScale = new Vector3(-1, 1, 1);
         }
 
-        
-        beamObj.transform.SetParent(weaponTip);
+        //빔의 transform 의 부모를 weapontip으로 설정하면 플레이어의 방향이 바뀔 떄 빔이 따라붙게 된다. 지워야함
+        //beamObj.transform.SetParent(weaponTip);
 
         // 빔 일정시간 이후 파괴
         Destroy(beamObj, 1f);
@@ -395,6 +403,7 @@ public class PlayerController : MonoBehaviour
         //쿨타임 리셋
         attackCurTime = attackCoolTime;
 
+        //데미지 판정은 beam 프리팹에 붙은 스크립트로 처리
         //// 실제 데미지 판정 (차지 데미지를 더 높게 설정하는 예시)
         //Collider2D[] hitColliders = Physics2D.OverlapBoxAll(attackBoxPos.position, boxSize, 0f);
         //foreach (Collider2D col in hitColliders)
@@ -423,7 +432,7 @@ public class PlayerController : MonoBehaviour
     void Move()
     {
 
-        if (!isDashing && !movementDisabled) //차지 혹은 대시 중에는 이동 부락
+        if (!isDashing && !movementDisabled) //차지 혹은 대시 중에는 이동 불가
         {
 
             float moveInput = Input.GetAxisRaw("Horizontal");
