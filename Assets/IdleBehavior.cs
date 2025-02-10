@@ -9,8 +9,12 @@ public class IdleBehavior : StateMachineBehaviour
 
     private int nextBehavior;
 
+    private Transform boss;
+
+
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+
         timer = Random.Range(minTime, maxTime); // idle 스테이트에 들어가면 임의의 대기시간을 가진다.
     }
 
