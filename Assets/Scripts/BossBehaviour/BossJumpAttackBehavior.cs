@@ -8,7 +8,8 @@ public class BossJumpAttackBehavior : StateMachineBehaviour
     public float maxTime;
 
     private float speed; // 실제 적용되는 스피드
-    
+
+    public float jumpHeight;
     public float jumpSpeed;  //떠오르는 스피드
     public float stampingSpeed;  // 내려찍는 스피드
 
@@ -30,7 +31,7 @@ public class BossJumpAttackBehavior : StateMachineBehaviour
         speed = jumpSpeed;
 
         target = playerPos;
-        target.y += originBossPos.y + 3f; // 현재 보스의 y 위치에서 3만큼 높은 곳까지 점프하도록
+        target.y += originBossPos.y + jumpHeight; // 현재 보스의 y 위치에서 3만큼 높은 곳까지 점프하도록
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
