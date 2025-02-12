@@ -58,7 +58,7 @@ public class BossLightningStrikeBehavior : StateMachineBehaviour
         if(lightningObject == null)
         {
             lightningObject = Instantiate(lightningStrike, lightningStartPos, Quaternion.Euler(90, 0, 0));
-            ps = lightningObject.GetComponentInParent<ParticleSystem>();
+            //ps = lightningObject.GetComponentInParent<ParticleSystem>();
 
             lightningObject.SetActive(false);
         }
@@ -68,7 +68,7 @@ public class BossLightningStrikeBehavior : StateMachineBehaviour
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Debug.Log(lightningTimer);
+        //Debug.Log(lightningTimer);
         //라이트닝 딜레이가 남아있을 때만 레이케스트를 쏜다.
         if(lightningTimer >= 0)
         {
@@ -114,12 +114,12 @@ public class BossLightningStrikeBehavior : StateMachineBehaviour
 
     void ActivateLightning()
     {
-
         // 오브젝트에 번개 프리팹이 있으면
         if(lightningObject != null)
         {
             lightningObject.transform.position = lightningStartPos; //위치를 시작 위치로 바꾸고
             lightningObject.SetActive(true); // 활성화
+            ps = lightningObject.GetComponent<ParticleSystem>(); //파티클 시스템을 활성화시킬때마다 그때그때 받아줘야함. 이유를 모름;
             if(ps != null)
             {
                 ps.Play();

@@ -208,7 +208,7 @@ AnimatorStateMachine:
     m_Position: {x: 600, y: -260, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4048673702166231396}
-    m_Position: {x: 370, y: -480, z: 0}
+    m_Position: {x: 380, y: -530, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -840,12 +840,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 0
-  minTime: 0.25
+  minTime: 0.5
   maxTime: 0.75
   lightningDelay: 0.5
   lightningTimer: 0
   lightningPrefab: {fileID: 448352333354967730, guid: 0f38479ec94e81f4890f9c09c16c2466, type: 3}
+  spacingX: 0
   lightningHeight: 4
+  lightningCount: 0
+  roomMinX: 0
+  roomMaxX: 0
 --- !u!1101 &8313218026783337762
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

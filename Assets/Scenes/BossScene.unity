@@ -444,6 +444,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: lightningParticle
       objectReference: {fileID: 0}
+    - target: {fileID: 448352333354967730, guid: 0f38479ec94e81f4890f9c09c16c2466, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2024844478030180089, guid: 0f38479ec94e81f4890f9c09c16c2466, type: 3}
       propertyPath: m_LocalPosition.x
       value: 31.74

@@ -8,7 +8,7 @@ public class Boss : MonoBehaviour
     public int maxHealth = 30; //보스 최대 체력
     public int currentHealth; // 보스 현재 체력
     [SerializeField]
-    BoxCollider2D bossRoomRange;
+    public BoxCollider2D bossRoomRange;
     Animator anim;
     AnimatorStateInfo stateInfo;
 
