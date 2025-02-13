@@ -581,7 +581,8 @@ Transform:
   m_LocalPosition: {x: 35.8, y: -0.01, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2072867383}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &791349472
@@ -618,7 +619,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.8856304}
+  m_Offset: {x: 0.007008791, y: 0.8856304}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -628,7 +629,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.1, y: 1.8267022}
+  m_Size: {x: 0.91778815, y: 1.8267022}
   m_EdgeRadius: 0
 --- !u!114 &791349473
 MonoBehaviour:
@@ -654,7 +655,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 791349469}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 9833044da6565cc4186f85c28e5d018f, type: 2}
   m_CullingMode: 0
@@ -775,6 +776,30 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!1 &815195956 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4500352044457283628, guid: 5de1c036677d8f942b75fde4e41afd2b, type: 3}
+  m_PrefabInstance: {fileID: 2021130647}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &815195957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815195956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20b1cb3d4511bbf4e8dc0ce237019d5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTag: BossRoom
+  uiCanvas: {fileID: 1613923481}
+--- !u!4 &815195964 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2346270025776425881, guid: 5de1c036677d8f942b75fde4e41afd2b, type: 3}
+  m_PrefabInstance: {fileID: 2021130647}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &844000437 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5407133664667971495, guid: 55f6904d87eb9ec469c7076de810f397, type: 3}
@@ -847,6 +872,34 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b9f791ad1de2ef46a7367000af8e4ba, type: 3}
+--- !u!1 &1482498972 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2770815248982166527, guid: 5de1c036677d8f942b75fde4e41afd2b, type: 3}
+  m_PrefabInstance: {fileID: 2021130647}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1482498974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1482498972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 388ffeff656c2214cbdb2d9627fd50a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraSpots:
+  - {fileID: 791349471}
+  - {fileID: 1664799901}
+  moveSpeeds:
+  - 1
+  - 1
+  smoothTime: 0.3
+  zoomLevels:
+  - 5
+  - 5
+  zoomSmoothTime: 0.5
 --- !u!1 &1546896563
 GameObject:
   m_ObjectHideFlags: 0
@@ -5112,6 +5165,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1636427311}
   m_CullTransparentMesh: 1
+--- !u!1 &1664799900
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1664799901}
+  m_Layer: 0
+  m_Name: CameraPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1664799901
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664799900}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.35, y: 1.8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 815195964}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1882002233
 GameObject:
   m_ObjectHideFlags: 0
@@ -5267,8 +5351,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2346270025776425881, guid: 5de1c036677d8f942b75fde4e41afd2b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1664799901}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4500352044457283628, guid: 5de1c036677d8f942b75fde4e41afd2b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 815195957}
+    - targetCorrespondingSourceObject: {fileID: 2770815248982166527, guid: 5de1c036677d8f942b75fde4e41afd2b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1482498974}
   m_SourcePrefab: {fileID: 100100000, guid: 5de1c036677d8f942b75fde4e41afd2b, type: 3}
 --- !u!1 &2071165496
 GameObject:
@@ -5327,7 +5420,7 @@ GameObject:
   - component: {fileID: 2072867382}
   m_Layer: 0
   m_Name: bossRoom
-  m_TagString: Untagged
+  m_TagString: BossRoom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5386,12 +5479,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2072867381}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30.764702, y: 4.17111, z: -15.675452}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.6784325, y: 1.3937035, z: -15.675452}
+  m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 791349471}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2090890316
 GameObject:
@@ -5478,5 +5571,4 @@ SceneRoots:
   - {fileID: 791349471}
   - {fileID: 340415300}
   - {fileID: 1613923485}
-  - {fileID: 2072867383}
   - {fileID: 781296208}

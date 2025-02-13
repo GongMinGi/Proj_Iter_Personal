@@ -847,7 +847,8 @@ MonoBehaviour:
   lightningPrefab: {fileID: 448352333354967730, guid: 0f38479ec94e81f4890f9c09c16c2466, type: 3}
   spacingX: 0
   lightningHeight: 4
-  lightningCount: 0
+  maxLightningCount: 0
+  currentLightningCount: 0
   roomMinX: 0
   roomMaxX: 0
 --- !u!1101 &8313218026783337762

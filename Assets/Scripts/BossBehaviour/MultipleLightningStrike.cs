@@ -22,7 +22,8 @@ public class MultipleLightningStrike :StateMachineBehaviour
     private float spacingX; //번개를 출력할 간격
     private float minSpacing; // 출력 최소간격 ( 번개의 최대개수를 미리 풀링해놓고 쓰고싶은 만큼만 꺼내쓰면 됀다.
     public float lightningHeight; //번개 출력 시작 높이
-    public int lightningCount; //생성할 번개의 개수
+    public int maxLightningCount; //번개의 최대 생성 개수
+    public int currentLightningCount;  // 현재 번개의 생성 개수
     private float lightningStartX;
     Vector2 lightningStartPos; // 번개의 생성 위치
     Vector2 lightningEndPos;
@@ -52,7 +53,8 @@ public class MultipleLightningStrike :StateMachineBehaviour
         roomMinX = bossRoom.bounds.min.x;
         roomMaxX = bossRoom.bounds.max.x;
 
-        lightningCount = Mathf.CeilToInt((roomMaxX - roomMinX) / minSpacing); // 생성할 번개의 개수
+        maxLightningCount = Mathf.CeilToInt((roomMaxX - roomMinX) / minSpacing); // 생성할 번개의 개수
+        currentLightningCount = Mathf.CeilToInt((roomMaxX - roomMinX) / spacingX); // 생성할 번개의 개수
 
 
         if (lightningPool == null)
@@ -60,7 +62,7 @@ public class MultipleLightningStrike :StateMachineBehaviour
             lightningPool = new List<GameObject>();
 
             //번개의 개수만큼 오브젝트를 만들어서 비활성화 시킨 뒤 큐에 집어 넣는다.
-            for (int i = 0; i < lightningCount; i++)
+            for (int i = 0; i < maxLightningCount; i++)
             {
                 //위치는 어짜피 활성화될 때 바뀔것이므로 임의로 설정한다.
                 GameObject lightning = Instantiate(lightningPrefab, boss.transform.position, Quaternion.Euler(90, 0, 0));
@@ -80,7 +82,7 @@ public class MultipleLightningStrike :StateMachineBehaviour
         if (lightningTimer >= 0)
         {
 
-            for (int i = 0; i < lightningCount; i++)
+            for (int i = 0; i < currentLightningCount; i++)
             {
                 //GameObject lineObj = GetPooledObject(lineRendererPool);
                 lightningStartX = roomMinX + (spacingX * i);
@@ -110,7 +112,7 @@ public class MultipleLightningStrike :StateMachineBehaviour
             if (canAttack)
             {
                 // 라인 랜더러를 끄고 번개 파티클 출력
-                for (int i = 0; i < lightningCount; i++)
+                for (int i = 0; i < currentLightningCount; i++)
                 {
 
                     lineRenderer = lightningPool[i].GetComponent<LineRenderer>();
@@ -134,7 +136,7 @@ public class MultipleLightningStrike :StateMachineBehaviour
 
         if (timer <= 0)
         {
-            for(int i =0; i < lightningCount;i++)
+            for(int i =0; i < currentLightningCount;i++)
             {
                 lightningPool[i].SetActive(false);
             }

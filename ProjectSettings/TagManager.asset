@@ -13,6 +13,7 @@ TagManager:
   - SavePoint
   - Destroyable
   - Boss
+  - BossRoom
   layers:
   - Default
   - TransparentFX

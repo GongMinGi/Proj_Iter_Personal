@@ -24,8 +24,8 @@ public class Phase2_Idle : StateMachineBehaviour
         if (timer <= 0) //대기시간이 끝났다면,
         {
 
-            //nextBehavior = Random.Range(0, 3);  // 점프공격과 벼락 공격중 무엇을 실행할지 랜덤으로 고른다.
-            nextBehavior = 2;
+            nextBehavior = Random.Range(0, 3);  // 점프공격과 벼락 공격중 무엇을 실행할지 랜덤으로 고른다.
+            //nextBehavior = 2;
             if (nextBehavior == 0)
             {
                 animator.SetTrigger("JumpAttack");
