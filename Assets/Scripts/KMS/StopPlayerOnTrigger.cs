@@ -21,9 +21,10 @@ public class StopPlayerOnTrigger : MonoBehaviour
     private void Start()
     {
 
+        //컴포넌트 할당
         playerController = GetComponent<PlayerController>();
         playerRigidbody = GetComponent<Rigidbody2D>();
-        cameraMover = Camera.main.GetComponent<CameraMover>();
+        cameraMover = Camera.main.GetComponent<CameraMover>(); //메인 카메라에서 컴포넌트를 가져옴
 
         // 컴포넌트 존재 여부 확인
         if (playerController == null || playerRigidbody == null)
@@ -37,7 +38,7 @@ public class StopPlayerOnTrigger : MonoBehaviour
 
     private void Update()
     {
-        
+        // 점프가 비활성화된 상태에서 점프 입력이 들어오면 경고 메세지 출력 
         if (isJumpDisabled && Input.GetKeyDown(KeyCode.Space))      // 점프 입력 차단
         {
 
