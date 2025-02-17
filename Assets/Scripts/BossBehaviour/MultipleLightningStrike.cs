@@ -65,7 +65,8 @@ public class MultipleLightningStrike :StateMachineBehaviour
             for (int i = 0; i < maxLightningCount; i++)
             {
                 //위치는 어짜피 활성화될 때 바뀔것이므로 임의로 설정한다.
-                GameObject lightning = Instantiate(lightningPrefab, boss.transform.position, Quaternion.Euler(90, 0, 0));
+                GameObject lightning = Instantiate(lightningPrefab, boss.transform.position, Quaternion.Euler(0, 0, 0));
+                lightning.GetComponent<Collider2D>().enabled = false; // 라인랜더러를 쏠때 충돌되지 않도록 비활성화
                 lightning.SetActive(false);
                 lightningPool.Add(lightning);
                 Debug.Log("리스트에 프리팹 추가함");
@@ -126,6 +127,7 @@ public class MultipleLightningStrike :StateMachineBehaviour
                     ps = lightningPool[i].GetComponent<ParticleSystem>();
 
                     ActivatingLightning(ps);
+                    lightningPool[i].GetComponent<Collider2D>().enabled = true; // 파티클 활성화 이후 충돌 처리
                 }
             }
             canAttack = false;
@@ -138,6 +140,7 @@ public class MultipleLightningStrike :StateMachineBehaviour
         {
             for(int i =0; i < currentLightningCount;i++)
             {
+                lightningPool[i].GetComponent<Collider2D>().enabled=false; //다시 풀에 넣기 전에 비활성화
                 lightningPool[i].SetActive(false);
             }
 

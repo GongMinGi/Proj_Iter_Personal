@@ -22,10 +22,8 @@ public class BossLightningStrikeBehavior : StateMachineBehaviour
     [SerializeField]
     private float lightningHeight; // 번개가 떨어지는 높이
     
-
-
-
     private LineRenderer lineRenderer; // 번개 경고를 위한 라인 랜더러 가져오기
+
 
 
     private Vector2 playerpos; // 플레이어의 위치
@@ -57,9 +55,10 @@ public class BossLightningStrikeBehavior : StateMachineBehaviour
         //첫 실행 시에 한번 프리팹을 넣어주고 비활성화시켜놓는다.
         if(lightningObject == null)
         {
-            lightningObject = Instantiate(lightningStrike, lightningStartPos, Quaternion.Euler(90, 0, 0));
+            lightningObject = Instantiate(lightningStrike, lightningStartPos, Quaternion.Euler(0, 0, 0));
             //ps = lightningObject.GetComponentInParent<ParticleSystem>();
 
+            lightningObject.GetComponent<Collider2D>().enabled = false; // 라인랜더러가 출력될때 충돌처리가 돼면 안돼므로 비활성화 시킨다.
             lightningObject.SetActive(false);
         }
 
@@ -104,6 +103,7 @@ public class BossLightningStrikeBehavior : StateMachineBehaviour
 
         if (timer <= 0)
         {
+            lightningObject.GetComponent<Collider2D>().enabled =false; //다시 풀에 집어넣기 전에 콜라이더 비활성화
             lightningObject.SetActive(false);
 
             
@@ -123,6 +123,7 @@ public class BossLightningStrikeBehavior : StateMachineBehaviour
             if(ps != null)
             {
                 ps.Play();
+                lightningObject.GetComponent<Collider2D>().enabled = true; // 번개를 출력할 때 콜라이더를 활성화시킨다.
             }
 
         }

@@ -40,7 +40,16 @@ public class Boss : MonoBehaviour
         }
     }
 
-    
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            other.GetComponentInChildren<PlayerHealth>().TakeDamage(1, this.transform.position);
+        }
+    }
+
+
     private void Die() //보스 사망 시 실행되는 함수
     {
         Debug.Log("Boss Defeated");
