@@ -1,28 +1,28 @@
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-//특정 조건에서 씬 전환과 페이드 아웃 효과를 처리하는 스크립트
-public class ToRealGame : MonoBehaviour
+public class PortalStatus : MonoBehaviour
 {
+    [SerializeField]
+    private string nextSceneName;
+
     private Rigidbody2D playerRigidbody;    //플레이어에 부착된 rigidbody를 저장
     private Transform cameraTransform;      //메인 카메라의 trasnform 저장
     private Vector3 cameraOriginalPosition; //카메라의 원래위치 저장(씬 전환 시 카메라 위치고정을 위해)
-    public float dangerYThreshold = -50f;   //플레이어 y좌표가 이 값보다 낮으면 위험 상태로 간주
 
     [Header("Fade Settings")]
     public Image fadeScreen;                // 페이드 효과에 사용할 이미지
     public float fadeSpeed = 1.0f;          //페이드 효과의 속도를 조절하는 변수
 
     [Header("Scene Settings")]
-    public string sceneToLoad = "FinalScene";   //전환할 씬의 이름
+    public string sceneToLoad;               //전환할 씬의 이름
 
     private bool isTransitioning = false;       //씬 전환이 진행중인지를 나타내는 변수(중복 실행 방지)
 
     private void Awake()
     {
-        playerRigidbody = GetComponent<Rigidbody2D>();
         cameraTransform = Camera.main.transform;
 
         // 페이드 화면 초기화
@@ -37,11 +37,13 @@ public class ToRealGame : MonoBehaviour
         }
     }
 
-    private void Update()
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        //씬 전환중이 아니고, 플레이어의 y좌표가 danagerThreshold보다낮다면,
-        if (!isTransitioning && transform.position.y < dangerYThreshold)
+        if(other.CompareTag("Player") && !isTransitioning)
         {
+            playerRigidbody = other.GetComponent<Rigidbody2D>();
+
             playerRigidbody.linearVelocity = Vector2.zero; // 플레이어 움직임 멈춤
 
             // 카메라 원래 위치 저장 (페이드 효과동안 카메라를 고정하기 위해)
@@ -57,6 +59,7 @@ public class ToRealGame : MonoBehaviour
             StartCoroutine(TransitionScene());
         }
     }
+
 
 
     // 페이즈 효과와 씬 전환을 순차적으로 진행
@@ -80,6 +83,8 @@ public class ToRealGame : MonoBehaviour
         // 씬 전환
         SceneManager.LoadScene(sceneToLoad);
     }
+
+
 
     // 페이드아웃(검은 화면이 나타나는) 효과 구현
     private IEnumerator FadeOutEffect()
