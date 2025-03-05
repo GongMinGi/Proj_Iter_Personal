@@ -34,7 +34,7 @@ public class SelectData : MonoBehaviour
             }
 
         }
-        DataManager.Instance.DataClear(); // 실제로 데이터를 반영하려는 것이 아닌 슬롯에 표시만 하려는 것이기 때문에, 전부 불러온 다음엔 초기화해준다.
+        //DataManager.Instance.DataClear(); // 실제로 데이터를 반영하려는 것이 아닌 슬롯에 표시만 하려는 것이기 때문에, 전부 불러온 다음엔 초기화해준다.
 
 
     }
@@ -56,7 +56,7 @@ public class SelectData : MonoBehaviour
         {
             // 2. 저장된 데이터가 있을 때 => 불러오기 해서 게임씬으로 넘어감
             DataManager.Instance.LoadData();
-            GoGame(); // 세이데이터가 있을 때만 게임 씬으로 바로 넘어간다.
+            GoGame(); // 세이브데이터가 있을 때만 게임 씬으로 바로 넘어간다.
 
         }
         else  // 1. 저장된 데이터가 없을 때
@@ -82,9 +82,10 @@ public class SelectData : MonoBehaviour
         {
             DataManager.Instance.nowPlayer.name = newPlayerName.text; //슬롯을 만들 때 입력했던 이름을 현재데이터의 이름에 기록한다.
             DataManager.Instance.SaveData();                            // 새 데이터를 파일에 저장
+            SceneManager.LoadScene(1); // 인덱스 1에 해당하는 씬(게임 씬)으로 전환
         }
+        SceneManager.LoadScene(DataManager.Instance.nowPlayer.nowScene); // 데이터에 저장되어있던 Scene으로 이동
 
-        SceneManager.LoadScene(1); // 인덱스 1에 해당하는 씬(게임 씬)으로 전환
     }
 
 

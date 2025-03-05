@@ -19,9 +19,10 @@ public class PlayerData
     // 이름, 레벨, 코인, 착용중인 무기
     public string nowScene;
     public string name;
-    public int level;
-    public int coin;
-    public int item; 
+    public int curHealth =15;   // 게임 시작 초기값을 설정
+    public int maxHealth = 15;
+    public Vector3 playerPos;
+
 }
 
 

@@ -5459,7 +5459,6 @@ GameObject:
   - component: {fileID: 8660747586923665985}
   - component: {fileID: 5156516081085774638}
   - component: {fileID: 6500100691034491958}
-  - component: {fileID: 1104654337926586891}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5589,19 +5588,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!114 &1104654337926586891
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2770815248982166527}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e429d04041ddce4e906fc264be2a07e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 10
 --- !u!1 &2874814748050176251
 GameObject:
   m_ObjectHideFlags: 0
@@ -6335,6 +6321,7 @@ GameObject:
   - component: {fileID: 483493905425822775}
   - component: {fileID: 204294458783946647}
   - component: {fileID: 9097920515530511410}
+  - component: {fileID: 678000568867288459}
   m_Layer: 0
   m_Name: Player_alpha
   m_TagString: Player
@@ -6648,6 +6635,19 @@ MonoBehaviour:
   glideGravityScale: 0.5
   isGliding: 0
   velocityLimit: 100
+--- !u!114 &678000568867288459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4500352044457283628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e429d04041ddce4e906fc264be2a07e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 15
 --- !u!1 &5150349978286110563
 GameObject:
   m_ObjectHideFlags: 0

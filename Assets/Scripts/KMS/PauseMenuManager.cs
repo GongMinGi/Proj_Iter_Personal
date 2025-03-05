@@ -79,7 +79,7 @@ public class PauseMenuManager : MonoBehaviour
 
     public void SaveGame()
     {
-
+        PlayerHealth.instance.SaveData();
         Debug.Log("Game Saved!");
 
     }
@@ -96,8 +96,12 @@ public class PauseMenuManager : MonoBehaviour
 
         Time.timeScale = 1f;    // TimeScale √ ±‚»≠
         Debug.Log("Game Quit!");
-        Application.Quit();
 
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #else
+        Application.Quit();
+        #endif
     }
 
 }

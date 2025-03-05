@@ -43,13 +43,21 @@ public class PlayerHealth : MonoBehaviour
 
     }
 
+
+    /*
+     * out 파라미터
+     *  - 출력 매개변수, 빈 변수를 매개변수에 넣어주면 함수에서 그 변수에 값을 넣어준다.
+     */
     private void Start()
     {
-        anim = GetComponentInParent<Animator>();
+        //anim = GetComponentInParent<Animator>();
+        anim = GetComponent<Animator>();
+
         if (GameManager.instance != null)
         {
 
             GameManager.instance.LoadPlayerData(out health, out maxHealth);
+            transform.position = GameManager.instance.playerPos; // 씬이 시작할 때 플레이어의 위치를 저장데이터의 위치로 변경한다.
 
         }
         else
@@ -69,7 +77,9 @@ public class PlayerHealth : MonoBehaviour
 
         health -= damage;
         
-        GetComponentInParent<PlayerController>().OnDamaged(enemyDirection);
+        //GetComponentInParent<PlayerController>().OnDamaged(enemyDirection);
+        GetComponent<PlayerController>().OnDamaged(enemyDirection);
+
 
         DamageTaken?.Invoke();
         AudioManager.instance.PlaySfx(AudioManager.Sfx.Iamattattacked);
@@ -151,9 +161,15 @@ public class PlayerHealth : MonoBehaviour
         if (GameManager.instance != null)
         {
 
-            GameManager.instance.SavePlayerData(health, maxHealth);
-
+            GameManager.instance.SavePlayerData(health, maxHealth, this.transform.position);
+            //GameManager.instance.SavePlayerData(health, maxHealth);
         }
+
+    }
+
+    public void SaveData()
+    {
+        GameManager.instance.SavePlayerData(health, maxHealth, this.transform.position);
 
     }
 
